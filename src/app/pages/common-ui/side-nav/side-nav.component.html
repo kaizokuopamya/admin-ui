@@ -1,0 +1,80 @@
+<nav class="global-nav" #globalNav>
+  <div class="nav-header">
+    <div class="nav-header">
+      <div class="user-details1">
+        <a href="javascript:;">
+          <span class="round-circle blue">
+            <h3>Admin</h3>
+            <img src="./assets/images/svg/user-profile-w.svg" alt="user-img" />
+          </span>
+        </a>
+        <div class="in-details">
+          <h5>Admin Dashboard</h5>
+          <!-- <small>{{ "LAST_LOGIN" }} {{ "yesterday at 5:30" }}</small>
+          <small>{{ "Version" }} {{ "1.0 " }}</small> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="nav-items">
+    <ul class="lst-nav-items">
+      <li
+        [ngClass]="{
+          'coming-soon': menu?.isEnable == 'N',
+          drilldown: menu?.subMenu?.length > 0
+        }"
+        *ngFor="let menu of mainMenuList; let i = index"
+      >
+        <a
+          [ngClass]="{ 'glnv-dropdown': menu?.subMenu?.length > 0 }"
+          (click)="goToPage(menu?.URL)"
+        >
+          <img
+            [src]="'./assets/images/menu_web/' + menu.JSON_KEY"
+            alt="icon"
+            class=""
+            data-toggle="tooltip"
+            data-placement="right"
+            title="{{ menu.menuName }}"
+          />
+          {{ menu.menuName }}
+          <!-- <span class="chevron" *ngIf="menu?.subMenu?.length > 0"></span> -->
+          <div class="hovering-option">{{ menu.menuName }}</div>
+        </a>
+        <div class="overlap-badge coming-soon" *ngIf="menu?.isEnable == 'N'">
+          <small style="color: red">{{ menu?.textToDisplay }}</small>
+        </div>
+
+        <div *ngIf="menu?.subMenu?.length > 0" class="mysubnavigation-items">
+          <ul class="lst-subnavigation">
+            <li *ngFor="let sub of menu?.subMenu; let j = index">
+              <a>
+                {{ sub.submenuname }}
+              </a>
+            </li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="nav-footer">
+    <div class="poweredby">
+      <div class="row">
+        <div class="col-12 col-xl-12 p-0">
+          <p class="hide-m">
+            <img src="assets/images/svg/version-g.svg" alt="vrsion-icon" />{{
+              "Version"
+            }}
+            {{ "1.0" }}
+          </p>
+          <!-- <p class="hide-desk">
+            <a href="javascript:;">
+              <img src="assets/images/menu_web/logout.svg" alt="logout-icon" />
+              {{ "Logout" }}
+            </a>
+          </p> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

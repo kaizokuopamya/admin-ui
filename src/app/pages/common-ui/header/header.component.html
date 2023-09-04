@@ -1,0 +1,132 @@
+<!-- Web header Section Start -->
+<!-- prelogin header -->
+<!-- <ng-container *ngIf="dataService.currentRoute == 'preLogin'">
+  <header class="global-header brand-bg2 minus-nav login">
+    <div class="desk-header">
+      <div class="container-fluid">
+        <div class="row">
+          <div
+            class="col-xl-3 col-lg-3 col-md-3 col-sm-2 col-2 d-none d-md-block d-lg-block d-xl-block"
+          >
+            <ul class="headerlist">
+              <li (click)="goToPage('/login')">
+                <a href="javascript:;">
+                  <img src="assets/images/svg/home1.svg" alt="home-icon" />
+                  <em> {{ "HOME" | translate }}</em></a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+            <div class="brand-heading text-center m-auto">
+              <span class="logo-img">
+                <img
+                  src="assets/images/logo/logo_center-white.svg"
+                  alt="center-logo"
+                  class="d-block d-md-block d-lg-block d-xl-block m-auto"
+                />
+              </span>
+            </div>
+          </div>
+          <div
+            class="col-xl-3 col-lg-3 col-md-3 col-sm-2 col-2 d-none d-md-block d-lg-block d-xl-block"
+          ></div>
+        </div>
+      </div>
+    </div>
+  </header>
+</ng-container> -->
+<!-- postlogin header -->
+<!-- <ng-container *ngIf="dataService.currentRoute == 'postLogin'"> -->
+<header class="global-header">
+  <div class="desk-header">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-2 d-lg-none">
+          <div class="header-actions">
+            <button class="ux-button-header menu-btn">
+              <img
+                src="assets/images/svg/yellow-menu.svg"
+                alt="open-menu-icon"
+              />
+            </button>
+          </div>
+        </div>
+        <div
+          class="col-xl-4 col-lg-3 col-md-1 col-sm-1 col-2 pl-0 pr-0 d-none d-xl-block d-lg-block d-md-none d-sm-none"
+        >
+          <div id="nav-icon1">
+            <div class="inner-div">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-4 col-lg-4 col-md-5 col-sm-6 col-6 position-static">
+          <div class="brand-heading">
+            <span class="logo-img align-left">
+              <img
+                src="assets/images/logo/logo_center-white.svg"
+                alt="center-logo"
+                class="normal d-block d-md-block d-lg-block d-xl-block"
+              />
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<!-- </ng-container> -->
+
+<!-- <ng-container *ngIf="dataService.currentRoute == 'innerHeader'">
+  <header class="global-header brand-bg2 minus-nav 1">
+    <div class="in-header">
+      <div class="header-icons-lft show1">
+        <div class="header-actions">
+          <button
+            class="ux-button-header"
+            (click)="
+              goToPage(
+                dataService.breadcrumblist[
+                  dataService.breadcrumblist.length - 2
+                ].routeName
+              )
+            "
+          >
+            <img
+              class="img-small"
+              src="assets/images/svg/left-arrow.svg"
+              alt="left-arrow-icon"
+            />
+          </button>
+        </div>
+      </div>
+      <div class="brand-logo">
+        <h3>
+          {{
+            dataService.breadcrumblist[dataService.breadcrumblist.length - 1]
+              .currentRoute
+              | translate
+              | titlecase
+          }}
+        </h3>
+      </div>
+      <div class="header-icons-rit">
+        <div class="header-actions">
+          <button
+            class="ux-button-header mr-2"
+            (click)="goToPage('/dashboard')"
+          >
+            <img
+              src="assets/images/svg/home1.svg"
+              alt="home-icon"
+              class="img-small"
+            />
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+</ng-container> -->

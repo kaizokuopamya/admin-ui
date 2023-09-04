@@ -1,0 +1,137 @@
+<div class="main bg-m">
+  <div class="right-main-column">
+    <div class="right-col-container pad-b full-width">
+      <!-- ======== body page content start from here ======== -->
+      <div class="body-page-container main-dashborad">
+        <div class="container-fluid">
+          <div class="row no-gutters mt-4">
+            <div class="col-12">
+              <div class="row1">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                  <div
+                    class="statement-table detailed-statment"
+                    *ngIf="detailStatementList.length != 0"
+                  >
+                    <div class="datatable-box">
+                      <div class="table-responsivebox" style="overflow: auto">
+                        <table
+                          class="table table-hover display table-borderless"
+                        >
+                          <thead>
+                            <tr>
+                              <th class="show-mobile">
+                                {{ "TRANSACTION_DETAILS" }}
+                              </th>
+                              <th class="show-desktop">
+                                {{ "SERIAL_NUMBERS" }}
+                              </th>
+                              <th class="show-desktop">
+                                {{ "TRANSACTION_DATE" }}
+                              </th>
+                              <th class="show-desktop">{{ "REMARKS" }}</th>
+                              <th class="show-desktop">
+                                {{ "REFERENCE_NUMBER" }}
+                              </th>
+                              <th class="show-desktop">
+                                {{ "CHEQUEBOOK_NUMBER" }}
+                              </th>
+                              <th class="text-right show-desktop">
+                                {{ "WITHDRAWL_INR" }}
+                              </th>
+                              <th class="text-right show-desktop">
+                                {{ "DEPOSITE_INR" }}
+                              </th>
+                              <th class="text-right show-desktop">
+                                {{ "CLOSING_BALANCE" }}
+                              </th>
+                              <th class="show-mobile">{{ "AMOUNT" }}</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr
+                              class="no-borders"
+                              *ngFor="
+                                let item of detailStatementList;
+                                index as i
+                              "
+                            >
+                              <td class="show-mobile">
+                                <b>{{
+                                  item?.TransactionDate.substring(6, 8) +
+                                    "/" +
+                                    item?.TransactionDate.substring(4, 6) +
+                                    "/" +
+                                    item?.TransactionDate.substring(0, 4)
+                                }}</b>
+                                <br />{{ item?.particulars }}
+                              </td>
+                              <td class="show-desktop">{{ i + 1 }}.</td>
+                              <td class="show-desktop">
+                                {{
+                                  item?.TransactionDate.substring(6, 8) +
+                                    "/" +
+                                    item?.TransactionDate.substring(4, 6) +
+                                    "/" +
+                                    item?.TransactionDate.substring(0, 4)
+                                }}
+                              </td>
+                              <!-- <td>{{formatDate(item?.TransactionDate) }}</td> -->
+                              <!-- <td>{{item?.TransactionDate |  date: 'dd/MM/yyyy' }}</td> -->
+                              <td class="show-desktop">
+                                {{ item?.particulars }}
+                              </td>
+                              <td class="show-desktop">
+                                {{ item?.TransactionId }}
+                              </td>
+                              <td class="show-desktop">
+                                {{ item?.instrumentNumber }}
+                              </td>
+                              <td class="text-right debit show-desktop">
+                                <div *ngIf="item?.creditOrDebit == 'D'">
+                                  {{ item?.amount }}
+                                </div>
+                              </td>
+                              <td class="text-right credit show-desktop">
+                                <div *ngIf="item?.creditOrDebit == 'C'">
+                                  {{ item?.amount }}
+                                </div>
+                              </td>
+                              <td class="text-right show-desktop">
+                                {{ item?.closingBalance }}
+                              </td>
+                              <td
+                                class="show-mobile"
+                                style="text-align: right"
+                                [ngClass]="{
+                                  debit: item?.creditOrDebit == 'D',
+                                  credit: item?.creditOrDebit == 'C'
+                                }"
+                              >
+                                <div *ngIf="item?.creditOrDebit == 'D'">
+                                  {{ item?.amount }}
+                                  Dr
+                                </div>
+                                <div *ngIf="item?.creditOrDebit == 'C'">
+                                  {{ item?.amount }}
+                                  Cr
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <!-- row no-gutters -->
+                    </div>
+                    <!--.container-fluid-->
+                  </div>
+                  <!--.body-page-container-->
+                </div>
+                <!--.right-col-container-->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
