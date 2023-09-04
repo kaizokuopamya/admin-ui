@@ -21,14 +21,3 @@
   background-color: red;
   color: white;
 }
-.brand-logo {
-  h3 {
-    display: inline-block;
-  }
-  .bbpsLogo {
-    width: 75px !important;
-    float: right;
-    margin-top: 6px !important;
-    margin-right: 10px !important;
-  }
-}
