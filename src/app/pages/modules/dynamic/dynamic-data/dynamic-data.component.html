@@ -1,0 +1,155 @@
+<div class="main bg-m">
+  <div class="right-main-column">
+    <div class="right-col-container pad-b full-width">
+      <!-- ======== body page content start from here ======== -->
+      <div class="body-page-container main-dashborad">
+        <div class="container-fluid">
+          <!--.row starts here -->
+          <div class="row no-gutters">
+            <div class="col-12">
+              <div class="row1">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                  <!-- master element values card start from here -->
+                  <div class="card mt-3">
+                    <div class="card-header">Master Element Values</div>
+                    <!-- master element values card body start from here  -->
+                    <div class="card-body">
+                      <div
+                        class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"
+                      >
+                        <h4 class="mb-4">Name: {{ masterName }}</h4>
+                      </div>
+                      <!-- dynamicValuesForm start from here  -->
+                      <form [formGroup]="dynamicValuesForm">
+                        <!-- values table start from here  -->
+                        <table class="table" formArrayName="values">
+                          <thead>
+                            <tr>
+                              <th>KEY</th>
+                              <th>VALUE</th>
+                              <th>DESCRIPTION</th>
+                              <th>ACTION</th>
+                            </tr>
+                          </thead>
+                          <!-- looping through value controls -->
+                          <tbody
+                            *ngFor="let value of values.controls; let i = index"
+                          >
+                            <tr [formGroupName]="i">
+                              <td class="ux-input">
+                                <input
+                                  type="text"
+                                  placeholder="Enter Key"
+                                  formControlName="key"
+                                />
+                              </td>
+                              <td class="ux-input">
+                                <input
+                                  type="text"
+                                  placeholder="Enter Value"
+                                  formControlName="value"
+                                />
+                              </td>
+                              <td class="ux-input">
+                                <input
+                                  type="text"
+                                  placeholder="Enter Description"
+                                  formControlName="description"
+                                />
+                              </td>
+                              <td class="d-flex">
+                                <button
+                                  class="btn btn-primary rounded-circle mx-2"
+                                  type="button"
+                                  (click)="addValue()"
+                                >
+                                  <fa-icon [icon]="faCirclePlus"></fa-icon>
+                                </button>
+                                <button
+                                  class="btn btn-danger rounded-circle"
+                                  type="button"
+                                  (click)="removeValue(i)"
+                                >
+                                  <fa-icon [icon]="faTrash"></fa-icon>
+                                </button>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <!-- values table ends here  -->
+                        <div class="col-12 mt-2 d-flex justify-content-between">
+                          <button
+                            class="ux-button btn btn-secondary"
+                            type="button"
+                            (click)="resetValue()"
+                          >
+                            Reset
+                          </button>
+                          <button
+                            class="ux-button btn btn-success"
+                            type="button"
+                            (click)="saveValues()"
+                          >
+                            Save
+                          </button>
+                        </div>
+                      </form>
+                      <!-- dynamicValuesForm ends here  -->
+                    </div>
+                    <!-- master element values card body ends here  -->
+                  </div>
+                  <!-- master element values card ends here  -->
+                  <div class="card mt-3" *ngIf="resultSet.length > 0">
+                    <div class="card-header">Values of {{ masterName }}</div>
+                    <div class="card-body">
+                      <table class="table align-middle mb-0 bg-white">
+                        <thead class="bg-light">
+                          <tr>
+                            <th>#</th>
+                            <th>Key</th>
+                            <th>Value</th>
+                            <th>Description</th>
+                            <th>Action</th>
+                          </tr>
+                        </thead>
+                        <tbody *ngFor="let record of resultSet; let i = index">
+                          <tr>
+                            <td>
+                              <p class="fw-normal mb-1">{{ i + 1 }}</p>
+                            </td>
+                            <td>
+                              <p class="fw-normal mb-1">{{ record.KEY }}</p>
+                            </td>
+                            <td>
+                              <p class="fw-normal mb-1">{{ record.VALUE }}</p>
+                            </td>
+                            <td>
+                              <p class="fw-normal mb-1">
+                                {{ record.DESCRIPTION }}
+                              </p>
+                            </td>
+                            <td>
+                              <button
+                                type="button"
+                                class="btn btn-primary rounded-circle"
+                                (click)="editValues()"
+                              >
+                                <fa-icon [icon]="faPen"></fa-icon>
+                              </button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- row ends here  -->
+        </div>
+      </div>
+      <!-- body page content ends here -->
+    </div>
+  </div>
+</div>

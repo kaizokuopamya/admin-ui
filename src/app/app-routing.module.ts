@@ -7,14 +7,42 @@ const routes: Routes = [
     path: 'dashboard',
     loadChildren: () =>
       import('./pages/modules/dashboard/dashboard.module').then(
-        (m) => m.DashboardModule
+        (mod) => mod.DashboardModule
       ),
   },
   {
-    path: 'service1',
+    path: 'masterConfig',
     loadChildren: () =>
-      import('./pages/modules/service1/service1.module').then(
-        (m) => m.Service1Module
+      import('./pages/modules/master/config-master/config-master.module').then(
+        (mod) => mod.ConfigMasterModule
+      ),
+  },
+  {
+    path: 'dynamicInput',
+    loadChildren: () =>
+      import(
+        './pages/modules/dynamic/dynamic-textinput/dynamic-textinput.module'
+      ).then((mod) => mod.DynamicTextinputModule),
+  },
+  {
+    path: 'dynamicData',
+    loadChildren: () =>
+      import('./pages/modules/dynamic/dynamic-data/dynamic-data.module').then(
+        (mod) => mod.DynamicDataModule
+      ),
+  },
+  {
+    path: 'createPage',
+    loadChildren: () =>
+      import('./pages/modules/dynamic/create-page/create-page.module').then(
+        (mod) => mod.CreatePageModule
+      ),
+  },
+  {
+    path: 'pageElement',
+    loadChildren: () =>
+      import('./pages/modules/dynamic/page-element/page-element.module').then(
+        (mod) => mod.PageElementModule
       ),
   },
 ];

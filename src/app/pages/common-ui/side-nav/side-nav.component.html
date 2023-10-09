@@ -10,8 +10,6 @@
         </a>
         <div class="in-details">
           <h5>Admin Dashboard</h5>
-          <!-- <small>{{ "LAST_LOGIN" }} {{ "yesterday at 5:30" }}</small>
-          <small>{{ "Version" }} {{ "1.0 " }}</small> -->
         </div>
       </div>
     </div>
@@ -21,35 +19,50 @@
       <li
         [ngClass]="{
           'coming-soon': menu?.isEnable == 'N',
-          drilldown: menu?.subMenu?.length > 0
+          drilldown: menu?.subMenuList?.length > 0
         }"
         *ngFor="let menu of mainMenuList; let i = index"
       >
         <a
-          [ngClass]="{ 'glnv-dropdown': menu?.subMenu?.length > 0 }"
+          [ngClass]="{ 'glnv-dropdown': menu?.subMenuList?.length > 0 }"
           (click)="goToPage(menu?.URL)"
         >
-          <img
-            [src]="'./assets/images/menu_web/' + menu.JSON_KEY"
-            alt="icon"
-            class=""
+          <!-- <img
+              [src]="'./assets/images/menu_web/' + menu.JSON_KEY"
+              alt="icon"
+              class="menu.menuImage"
+              title="{{ menu.menuName }}"
+            /> -->
+          <i
+            class="{{ menu.menuImage + ' fa-fw' }}"
             data-toggle="tooltip"
             data-placement="right"
-            title="{{ menu.menuName }}"
-          />
+            aria-hidden="true"
+          ></i>
           {{ menu.menuName }}
-          <!-- <span class="chevron" *ngIf="menu?.subMenu?.length > 0"></span> -->
+          <span
+            class="chevron"
+            *ngIf="menu?.subMenuList?.length > 0"
+            (click)="expandSubmenu(menu)"
+          ></span>
           <div class="hovering-option">{{ menu.menuName }}</div>
         </a>
         <div class="overlap-badge coming-soon" *ngIf="menu?.isEnable == 'N'">
           <small style="color: red">{{ menu?.textToDisplay }}</small>
         </div>
-
-        <div *ngIf="menu?.subMenu?.length > 0" class="mysubnavigation-items">
+        <div
+          *ngIf="menu?.subMenuList?.length > 0"
+          class="mysubnavigation-items"
+          [ngClass]="{ open: menu.isSubMenuOpen }"
+        >
           <ul class="lst-subnavigation">
-            <li *ngFor="let sub of menu?.subMenu; let j = index">
-              <a>
-                {{ sub.submenuname }}
+            <li *ngFor="let sub of menu?.subMenuList; let j = index">
+              <a (click)="goToPage(sub?.menuLink)">
+                <i
+                  class="{{ sub?.menuLogo + ' fa-fw' }}"
+                  aria-hidden="true"
+                ></i>
+                {{ sub.menuName }}
               </a>
             </li>
           </ul>

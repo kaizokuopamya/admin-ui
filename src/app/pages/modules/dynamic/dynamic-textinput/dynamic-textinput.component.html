@@ -1,0 +1,166 @@
+<div class="main bg-m">
+  <div class="right-main-column">
+    <div class="right-col-container pad-b full-width">
+      <!-- ======== body page content start from here ======== -->
+      <div class="body-page-container main-dashborad">
+        <div class="container-fluid">
+          <!--.row -->
+          <div class="row no-gutters">
+            <div class="col-12">
+              <div class="row1">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                  <!-- dynamic-textinput.component.html -->
+                  <form [formGroup]="dynamicInputForm">
+                    <!-- master name card starts here -->
+                    <div class="card mt-3">
+                      <div class="card-header">Add Master Element</div>
+                      <div class="card-body">
+                        <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+                          <div class="ux-input">
+                            <label for="dropDownName"
+                              >Name:<span class="mandatory">* </span></label
+                            >
+                            <input
+                              id="dropDownName"
+                              type="text"
+                              formControlName="dropDownName"
+                              placeholder="Master Element Name"
+                              required
+                            />
+                            <p
+                              class="text-danger"
+                              *ngIf="
+                                dynamicInputForm.controls['dropDownName']
+                                  .touched &&
+                                dynamicInputForm.controls[
+                                  'dropDownName'
+                                ].hasError('required')
+                              "
+                            >
+                              Name is required!
+                            </p>
+                          </div>
+                        </div>
+
+                        <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+                          <div class="ux-input">
+                            <label for="type"
+                              >Input Type:<span class="mandatory"
+                                >*
+                              </span></label
+                            >
+                            <input
+                              id="type"
+                              type="text"
+                              formControlName="type"
+                              placeholder="Master Element Type"
+                              required
+                            />
+                            <p
+                              class="text-danger"
+                              *ngIf="
+                                dynamicInputForm.controls['type'].touched &&
+                                dynamicInputForm.controls['type'].hasError(
+                                  'required'
+                                )
+                              "
+                            >
+                              Type is required!
+                            </p>
+                          </div>
+                        </div>
+
+                        <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+                          <div class="ux-input">
+                            <label for="description"
+                              >Description:<span class="mandatory"
+                                >*
+                              </span></label
+                            >
+                            <input
+                              id="description"
+                              type="text"
+                              formControlName="description"
+                              placeholder="Master Element Description"
+                              required
+                            />
+                            <p
+                              class="text-danger"
+                              *ngIf="
+                                dynamicInputForm.controls['description']
+                                  .touched &&
+                                dynamicInputForm.controls[
+                                  'description'
+                                ].hasError('required')
+                              "
+                            >
+                              Description is required!
+                            </p>
+                          </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-6 col-xl-6 mt-4">
+                          <button
+                            class="ux-button btn btn-success"
+                            type="button"
+                            (click)="createElement()"
+                          >
+                            Save
+                          </button>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-6 col-xl-6 mt-4">
+                          <p class="text-danger text-xl">
+                            {{ error }}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- master name card ends here -->
+                  </form>
+                </div>
+              </div>
+              <div class="row1">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                  <div *ngIf="showCustomField" class="card mt-3">
+                    <div class="card-header">Master Elements</div>
+                    <div class="card-body">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                            <th>Action</th>
+                          </tr>
+                        </thead>
+                        <tbody
+                          *ngFor="let input of dynamicInput; let i = index"
+                        >
+                          <tr class="align-middle">
+                            <td>{{ i + 1 }}</td>
+                            <td>{{ input.dropDownName }}</td>
+                            <td>{{ input.type }}</td>
+                            <td>{{ input.description }}</td>
+                            <td>
+                              <button
+                                class="ux-btn btn btn-primary"
+                                type="button"
+                                (click)="viewValues(i)"
+                              >
+                                <fa-icon [icon]="faEye"></fa-icon>
+                              </button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

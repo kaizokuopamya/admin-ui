@@ -11,6 +11,7 @@ export class SideNavData {
   sequenceNo!: string;
   textToDisplay!: string;
   type!: string;
+  isSubMenuOpen!: boolean;
   subMenu?: SubMenu[];
 }
 
@@ -45,6 +46,7 @@ export const SIDEMENU: SideNavData[] = [
     URL: 'dashboard',
     textToDisplay: 'null',
     isEnable: 'Y',
+    isSubMenuOpen: false,
   },
   {
     Status: 'Active',
@@ -58,6 +60,7 @@ export const SIDEMENU: SideNavData[] = [
     URL: 'service1',
     textToDisplay: 'null',
     isEnable: 'Y',
+    isSubMenuOpen: false,
     subMenu: [
       {
         id: 139,
@@ -211,6 +214,7 @@ export const SIDEMENU: SideNavData[] = [
     URL: 'service2',
     textToDisplay: 'null',
     isEnable: 'Y',
+    isSubMenuOpen: false,
   },
   {
     Status: 'Active',
@@ -260,6 +264,7 @@ export const SIDEMENU: SideNavData[] = [
     URL: 'service3',
     textToDisplay: 'null',
     isEnable: 'Y',
+    isSubMenuOpen: false,
   },
   {
     Status: 'Active',
@@ -273,6 +278,7 @@ export const SIDEMENU: SideNavData[] = [
     URL: 'service4',
     textToDisplay: 'null',
     isEnable: 'Y',
+    isSubMenuOpen: false,
     subMenu: [
       {
         id: '20',
@@ -388,6 +394,7 @@ export const SIDEMENU: SideNavData[] = [
     URL: 'service5',
     textToDisplay: 'null',
     isEnable: 'Y',
+    isSubMenuOpen: false,
   },
 
   {
@@ -402,6 +409,7 @@ export const SIDEMENU: SideNavData[] = [
     URL: 'service6',
     textToDisplay: 'null',
     isEnable: 'Y',
+    isSubMenuOpen: false,
   },
   {
     Status: 'Active',
@@ -519,6 +527,7 @@ export const SIDEMENU: SideNavData[] = [
     URL: 'service7',
     textToDisplay: 'null',
     isEnable: 'Y',
+    isSubMenuOpen: false,
   },
 ];
 //detailstatementitem model class

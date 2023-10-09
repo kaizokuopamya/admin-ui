@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { Service1Component } from './service1.component';
+import { DynamicTextinputComponent } from './dynamic-textinput.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: Service1Component,
+    component: DynamicTextinputComponent,
   },
 ];
 
@@ -13,4 +13,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class Service1RoutingModule {}
+export class DynamicTextinputRoutingModule {}

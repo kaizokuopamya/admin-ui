@@ -1,0 +1,268 @@
+<div class="main bg-m">
+  <div class="right-main-column">
+    <div class="right-col-container pad-b full-width">
+      <!-- ======== body page content start from here ======== -->
+      <div class="body-page-container main-dashborad">
+        <div class="container-fluid">
+          <!--.row -->
+          <div class="row no-gutters">
+            <div
+              class="vspacer15 customize d-none d-md-block d-lg-block d-xl-block"
+            ></div>
+            <div class="col-12">
+              <div class="row1">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                  <!-- load form -->
+                  <form *ngIf="showForm">
+                    <div class="row">
+                      <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+                        <div class="ux-input">
+                          <label
+                            ><span class="mandatory">* </span>Config Key</label
+                          >
+                          <input
+                            type="text"
+                            id="txtConfigKey"
+                            formControlName="configKey"
+                            placeholder="Enter Config Key"
+                          />
+                          <p>
+                            {{ "formErrors.configKey" }}
+                          </p>
+                        </div>
+                        <!--.ux-input-->
+                      </div>
+                      <!--.col-12-->
+                      <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+                        <div class="ux-input">
+                          <label
+                            ><span class="mandatory">* </span>Config
+                            Value</label
+                          >
+                          <input
+                            type="text"
+                            id="txtConfigValue"
+                            formControlName="configValue"
+                            placeholder="Enter Config Value"
+                          />
+                          <p>
+                            {{ " formErrors.configValue " }}
+                          </p>
+                        </div>
+                        <!--.ux-input-->
+                      </div>
+                      <!--.col-12-->
+                      <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+                        <div class="ux-input">
+                          <label
+                            ><span class="mandatory">* </span>Description</label
+                          >
+                          <input
+                            type="text"
+                            id="txtDesc"
+                            formControlName="description"
+                            placeholder="Enter Description"
+                          />
+                          <p>
+                            {{ "formErrors.description" }}
+                          </p>
+                        </div>
+                        <!--.ux-input-->
+                      </div>
+                      <!--.col-12-->
+                      <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+                        <div class="ux-input">
+                          <label><span class="mandatory">* </span>Status</label>
+                          <select id="sl_Status" formControlName="status">
+                            <!-- <option value="">Select Status</option>
+                            <option
+                              *ngFor="let status of filterStatus(); index as i"
+                              [value]="status.id"
+                            >
+                              {{ status.shortName | titlecase }}
+                            </option>-->
+                          </select>
+                          <p>
+                            {{ "formErrors.status" }}
+                          </p>
+                        </div>
+                        <!--.ux-input-->
+                      </div>
+                      <!--.col-12-->
+                      <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+                        <div class="ux-input">
+                          <label
+                            ><span class="mandatory">* </span>Channel
+                            Name</label
+                          >
+                          <select id="sl_Product" formControlName="productType">
+                            <!-- <option value="">Select Channel Name</option>
+                            <option
+                              *ngFor="
+                                let product of this.commonData.productTypes;
+                                index as i
+                              "
+                              [value]="product.id"
+                            >
+                              {{ product.shortName | titlecase }}
+                            </option>-->
+                          </select>
+                          <p>
+                            {{ "formErrors.productType" }}
+                          </p>
+                        </div>
+                      </div>
+                      <!--.col-12-->
+                    </div>
+                  </form>
+                  <!--.row-->
+                  <div class="row mt-5">
+                    <div class="col-6 offset-lg-8 col-lg-2">
+                      <button class="ux-button" (click)="cancel()">
+                        Cancel
+                      </button>
+                    </div>
+                    <div class="col-6 col-lg-2">
+                      <button class="ux-button primary">Save</button>
+                    </div>
+
+                    <!-- *ngIf=" this.commonData.roleType ==
+                    this.commonData.makerRole " -->
+                    <div class="col-6 col-lg-2">
+                      <button class="ux-button primary">Save</button>
+                      <!-- (click)=" openActionModel('remarkField',
+                      configMasterForm.value) " -->
+                    </div>
+                    <!--.col-xs-12-->
+                  </div>
+                  <!-- configuration master table -->
+                  <div class="row mt-3">
+                    <div class="col-12 mb-0">
+                      <div class="datatable-box">
+                        <div
+                          class="table-responsivebox"
+                          style="overflow: scroll"
+                        >
+                          <table
+                            id="dt-sample"
+                            class="table table-hover display table-borderless"
+                          >
+                            <thead>
+                              <tr>
+                                <th scope="col">Sr. No.</th>
+                                <th scope="col">Config Key</th>
+                                <th scope="col">Config Value</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Created On</th>
+                                <th scope="col">Created By</th>
+                                <th scope="col">Channel Name</th>
+                                <!-- *ngIf="priviledgeDataArr.updateChecked" -->
+                                <th scope="col">Action</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr
+                                *ngFor="
+                                  let item of configMasters;
+                                  let i = index
+                                "
+                              >
+                                <td>{{ i + 1 }}</td>
+                                <td>
+                                  {{
+                                    item.configKey == null ||
+                                    item.configKey == ""
+                                      ? "-"
+                                      : item.configKey
+                                  }}
+                                </td>
+                                <td>
+                                  {{
+                                    item.configValue == null ||
+                                    item.configValue == ""
+                                      ? "-"
+                                      : item.configValue
+                                  }}
+                                </td>
+                                <td>
+                                  {{
+                                    item.description == null ||
+                                    item.description == ""
+                                      ? "-"
+                                      : item.description
+                                  }}
+                                </td>
+                                <td>
+                                  {{
+                                    item.statusname == null ||
+                                    item.statusname == ""
+                                      ? "-"
+                                      : item.statusname
+                                  }}
+                                </td>
+                                <td>
+                                  {{
+                                    item.createdOn == null ||
+                                    item.createdOn == ""
+                                      ? "-"
+                                      : (item.createdOn | date : "yyyy/MM/dd")
+                                  }}
+                                </td>
+                                <td>
+                                  {{
+                                    item.createdByName == null ||
+                                    item.createdByName == ""
+                                      ? "-"
+                                      : item.createdByName
+                                  }}
+                                </td>
+                                <td>
+                                  {{
+                                    item.appname == null || item.appname == ""
+                                      ? "-"
+                                      : item.appname
+                                  }}
+                                </td>
+                                <td>
+                                  <div class="ux-selection">
+                                    <img
+                                      class="action-btn"
+                                      src="assets/images/icons/edit.png"
+                                    />
+                                  </div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <!--.table-responsivebox-->
+                      </div>
+                      <!--.datatable-box-->
+                      <!-- *ngIf="configMasters.length > 0" -->
+                      <div class="dt-extras mt-4">
+                        <div class="dt-exports">
+                          <em>Export to :<span class="chevron"></span></em>
+                          <!-- <button class="linkbutton exp-excel" (click)="commonMethod.downLoadFile('excel')">Excel <b>(.xlsx)</b></button> -->
+                          <!-- <button class="linkbutton exp-pdf" (click)="commonMethod.downLoadFile('pdf')">Pdf <b>(.pdf)</b></button> -->
+                          <!-- <button class="linkbutton exp-word" (click)="wordDownload()">word <b>(.docx)</b></button> -->
+                          <!-- <button class="linkbutton exp-xml">XML <b>(.xml)</b></button> -->
+                          <!-- <button class="linkbutton exp-csv" (click)="commonMethod.downLoadFile('csv')">csv <b>(.csv)</b></button> -->
+                        </div>
+                        <!--.dt-exports-->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- row no-gutters -->
+        </div>
+        <!--.container-fluid-->
+      </div>
+      <!--.body-page-container-->
+    </div>
+    <!--.right-col-container-->
+  </div>
+</div>

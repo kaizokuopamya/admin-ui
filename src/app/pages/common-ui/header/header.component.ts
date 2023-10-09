@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import $ from 'jquery';
+import { CommonMethods } from 'src/app/services/common-method';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
@@ -9,9 +9,15 @@ import { DataService } from 'src/app/services/data.service';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent {
-  constructor(private _router: Router, public dataService: DataService) {}
+  constructor(
+    private _router: Router,
+    public dataService: DataService,
+    public commonMethod: CommonMethods
+  ) {}
 
   ngOnInit(): void {}
 
- 
+  menuClick() {
+    
+  }
 }

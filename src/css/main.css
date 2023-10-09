@@ -1697,7 +1697,7 @@ small {
   z-index: 1;
   transform: translateY(-50%) scale(1);
 }
-.compact .global-nav .nav-items .lst-nav-items li a:hover img,
+.compact .global-nav .nav-items .lst-nav-items li a:hover i,
 .compact .global-nav .nav-items .lst-nav-items li a:hover svg {
   transform: scale(0);
   -webkit-transition: 0.3s;
@@ -1746,14 +1746,14 @@ small {
   margin-bottom: 2px;
   margin-right: 8px;
 }
-[theme=dark] .global-nav .nav-items .lst-nav-items li a img {
+[theme=dark] .global-nav .nav-items .lst-nav-items li a i {
   filter: brightness(0) invert(1);
 }
 .global-nav .nav-items .lst-nav-items li a img._black {
   display: inline-block;
   opacity: 0.8;
 }
-.compact .global-nav .nav-items .lst-nav-items li a img {
+.compact .global-nav .nav-items .lst-nav-items li a i {
   height: 25px;
   width: 25px;
   margin-left: 8px;
