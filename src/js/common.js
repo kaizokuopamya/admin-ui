@@ -278,29 +278,29 @@ $("body").on("click", ".search-link a", function () {
 // });
 
 function dtSample() {
-  var tdTable = $("table#dt-sample").dataTable({
-    // select: true,
-    dom: "<'row1 ml-0 mr-0 pt-2 pb-1 '<'col-sm-6 col-md-6 col-12 pt-0'l><'col-sm-6 col-md-6 col-12 pt-1'f>> <'row1'<'col-sm-12'tr>><'row1 ml-0 mr-0 pt-3 pb-0'<'col-sm-12 col-md-5 col-xl-5 col-lg-5' <' exportlinks'> > <'col-sm-12 col-md-7 col-xl-7 col-lg-7 text-right'ip>>",
-    select: true,
-    responsive: true,
+  // var tdTable = $("table#dt-sample").dataTable({
+  //   // select: true,
+  //   dom: "<'row1 ml-0 mr-0 pt-2 pb-1 '<'col-sm-6 col-md-6 col-12 pt-0'l><'col-sm-6 col-md-6 col-12 pt-1'f>> <'row1'<'col-sm-12'tr>><'row1 ml-0 mr-0 pt-3 pb-0'<'col-sm-12 col-md-5 col-xl-5 col-lg-5' <' exportlinks'> > <'col-sm-12 col-md-7 col-xl-7 col-lg-7 text-right'ip>>",
+  //   select: true,
+  //   responsive: true,
 
-    language: {
-      // search: "Search in table:",
-      zeroRecords: "No matching records found,<br/>try another search term",
-      processing: "Loading...",
-      lengthMenu: "Showing _MENU_",
-      info: "Showing _START_ to _END_ of <b>_TOTAL_</b> entries",
-    },
-  });
-  $("div.exportlinks").html(
-    '<div class="row">' +
-      '<div class="col-12 text-align p-0">' +
-      '<button class="ux-linkbutton  primary"> <img src="../assets/images/svg/download.svg" alt="download-icon">Download</button>' +
-      '<button class="ux-linkbutton  ml-2 primary"> <img src="../assets/images/svg/print.svg" alt="print-icon">Print</button>' +
-      "</div> <!--.dt-extras-->"
-  );
+  //   language: {
+  //     // search: "Search in table:",
+  //     zeroRecords: "No matching records found,<br/>try another search term",
+  //     processing: "Loading...",
+  //     lengthMenu: "Showing _MENU_",
+  //     info: "Showing _START_ to _END_ of <b>_TOTAL_</b> entries",
+  //   },
+  // });
+  // $("div.exportlinks").html(
+  //   '<div class="row">' +
+  //     '<div class="col-12 text-align p-0">' +
+  //     '<button class="ux-linkbutton  primary"> <img src="../assets/images/svg/download.svg" alt="download-icon">Download</button>' +
+  //     '<button class="ux-linkbutton  ml-2 primary"> <img src="../assets/images/svg/print.svg" alt="print-icon">Print</button>' +
+  //     "</div> <!--.dt-extras-->"
+  // );
   // dtsetResponsive();
-  $("table#dt-sample").wrap('<div class="restable-box"></div>');
+  // $("table#dt-sample").wrap('<div class="restable-box"></div>');
 }
 
 dtSample();
@@ -4723,28 +4723,28 @@ $(document).ready(function () {
 // desktop feedback success alert End
 
 function dtSample1() {
-  var tdTable1 = $("table#dt-sample1").dataTable({
-    // select: true,
-    dom: "<> <'row1'<'col-sm-12'tr>><'row1 ml-0 mr-0 pt-2 pb-2'<'col-sm-12 col-md-5 col-xl-5 col-lg-5' l > <'col-sm-12 col-md-7 col-xl-7 col-lg-7 text-right'ip>>",
-    select: true,
-    responsive: true,
+  // var tdTable1 = $("table#dt-sample1").dataTable({
+  //   // select: true,
+  //   dom: "<> <'row1'<'col-sm-12'tr>><'row1 ml-0 mr-0 pt-2 pb-2'<'col-sm-12 col-md-5 col-xl-5 col-lg-5' l > <'col-sm-12 col-md-7 col-xl-7 col-lg-7 text-right'ip>>",
+  //   select: true,
+  //   responsive: true,
 
-    language: {
-      // search: "Search in table:",
-      zeroRecords: "No matching records found,<br/>try another search term",
-      processing: "Loading...",
-      lengthMenu: "Showing _MENU_",
-      info: "Showing _START_ to _END_ of <b>_TOTAL_</b> entries",
-    },
-  });
+  //   language: {
+  //     // search: "Search in table:",
+  //     zeroRecords: "No matching records found,<br/>try another search term",
+  //     processing: "Loading...",
+  //     lengthMenu: "Showing _MENU_",
+  //     info: "Showing _START_ to _END_ of <b>_TOTAL_</b> entries",
+  //   },
+  // });
 
-  $("div.exportlinks").html(
-    '<div class="row">' +
-      '<div class="col-12 text-align p-0">' +
-      '<button class="ux-linkbutton  primary"> <img src="../assets/images/svg/download.svg" alt="download-icon">Download</button>' +
-      '<button class="ux-linkbutton  ml-2 primary"> <img src="../assets/images/svg/print.svg" alt="print-icon">Print</button>' +
-      "</div> <!--.dt-extras-->"
-  );
+  // $("div.exportlinks").html(
+  //   '<div class="row">' +
+  //     '<div class="col-12 text-align p-0">' +
+  //     '<button class="ux-linkbutton  primary"> <img src="../assets/images/svg/download.svg" alt="download-icon">Download</button>' +
+  //     '<button class="ux-linkbutton  ml-2 primary"> <img src="../assets/images/svg/print.svg" alt="print-icon">Print</button>' +
+  //     "</div> <!--.dt-extras-->"
+  // );
 
   // $("div.dtlabel-readonly").html('<span>Opening Balance</span><i>5000</i>');
   // $("div.dtlabel-readonly.total-dep").html('<span>Total Deposit</span><i>5000</i>');
@@ -4752,33 +4752,33 @@ function dtSample1() {
   // $("div.dtlabel-readonly.closing-bal").html('<span>Closing Balance</span><i>5000</i>');
 
   // dtsetResponsive();
-  $("table#dt-sample1").wrap('<div class="restable-box"></div>');
+  // $("table#dt-sample1").wrap('<div class="restable-box"></div>');
 
-  var tdTable2 = $("table#min-statment").dataTable({
-    // select: true,
-    dom: "<'row1'<'col-sm-12'tr>><'row1 ml-0 mr-0 pt-3 pb-0 d-none d-md-block d-lg-block d-xl-block'<'col-sm-12 col-md-5 col-xl-5 col-lg-5' l > <'col-sm-12 col-md-7 col-xl-7 col-lg-7 text-right'ip>>",
-    select: true,
-    responsive: true,
+  // var tdTable2 = $("table#min-statment").dataTable({
+  //   // select: true,
+  //   dom: "<'row1'<'col-sm-12'tr>><'row1 ml-0 mr-0 pt-3 pb-0 d-none d-md-block d-lg-block d-xl-block'<'col-sm-12 col-md-5 col-xl-5 col-lg-5' l > <'col-sm-12 col-md-7 col-xl-7 col-lg-7 text-right'ip>>",
+  //   select: true,
+  //   responsive: true,
 
-    language: {
-      // search: "Search in table:",
-      zeroRecords: "No matching records found,<br/>try another search term",
-      processing: "Loading...",
-      lengthMenu: "Showing _MENU_",
-      info: "Showing _START_ to _END_ of <b>_TOTAL_</b> entries",
-    },
-  });
+  //   language: {
+  //     // search: "Search in table:",
+  //     zeroRecords: "No matching records found,<br/>try another search term",
+  //     processing: "Loading...",
+  //     lengthMenu: "Showing _MENU_",
+  //     info: "Showing _START_ to _END_ of <b>_TOTAL_</b> entries",
+  //   },
+  // });
 
-  $("div.exportlinks").html(
-    '<div class="row">' +
-      '<div class="col-12 text-align p-0">' +
-      '<button class="ux-linkbutton  primary"> <img src="../assets/images/svg/download.svg" alt="download-icon">Download</button>' +
-      '<button class="ux-linkbutton  ml-2 primary"> <img src="../assets/images/svg/print.svg" alt="print-icon">Print</button>' +
-      "</div> <!--.dt-extras-->"
-  );
+  // $("div.exportlinks").html(
+  //   '<div class="row">' +
+  //     '<div class="col-12 text-align p-0">' +
+  //     '<button class="ux-linkbutton  primary"> <img src="../assets/images/svg/download.svg" alt="download-icon">Download</button>' +
+  //     '<button class="ux-linkbutton  ml-2 primary"> <img src="../assets/images/svg/print.svg" alt="print-icon">Print</button>' +
+  //     "</div> <!--.dt-extras-->"
+  // );
 
-  // dtsetResponsive();
-  $("table#min-statment").wrap('<div class="restable-box"></div>');
+  // // dtsetResponsive();
+  // $("table#min-statment").wrap('<div class="restable-box"></div>');
 }
 
 dtSample1();

@@ -17,7 +17,4 @@ export class HeaderComponent {
 
   ngOnInit(): void {}
 
-  menuClick() {
-    
-  }
 }

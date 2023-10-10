@@ -24,7 +24,6 @@ export class SideNavComponent {
   ngOnInit(): void {
     this.fetchSideMenu();
   }
-  
 
   fetchSideMenu() {
     const requestPayload: any = { id1: '4' };
