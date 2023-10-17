@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DynamicDataComponent } from './dynamic-data.component';
+import { DynamicPageComponent } from './dynamic-page.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: DynamicDataComponent,
+    component: DynamicPageComponent,
   },
 ];
 
@@ -13,4 +13,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class DynamicDataRoutingModule {}
+export class DynamicPageRoutingModule {}

@@ -56,6 +56,17 @@ export class AppConstants {
   val_latitude = '';
   val_longitude = '';
 
+  /**Below are the static messages */
+  SERVICE_UNAVAILABLE_MSG = 'Service unavailable. Please try after sometime.';
+  SERVICE_TIMEOUT_MSG =
+    'Unable to connect to server. Please try after sometime..';
+  SERVICE_SERVER_ERROR_MSG = 'Internal Server Error';
+  SERVICE_UNAUTHORIZED_MSG = 'Not Authorized';
+  SERVICE_BAD_REQ_MSG = 'Bad Request';
+  SERVICE_NOT_FOUND_MSG = 'Not Found';
+  SERVICE_METHOD_NOT_ALLOWED_MSG = 'Method not allowed';
+  SERVICE_METHOD_UNKNOWN_ERR_MSG = 'Unknown Error. Please try after sometime..';
+
   /** Below are the constants for http status success and error code */
   Status = {
     SUCCESS: 200,
@@ -80,4 +91,5 @@ export class AppConstants {
   serviceName_GETROPDOWNDETAILS = 'DYNAMICMASTER/GETROPDOWNDETAILS';
   serviceName_CREATEPAGE = 'DYNAMICMASTER/CREATEPAGE';
   serviceName_CREATEPAGEELEMENTS = 'DYNAMICMASTER/CREATEPAGEELEMENTS';
+  serviceName_GETDYNAMICPAGE = '/DYNAMICMASTER/GETDYNAMICPAGE';
 }

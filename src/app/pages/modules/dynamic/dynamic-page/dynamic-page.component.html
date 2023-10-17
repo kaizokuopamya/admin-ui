@@ -1,0 +1,121 @@
+<div class="main bg-m">
+  <div class="right-main-column">
+    <div class="right-col-container pad-b full-width">
+      <div class="body-page-container main-dashborad">
+        <div class="container-fluid">
+          <div class="row no-gutters">
+            <div class="col-12">
+              <div class="row1">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                  <div class="card mt-3">
+                    <!-- dynamic page card body start from here  -->
+                    <div class="card-body">
+                      <div
+                        class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"
+                      >
+                        <form [formGroup]="testForm">
+                          <div class="row" *ngFor="let items of dynamicForm">
+                            <div
+                              class="col-6 col-md-6 col-lg-4 col-xl-4"
+                              *ngIf="items.elementType == 'dropdown'"
+                            >
+                              <div class="ux-input">
+                                <label>{{ items.DESCRIPTION }}</label>
+                                <select [formControlName]="items.elementName">
+                                  <option value="">Select</option>
+                                  <option
+                                    *ngFor="let fld of items.options"
+                                    [value]="fld['value']"
+                                  >
+                                    {{ fld["value"] }}
+                                  </option>
+                                </select>
+                              </div>
+                            </div>
+
+                            <div
+                              class="col-6 col-md-6 col-lg-4 col-xl-4"
+                              *ngIf="items.elementType == 'checkbox'"
+                            >
+                              <div class="ux-input">
+                                <label>{{ items.DESCRIPTION }}</label>
+                                <div class="d-flex">
+                                  <div
+                                    class="d-flex"
+                                    *ngFor="let fld of items.options"
+                                  >
+                                    <input
+                                      type="checkbox"
+                                      [formControlName]="items.elementName"
+                                      [id]="items.elementName"
+                                    />
+                                    <label
+                                      class="px-2"
+                                      [for]="items.elementName"
+                                      >{{ fld["value"] }}</label
+                                    >
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div
+                              class="col-6 col-md-6 col-lg-4 col-xl-4"
+                              *ngIf="items.elementType == 'radio'"
+                            >
+                              <div class="ux-input">
+                                <label>{{ items.DESCRIPTION }}</label>
+                                <div class="d-flex">
+                                  <div
+                                    class="d-flex"
+                                    *ngFor="let fld of items.options"
+                                  >
+                                    <input
+                                      type="radio"
+                                      [formControlName]="items.elementName"
+                                      [id]="items.elementName"
+                                      [name]="items.elementName"
+                                      [value]="fld['value']"
+                                    />
+                                    <label
+                                      class="px-2"
+                                      [for]="items.elementName"
+                                      >{{ fld["value"] }}</label
+                                    >
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div
+                              class="col-6 col-md-6 col-lg-4 col-xl-4"
+                              *ngIf="isTextInputType(items.elementType)"
+                            >
+                              <div class="ux-input">
+                                <label>{{ items.DESCRIPTION }}</label>
+                                <input
+                                  [type]="items.elementType"
+                                  [placeholder]="items.DESCRIPTION"
+                                  [formControlName]="items.elementName"
+                                />
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-6 col-md-6 col-lg-4 col-xl-4 mt-3">
+                            <button class="ux-button" type="button" (click)="saveForm()">Save</button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                    <!-- dynamic page card body ends here  -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DynamicDataComponent } from './dynamic-data.component';
+import { DynamicDataComponent } from './dropdown-data.component';
 
 describe('DynamicDataComponent', () => {
   let component: DynamicDataComponent;

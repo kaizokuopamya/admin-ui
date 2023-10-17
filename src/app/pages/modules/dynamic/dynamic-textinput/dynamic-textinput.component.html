@@ -49,13 +49,16 @@
                                 >*
                               </span></label
                             >
-                            <input
-                              id="type"
-                              type="text"
-                              formControlName="type"
-                              placeholder="Master Element Type"
-                              required
-                            />
+                            <select formControlName="type" id="type">
+                              <option value="">Select</option>
+                              <option value="text">Textbox</option>
+                              <option value="password">Password</option>
+                              <option value="tel">Telephone</option>
+                              <option value="date">Date</option>
+                              <option value="dropdown">Dropdown</option>
+                              <option value="radio">Radio</option>
+                              <option value="checkbox">Checkbox</option>
+                            </select>
                             <p
                               class="text-danger"
                               *ngIf="
@@ -103,6 +106,7 @@
                             class="ux-button btn btn-success"
                             type="button"
                             (click)="createElement()"
+                            [disabled]="!dynamicInputForm.valid"
                           >
                             Save
                           </button>
@@ -123,7 +127,7 @@
                   <div *ngIf="showCustomField" class="card mt-3">
                     <div class="card-header">Master Elements</div>
                     <div class="card-body">
-                      <table class="table">
+                      <table class="table table-fixed">
                         <thead>
                           <tr>
                             <th>Id</th>
@@ -143,11 +147,15 @@
                             <td>{{ input.description }}</td>
                             <td>
                               <button
-                                class="ux-btn btn btn-primary"
+                                *ngIf="isIconVisible(input.type)"
+                                class="ux-btn btn btn-primary rounded-circle"
                                 type="button"
                                 (click)="viewValues(i)"
                               >
-                                <fa-icon [icon]="faEye"></fa-icon>
+                                <fa-icon
+                                  [icon]="faEye"
+                                  title="click to insert values"
+                                ></fa-icon>
                               </button>
                             </td>
                           </tr>

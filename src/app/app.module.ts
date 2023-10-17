@@ -10,11 +10,12 @@ import { SideNavComponent } from './pages/common-ui/side-nav/side-nav.component'
 import { HttpClientModule } from '@angular/common/http';
 import { ConfigMasterComponent } from './pages/modules/master/config-master/config-master.component';
 import { DynamicTextinputComponent } from './pages/modules/dynamic/dynamic-textinput/dynamic-textinput.component';
+import { DropdownDataComponent } from './pages/modules/dynamic/dropdown-data/dropdown-data.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { DynamicDataComponent } from './pages/modules/dynamic/dynamic-data/dynamic-data.component';
 import { CreatePageComponent } from './pages/modules/dynamic/create-page/create-page.component';
 import { PageElementComponent } from './pages/modules/dynamic/page-element/page-element.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { DynamicPageComponent } from './pages/modules/dynamic/dynamic-page/dynamic-page.component';
 
 @NgModule({
   declarations: [
@@ -24,9 +25,10 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     SideNavComponent,
     ConfigMasterComponent,
     DynamicTextinputComponent,
-    DynamicDataComponent,
+    DropdownDataComponent,
     CreatePageComponent,
     PageElementComponent,
+    DynamicPageComponent,
   ],
   imports: [
     BrowserModule,

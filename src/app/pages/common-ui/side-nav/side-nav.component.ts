@@ -30,7 +30,7 @@ export class SideNavComponent {
     const findLeftMenu: string = this.constant.serviceName_FINDALLLEFTMENU;
 
     this.httpService.apiCall(findLeftMenu, requestPayload).subscribe({
-      next: (data) => {
+      next: (data:any) => {
         console.log('Response:', data.result);
         // Assign the response data to your mainMenuList
         this.mainMenuList = data.result;

@@ -6,37 +6,41 @@ import {
   faPlus,
   faPen,
   faCirclePlus,
+  faArrowLeft,
 } from '@fortawesome/free-solid-svg-icons';
 import { AppConstants } from 'src/app/app.constant';
 import { DataService } from 'src/app/services/data.service';
 import { HttpRestApiService } from 'src/app/services/http-rest-api.service';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
 
 @Component({
-  selector: 'app-dynamic-data',
-  templateUrl: './dynamic-data.component.html',
-  styleUrls: ['./dynamic-data.component.css'],
+  selector: 'app-dropdown-data',
+  templateUrl: './dropdown-data.component.html',
+  styleUrls: ['./dropdown-data.component.css'],
 })
-export class DynamicDataComponent {
-  //icons ]
+export class DropdownDataComponent {
+  //icons
   faTrash = faTrash;
   faPlus = faPlus;
   faPen = faPen;
   faCirclePlus = faCirclePlus;
+  faArrowLeft = faArrowLeft;
 
   //formInput
   dynamicValuesForm!: FormGroup;
   ID: string = '';
   values!: FormArray;
   masterName: string = '';
-  responseData: [] = [];
+  responseData: any = [];
   //this refers to resultset of getdropdowndetails api
-  resultSet: any[] = [];
+  resultSet: any = [];
 
   constructor(
     private fb: FormBuilder,
     private httpService: HttpRestApiService,
     private constant: AppConstants,
     private dataService: DataService,
+    private storage: LocalStorageService,
     public router: Router
   ) {
     this.dynamicValuesForm = this.fb.group({
@@ -46,10 +50,13 @@ export class DynamicDataComponent {
   }
 
   ngOnInit() {
-    const input: any = localStorage.getItem('input');
-    const parsedInput = JSON.parse(input);
-    this.masterName = parsedInput.dropDownName;
-    this.ID = parsedInput.id;
+    const input: any = this.storage.getLocalStorage('input');
+    if (input != null) {
+      const parsedInput = JSON.parse(input);
+      this.masterName = parsedInput.dropDownName;
+      this.ID = parsedInput.id;
+    }
+
     this.getDropDownDetails();
   }
 

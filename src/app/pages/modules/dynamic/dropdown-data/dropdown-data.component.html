@@ -10,6 +10,16 @@
               <div class="row1">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                   <!-- master element values card start from here -->
+                  <div class="d-flex justify-content-end">
+                    <button
+                      class="px-4 mt-3 bg-primary border-0"
+                      type="button"
+                      routerLink="/dynamicInput"
+                    >
+                      <fa-icon [icon]="faArrowLeft" title="Previous Page"></fa-icon>
+                    </button>
+                  </div>
+
                   <div class="card mt-3">
                     <div class="card-header">Master Element Values</div>
                     <!-- master element values card body start from here  -->
@@ -113,7 +123,7 @@
                           </tr>
                         </thead>
                         <tbody *ngFor="let record of resultSet; let i = index">
-                          <tr>
+                          <tr *ngIf="record.length > 0">
                             <td>
                               <p class="fw-normal mb-1">{{ i + 1 }}</p>
                             </td>

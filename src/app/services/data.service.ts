@@ -7,9 +7,8 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class DataService {
-  
   showSideNav: boolean = false;
-
+  public disableBack: boolean;
   dynamicInput: any = [];
   isCompact: boolean = false;
   ipAddress: string = '';
@@ -19,7 +18,7 @@ export class DataService {
   constructor(
     private constant: AppConstants,
     private commonMethod: CommonMethods,
-    private router : Router
+    private router: Router
   ) {}
 
   commonInputData() {
@@ -42,7 +41,7 @@ export class DataService {
     }
   }
 
-  toggleSideNav(){
+  toggleSideNav() {
     console.log('current value of showcompact: ', this.showSideNav);
     this.showSideNav = !this.showSideNav;
     console.log('after change value of showcompact: ', this.showSideNav);

@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  // { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
   {
     path: 'dashboard',
     loadChildren: () =>
@@ -25,10 +24,10 @@ const routes: Routes = [
       ).then((mod) => mod.DynamicTextinputModule),
   },
   {
-    path: 'dynamicData',
+    path: 'dropdownData',
     loadChildren: () =>
-      import('./pages/modules/dynamic/dynamic-data/dynamic-data.module').then(
-        (mod) => mod.DynamicDataModule
+      import('./pages/modules/dynamic/dropdown-data/dropdown-data.module').then(
+        (mod) => mod.DropdownDataModule
       ),
   },
   {
@@ -43,6 +42,14 @@ const routes: Routes = [
     loadChildren: () =>
       import('./pages/modules/dynamic/page-element/page-element.module').then(
         (mod) => mod.PageElementModule
+      ),
+  },
+
+  {
+    path: 'dynamicPage',
+    loadChildren: () =>
+      import('./pages/modules/dynamic/dynamic-page/dynamic-page.module').then(
+        (mod) => mod.DynamicPageModule
       ),
   },
 ];
