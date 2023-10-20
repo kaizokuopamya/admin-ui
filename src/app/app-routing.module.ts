@@ -52,6 +52,14 @@ const routes: Routes = [
         (mod) => mod.DynamicPageModule
       ),
   },
+
+  {
+    path: 'getsaveData',
+    loadChildren: () =>
+      import('./pages/modules/dynamic/getsaved-data/getsaved-data.module').then(
+        (mod) => mod.GetsavedDataModule
+      ),
+  },
 ];
 
 @NgModule({

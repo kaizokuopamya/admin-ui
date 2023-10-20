@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './pages/common-ui/footer/footer.component';
 import { HeaderComponent } from './pages/common-ui/header/header.component';
@@ -16,6 +17,7 @@ import { CreatePageComponent } from './pages/modules/dynamic/create-page/create-
 import { PageElementComponent } from './pages/modules/dynamic/page-element/page-element.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { DynamicPageComponent } from './pages/modules/dynamic/dynamic-page/dynamic-page.component';
+import { GetsavedDataComponent } from './pages/modules/dynamic/getsaved-data/getsaved-data.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,7 @@ import { DynamicPageComponent } from './pages/modules/dynamic/dynamic-page/dynam
     CreatePageComponent,
     PageElementComponent,
     DynamicPageComponent,
+    GetsavedDataComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,6 +41,7 @@ import { DynamicPageComponent } from './pages/modules/dynamic/dynamic-page/dynam
     FontAwesomeModule,
     DragDropModule,
     FormsModule,
+    NgxDatatableModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

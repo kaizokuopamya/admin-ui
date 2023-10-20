@@ -53,7 +53,7 @@ export class DynamicTextinputComponent {
       'input',
       JSON.stringify(this.dataService.dynamicInput[index])
     );
-    this.dataService.goToPage('dynamicData');
+    this.dataService.goToPage('dropdownData');
   }
 
   createElement() {
