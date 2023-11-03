@@ -16,6 +16,7 @@ export class CreatePageComponent {
   message: string = '';
   isErrorMessage: boolean = false;
   responseData: any = [];
+  encryption: string[] = ['static', 'dynamic', 'rsa']
 
   constructor(
     private fb: FormBuilder,
@@ -28,6 +29,7 @@ export class CreatePageComponent {
     this.createPageForm = this.fb.group({
       pageName: ['', Validators.required],
       description: ['', Validators.required],
+      isEncrypted: ['S', Validators.required]
     });
   }
 
@@ -42,6 +44,7 @@ export class CreatePageComponent {
       ...{
         [this.constant.key_pageName]: result.pageName,
         [this.constant.key_DESCRIPTION]: result.description,
+        [this.constant.key_isEncrypted]: result.isEncrypted
       },
     };
     console.log(inputData);
@@ -52,9 +55,10 @@ export class CreatePageComponent {
         console.log(this.responseData);
         this.message = this.responseData.Result;
         this.storage.setLocalStorage('pageId', this.responseData.ID);
+        this.dataService.goToPage('pageElement');
       },
       error: (error) => console.log(error),
     });
-    this.dataService.goToPage('pageElement');
+    
   }
 }

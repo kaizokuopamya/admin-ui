@@ -11,11 +11,7 @@
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                   <!-- master element values card start from here -->
                   <div class="d-flex justify-content-end">
-                    <button
-                      class="px-4 mt-3 bg-primary border-0"
-                      type="button"
-                      routerLink="/dynamicInput"
-                    >
+                    <button class="px-4 mt-3 bg-primary border-0" type="button" routerLink="/dynamicInput">
                       <fa-icon [icon]="faArrowLeft" title="Previous Page"></fa-icon>
                     </button>
                   </div>
@@ -24,13 +20,11 @@
                     <div class="card-header">Master Element Values</div>
                     <!-- master element values card body start from here  -->
                     <div class="card-body">
-                      <div
-                        class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"
-                      >
+                      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                         <h4 class="mb-4">Name: {{ masterName }}</h4>
                       </div>
                       <!-- dynamicValuesForm start from here  -->
-                      <form [formGroup]="dynamicValuesForm">
+                      <form class="table-responsive" [formGroup]="dynamicValuesForm">
                         <!-- values table start from here  -->
                         <table class="table" formArrayName="values">
                           <thead>
@@ -42,44 +36,22 @@
                             </tr>
                           </thead>
                           <!-- looping through value controls -->
-                          <tbody
-                            *ngFor="let value of values.controls; let i = index"
-                          >
+                          <tbody *ngFor="let value of values.controls; let i = index">
                             <tr [formGroupName]="i">
                               <td class="ux-input">
-                                <input
-                                  type="text"
-                                  placeholder="Enter Key"
-                                  formControlName="key"
-                                />
+                                <input type="text" placeholder="Enter Key" formControlName="key" />
                               </td>
                               <td class="ux-input">
-                                <input
-                                  type="text"
-                                  placeholder="Enter Value"
-                                  formControlName="value"
-                                />
+                                <input type="text" placeholder="Enter Value" formControlName="value" />
                               </td>
                               <td class="ux-input">
-                                <input
-                                  type="text"
-                                  placeholder="Enter Description"
-                                  formControlName="description"
-                                />
+                                <input type="text" placeholder="Enter Description" formControlName="description" />
                               </td>
                               <td class="d-flex">
-                                <button
-                                  class="btn btn-primary rounded-circle mx-2"
-                                  type="button"
-                                  (click)="addValue()"
-                                >
+                                <button class="btn btn-primary rounded-circle mx-2" type="button" (click)="addValue()">
                                   <fa-icon [icon]="faCirclePlus"></fa-icon>
                                 </button>
-                                <button
-                                  class="btn btn-danger rounded-circle"
-                                  type="button"
-                                  (click)="removeValue(i)"
-                                >
+                                <button class="btn btn-danger rounded-circle" type="button" (click)="removeValue(i)">
                                   <fa-icon [icon]="faTrash"></fa-icon>
                                 </button>
                               </td>
@@ -88,18 +60,10 @@
                         </table>
                         <!-- values table ends here  -->
                         <div class="col-12 mt-2 d-flex justify-content-between">
-                          <button
-                            class="ux-button btn btn-secondary"
-                            type="button"
-                            (click)="resetValue()"
-                          >
+                          <button class="ux-button btn btn-secondary" type="button" (click)="resetValue()">
                             Reset
                           </button>
-                          <button
-                            class="ux-button btn btn-success"
-                            type="button"
-                            (click)="saveValues()"
-                          >
+                          <button class="ux-button btn btn-success" type="button" (click)="saveValues()">
                             Save
                           </button>
                         </div>
@@ -111,7 +75,7 @@
                   <!-- master element values card ends here  -->
                   <div class="card mt-3" *ngIf="resultSet.length > 0">
                     <div class="card-header">Values of {{ masterName }}</div>
-                    <div class="card-body">
+                    <div class="card-body table-responsive">
                       <table class="table align-middle mb-0 bg-white">
                         <thead class="bg-light">
                           <tr>
@@ -123,7 +87,7 @@
                           </tr>
                         </thead>
                         <tbody *ngFor="let record of resultSet; let i = index">
-                          <tr *ngIf="record.length > 0">
+                          <tr>
                             <td>
                               <p class="fw-normal mb-1">{{ i + 1 }}</p>
                             </td>
@@ -139,11 +103,7 @@
                               </p>
                             </td>
                             <td>
-                              <button
-                                type="button"
-                                class="btn btn-primary rounded-circle"
-                                (click)="editValues()"
-                              >
+                              <button type="button" class="btn btn-primary rounded-circle" (click)="editValues()">
                                 <fa-icon [icon]="faPen"></fa-icon>
                               </button>
                             </td>

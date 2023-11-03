@@ -50,3 +50,21 @@
 .element-list.cdk-drop-list-dragging .user:not(.cdk-drag-placeholder) {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
+
+.icon-group .fa-grip {
+  display: block;
+  transition: display 0.5s ease;
+}
+
+.icon-group .fa-close {
+  cursor: pointer;
+  display: none;
+}
+
+.icon-group:hover .fa-grip {
+  display: none;
+}
+
+.icon-group:hover .fa-close {
+  display: block;
+}

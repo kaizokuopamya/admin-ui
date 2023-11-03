@@ -2,13 +2,16 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { CreatePageRoutingModule } from './create-page-routing.module';
-
+import { CreatePageComponent } from './create-page.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [],
+  declarations: [CreatePageComponent],
   imports: [
     CommonModule,
-    CreatePageRoutingModule
-  ]
+    CreatePageRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
+  ],
 })
-export class CreatePageModule { }
+export class CreatePageModule {}

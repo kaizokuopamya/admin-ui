@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { each } from 'jquery';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AppConstants } from 'src/app/app.constant';
 import { dynamicForm } from 'src/app/model/common.model';
 import { DataService } from 'src/app/services/data.service';
@@ -20,7 +19,7 @@ export class DynamicPageComponent {
     private httpService: HttpRestApiService,
     private constant: AppConstants,
     private dataService: DataService
-  ) {}
+  ) { }
 
   ngOnInit() {
     // this.apicall();
@@ -33,6 +32,7 @@ export class DynamicPageComponent {
       if (x.hasOwnProperty('options')) x.options = JSON.parse(x.options);
     });
     console.log(this.dynamicForm);
+    
 
     const formControls = {};
     // const formArray = {}
@@ -115,18 +115,18 @@ export class DynamicPageComponent {
     return ['password', 'text', 'tel', 'date'].includes(elementType);
   }
 
-  // apicall() {
-  //   const GETDYNAMICPAGE = this.constant.serviceName_GETDYNAMICPAGE;
-  //   const inputData = {
-  //     ...this.dataService.commonInputData(),
-  //     [this.constant.key_pageName]: this.pageName,
-  //   };
+  apicall() {
+    const GETDYNAMICPAGE = this.constant.serviceName_GETDYNAMICPAGE;
+    const inputData = {
+      ...this.dataService.commonInputData(),
+      [this.constant.key_pageName]: this.pageName,
+    };
 
-  //   this.httpService.callApiServices(GETDYNAMICPAGE, inputData).subscribe({
-  //     next: (data) => {
-  //       console.log("getdynamicpage ===== >", data);
-  //     },
-  //     error: (error) => console.log(error),
-  //   });
-  // }
+    this.httpService.callApiServices(GETDYNAMICPAGE, inputData).subscribe({
+      next: (data) => {
+        console.log("getdynamicpage ===== >", data);
+      },
+      error: (error) => console.log(error),
+    });
+  }
 }

@@ -35,9 +35,15 @@ export class AppConstants {
   key_dropDownName: string = 'dropDownName';
   key_type: string = 'type';
   key_DESCRIPTION: string = 'DESCRIPTION';
+  key_class: string = 'class';
+  key_functionalities: string = 'functionalities';
+  key_isEncrypted: string = 'is_Encrypted';
   key_ID: string = 'ID';
   key_value: string = 'value';
   key_pageName: string = 'pageName';
+  key_mandatory: string = 'mandatory';
+  key_errorMessage: string = 'errorMessage';
+  key_typeofreq: string = 'typeofreq';
 
   // values
   val_prefered_Language = 'en';
@@ -90,12 +96,13 @@ export class AppConstants {
   //dynamic master services list
   serviceName_CREATEDROPDOWN = 'DYNAMICMASTER/CREATEDROPDOWN';
   serviceName_GETDROPDOWN = 'DYNAMICMASTER/GETROPDOWN';
-  serviceName_GETTYPESOFELEMENTS = '/DYNAMICMASTER/GETTYPESOFELEMENTS';
+  serviceName_GETTYPESOFELEMENTS = 'DYNAMICMASTER/GETTYPESOFELEMENTS';
   serviceName_CREATEPAGE = 'DYNAMICMASTER/CREATEPAGE';
   serviceName_CREATEPAGEELEMENTS = 'DYNAMICMASTER/CREATEPAGEELEMENTS';
-  serviceName_SAVEDYNAMICDATA = '/DYNAMICMASTER/SAVEDYNAMICDATA';
-  serviceName_GETSAVEDATA = '/DYNAMICMASTER/GETSAVEDATA';
+  serviceName_SAVEDYNAMICDATA = 'DYNAMICMASTER/SAVEDYNAMICDATA';
+  serviceName_GETSAVEDATA = 'DYNAMICMASTER/GETSAVEDATA';
   serviceName_GETROPDOWNDETAILS = 'DYNAMICMASTER/GETROPDOWNDETAILS';
-  serviceName_GETDYNAMICPAGE = '/DYNAMICMASTER/GETDYNAMICPAGE';
+  serviceName_GETDYNAMICPAGE = 'DYNAMICMASTER/GETDYNAMICPAGE';
   serviceName_CREATEDROPDOWNDETAILS = 'DYNAMICMASTER/CREATEDROPDOWNDETAILS';
+  serviceName_GETPAGESCREATED = 'DYNAMICMASTER/GETPAGESCREATED';
 }

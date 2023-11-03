@@ -47,6 +47,7 @@ export class DropdownDataComponent {
       values: this.fb.array([this.createValues()]),
     });
     this.values = this.dynamicValuesForm.get('values') as FormArray;
+    this.getDropDownDetails();
   }
 
   ngOnInit() {
@@ -55,9 +56,8 @@ export class DropdownDataComponent {
       const parsedInput = JSON.parse(input);
       this.masterName = parsedInput.dropDownName;
       this.ID = parsedInput.id;
+      this.storage.setLocalStorage('id', this.ID);
     }
-
-    this.getDropDownDetails();
   }
 
   getDropDownDetails() {
@@ -65,6 +65,7 @@ export class DropdownDataComponent {
     let inputData = this.createInputData();
     this.httpService.callApiServices(GETDROPDOWNDETAILS, inputData).subscribe({
       next: (data) => {
+        console.log(data);
         this.resultSet = data.set.records;
         console.log(this.resultSet);
       },
@@ -75,7 +76,7 @@ export class DropdownDataComponent {
   createInputData() {
     return {
       ...this.dataService.commonInputData(),
-      [this.constant.key_ID]: this.ID,
+      [this.constant.key_ID]: this.storage.getLocalStorage('id'),
     };
   }
 

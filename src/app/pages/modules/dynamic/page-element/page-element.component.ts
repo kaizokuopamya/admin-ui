@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { AppConstants } from 'src/app/app.constant';
 import { DataService } from 'src/app/services/data.service';
 import { HttpRestApiService } from 'src/app/services/http-rest-api.service';
-import { faGripHorizontal } from '@fortawesome/free-solid-svg-icons';
+import { faClose, faGripHorizontal } from '@fortawesome/free-solid-svg-icons';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 
@@ -18,6 +18,7 @@ export class PageElementComponent {
 
   //icons
   faGripHorizontal = faGripHorizontal;
+  faClose = faClose;
 
   response: [] = [];
   elements: any[] = [];
@@ -29,9 +30,9 @@ export class PageElementComponent {
     private constant: AppConstants,
     private dataService: DataService,
     private storage: LocalStorageService
-  ) {}
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   getDropDown(event: any) {
     event.preventDefault();
@@ -53,35 +54,24 @@ export class PageElementComponent {
         this.elements = result;
         console.log(this.elements);
       },
-      error: (error) => console.log(error),
     });
   }
 
-  // addElement() {
-  //   const selectedValue = this.selectElement.nativeElement.value;
-
-  //   console.log("elements :: ",JSON.stringify(this.elements));
-  //   if (selectedValue && !this.selectedElements.find(each => each.DROPDOWNNAME === selectedValue)?.DROPDOWNNAME) {
-  //     this.selectedElements = [...this.selectedElements, this.elements.find((elem) => elem.DROPDOWNNAME === selectedValue)];
-  //     console.log(this.selectedElements);
-  //     this.selectElement.nativeElement.value = '';
-  //   }
-  // }
-
   addElement() {
     const selectedValue = this.selectElement.nativeElement.value;
-    const find = (selectedElements) => (DROPDOWNNAME) => (selectedValue) =>
-      selectedElements.find((elem) => elem[DROPDOWNNAME] === selectedValue);
-    if (
-      selectedValue &&
-      !find(this.selectedElements)('DROPDOWNNAME')(selectedValue)?.DROPDOWNNAME
-    ) {
-      this.selectedElements = [
-        ...this.selectedElements,
-        find(this.elements)('DROPDOWNNAME')(selectedValue),
-      ];
+
+    console.log("elements :: ", JSON.stringify(this.elements));
+    if (selectedValue && !this.selectedElements.find(each => each.DROPDOWNNAME === selectedValue)?.DROPDOWNNAME) {
+      this.selectedElements = [...this.selectedElements, this.elements.find((elem) => elem.DROPDOWNNAME === selectedValue)];
       console.log(this.selectedElements);
       this.selectElement.nativeElement.value = '';
+    }
+  }
+
+  deleteElement(element: any) {
+    const index = this.selectedElements.findIndex((selectedElement) => selectedElement.ID === element.ID);
+    if (index !== -1) {
+      this.selectedElements.splice(index, 1);
     }
   }
 

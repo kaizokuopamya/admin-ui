@@ -16,16 +16,11 @@
   </div>
   <div class="nav-items">
     <ul class="lst-nav-items">
-      <li
-        [ngClass]="{
-          'coming-soon': menu?.isEnable == 'N',
-          drilldown: menu?.subMenuList?.length > 0
-        }"
-        *ngFor="let menu of mainMenuList; let i = index"
+      <li [ngClass] = "{'coming-soon': menu?.isEnable == 'N', 'drilldown' : menu?.subMenuList?.length > 0}"
+          *ngFor="let menu of mainMenuList; let i = index"
       >
-        <a
-          [ngClass]="{ 'glnv-dropdown': menu?.subMenuList?.length > 0 }"
-          (click)="goToPage(menu?.URL)"
+        <a [ngClass]="{ 'glnv-dropdown': menu?.subMenuList?.length > 0 }"
+          (click)="goToPage(menu?.menuName)"
         >
           <!-- <img
               [src]="'./assets/images/menu_web/' + menu.JSON_KEY"
@@ -48,13 +43,12 @@
           ></span>
           <div class="hovering-option">{{ menu.menuName }}</div>
         </a>
-        <div class="overlap-badge coming-soon" *ngIf="menu?.isEnable == 'N'">
+        <!-- <div class="overlap-badge coming-soon" *ngIf="menu?.isEnable == 'N'">
           <small style="color: red">{{ menu?.textToDisplay }}</small>
-        </div>
-        <div
+        </div> -->
+        <div 
           *ngIf="menu?.subMenuList?.length > 0"
-          class="mysubnavigation-items"
-          [ngClass]="{ open: menu.isSubMenuOpen }"
+          class="mysubnavigation-items"  
         >
           <ul class="lst-subnavigation">
             <li *ngFor="let sub of menu?.subMenuList; let j = index">

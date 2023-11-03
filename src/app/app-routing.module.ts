@@ -1,64 +1,28 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LayoutsComponent } from './pages/layouts/layouts.component';
 
 const routes: Routes = [
+  { path: '', pathMatch: 'full', redirectTo: 'dynamicInput' },
   {
-    path: 'dashboard',
-    loadChildren: () =>
-      import('./pages/modules/dashboard/dashboard.module').then(
-        (mod) => mod.DashboardModule
-      ),
-  },
-  {
-    path: 'masterConfig',
-    loadChildren: () =>
-      import('./pages/modules/master/config-master/config-master.module').then(
-        (mod) => mod.ConfigMasterModule
-      ),
-  },
-  {
-    path: 'dynamicInput',
-    loadChildren: () =>
-      import(
-        './pages/modules/dynamic/dynamic-textinput/dynamic-textinput.module'
-      ).then((mod) => mod.DynamicTextinputModule),
-  },
-  {
-    path: 'dropdownData',
-    loadChildren: () =>
-      import('./pages/modules/dynamic/dropdown-data/dropdown-data.module').then(
-        (mod) => mod.DropdownDataModule
-      ),
-  },
-  {
-    path: 'createPage',
-    loadChildren: () =>
-      import('./pages/modules/dynamic/create-page/create-page.module').then(
-        (mod) => mod.CreatePageModule
-      ),
-  },
-  {
-    path: 'pageElement',
-    loadChildren: () =>
-      import('./pages/modules/dynamic/page-element/page-element.module').then(
-        (mod) => mod.PageElementModule
-      ),
-  },
-
-  {
-    path: 'dynamicPage',
-    loadChildren: () =>
-      import('./pages/modules/dynamic/dynamic-page/dynamic-page.module').then(
-        (mod) => mod.DynamicPageModule
-      ),
-  },
-
-  {
-    path: 'getsaveData',
-    loadChildren: () =>
-      import('./pages/modules/dynamic/getsaved-data/getsaved-data.module').then(
-        (mod) => mod.GetsavedDataModule
-      ),
+    path: '',
+    component: LayoutsComponent,
+    data: {
+      layout: 'classic',
+      name: 'NoAuthGuard',
+    },
+    children: [
+      { path: 'dashboard', loadChildren: () => import('./pages/modules/dashboard/dashboard.module').then((mod) => mod.DashboardModule) },
+      { path: 'masterConfig', loadChildren: () => import('./pages/modules/master/config-master/config-master.module').then((mod) => mod.ConfigMasterModule) },
+      { path: 'dynamicInput', loadChildren: () => import('./pages/modules/dynamic/dynamic-textinput/dynamic-textinput.module').then((mod) => mod.DynamicTextinputModule) },
+      { path: 'dropdownData', loadChildren: () => import('./pages/modules/dynamic/dropdown-data/dropdown-data.module').then((mod) => mod.DropdownDataModule) },
+      { path: 'dropdownDatawithServer', loadChildren: () => import('./pages/modules/dynamic/dropdown-data-server/dropdown-data-server.module').then((mod) => mod.DropdownDataServerModule) },
+      { path: 'createPage', loadChildren: () => import('./pages/modules/dynamic/create-page/create-page.module').then((mod) => mod.CreatePageModule) },
+      { path: 'pageElement', loadChildren: () => import('./pages/modules/dynamic/page-element/page-element.module').then((mod) => mod.PageElementModule) },
+      { path: 'dynamicPage', loadChildren: () => import('./pages/modules/dynamic/dynamic-page/dynamic-page.module').then((mod) => mod.DynamicPageModule) },
+      { path: 'getsavedData', loadChildren: () => import('./pages/modules/dynamic/getsaved-data/getsaved-data.module').then((mod) => mod.GetsavedDataModule) },
+      { path: 'createPageVersions', loadChildren: () => import('./pages/modules/dynamic/create-page-versions/create-page-versions.module').then((mod) => mod.CreatePageVersionsModule) }
+    ],
   },
 ];
 
@@ -66,4 +30,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

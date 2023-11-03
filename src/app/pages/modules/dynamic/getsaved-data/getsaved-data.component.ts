@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { ColumnMode, SortType } from '@swimlane/ngx-datatable';
 import { AppConstants } from 'src/app/app.constant';
 import { DataService } from 'src/app/services/data.service';
@@ -10,70 +11,99 @@ import { HttpRestApiService } from 'src/app/services/http-rest-api.service';
   styleUrls: ['./getsaved-data.component.css'],
 })
 export class GetsavedDataComponent {
-  id: string = '1';
+  @ViewChild('pageId') pageId!: ElementRef;
+  // Icons
+  faSearch = faSearch;
+
+  // id: string = '68';
   header: any = [];
   maplist: any = [];
   rows: any = [];
+  content: any = [];
   columns: any = [];
+  pages: any = [];
+  showDataTable: boolean = false
 
-  //ngx-datatable variables
+  // ngx-datatable variables
   ColumnMode = ColumnMode;
   SortType = SortType;
   reorderable = true;
+  loadingIndicator = true;
 
   constructor(
     private constant: AppConstants,
     private dataService: DataService,
     private httpService: HttpRestApiService
-  ) {}
+  ) {
+    this.fetchPagesCreated();
+    this.fetchSavedData();
+  }
 
-  ngOnInit() {
+  // Update the filter
+  updateFilter(event: any): void {
+    const filterValue = (event.target.value || '').toLowerCase();
+    this.rows = filterValue
+      ? this.content.filter((row: any) =>
+        // Check if any value in the row starts with the filter value
+        Object.values(row as any).some((value: any) =>
+          (value || '').toLowerCase().startsWith(filterValue)
+        )
+      )
+      : this.content;
+  }
+
+  // Fetch saved data from the API
+  fetchSavedData(): void {
     const GETSAVEDATA = this.constant.serviceName_GETSAVEDATA;
     const inputData = {
       ...this.dataService.commonInputData(),
-      [this.constant.key_ID]: this.id,
+      [this.constant.key_ID]: this.pageId?.nativeElement?.value,
     };
 
     this.httpService.callApiServices(GETSAVEDATA, inputData).subscribe({
       next: (data) => {
-        const parsedHeader = JSON.parse(data.set.records[1].header);
-        const parsedMaplist = JSON.parse(data.set.records[0].mapList);
-        this.header = this.removeNullValuesFromObject(parsedHeader);
-        this.maplist = this.addDataObject(
-          this.removeNullValuesFromObject(parsedMaplist),
-          this.header[0]
-        );
-        this.rows = this.maplist.map((each) => each.data);
-        this.columns = Object.keys(this.header[0]).map((each) => ({
-          name: each.toUpperCase(),
-        }));
-        console.log(this.rows);
-        console.log(this.columns);
+        // Hide loading indicator after a delay
+        setTimeout(() => (this.loadingIndicator = false), 1000);
+        const records = data.set.records;
+        if (records) {
+          this.showDataTable = true;
+          // Process and filter header data
+          this.header = JSON.parse(records[1].header)
+            .filter((entry) => entry !== null)
+            .sort((a, b) => a.seqno - b.seqno)
+            .map((labelInfo) => labelInfo.labelname);
+
+          // Process and filter maplist data
+          this.content = JSON.parse(records[0].mapList)
+            .filter((mapEntry) => mapEntry !== null)
+            .map((mapEntry) => {
+              const rowData: { [key: string]: any } = {};
+              this.header.forEach((key, index) => {
+                rowData[key] = mapEntry['field' + (index + 1)] || '';
+              });
+              return rowData;
+            });
+          // Populate rows and columns for the data table
+          this.rows = [...this.content];
+          this.columns = this.header.map((name) => ({ name, prop: name }));
+        }
       },
-      error: (error) => console.log(error),
     });
   }
 
-  removeNullValuesFromObject(parsedJson) {
-    return parsedJson.map((each) =>
-      Object.entries(each)
-        .filter((entry) => entry[1] !== null)
-        .reduce((obj, [key, value]) => {
-          obj[key] = value;
-          return obj;
-        }, {})
-    );
+  fetchPagesCreated() {
+    const GETPAGESCREATED = this.constant.serviceName_GETPAGESCREATED;
+    const inputData = {
+      ...this.dataService.commonInputData(),
+    };
+    this.httpService.callApiServices(GETPAGESCREATED, inputData).subscribe({
+      next: (data) => {
+        this.pages = data.set.records;
+        console.log(data.set.records);
+        this.fetchSavedData();
+      }
+    })
   }
 
-  addDataObject(parsedJson, header) {
-    return JSON.parse(JSON.stringify(parsedJson)).map((each) => {
-      each['data'] = Object.keys(header).reduce((result, key, index) => {
-        result[key] = each['field' + (index + 1)]
-          ? each['field' + (index + 1)]
-          : '';
-        return result;
-      }, {});
-      return each;
-    });
-  }
+
 }

@@ -4,39 +4,23 @@
       <!-- ======== body page content start from here ======== -->
       <div class="body-page-container main-dashborad">
         <div class="container-fluid">
-          <!--.row -->
+          <!-- row -->
           <div class="row no-gutters">
             <div class="col-12">
               <div class="row1">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                  <!-- dynamic-textinput.component.html -->
                   <form [formGroup]="dynamicInputForm">
-                    <!-- master name card starts here -->
                     <div class="card mt-3">
-                      <div class="card-header">Add Master Element</div>
+                      <!-- master name card starts here -->
+                      <div class="card-header bg-primary text-white">Add Master Element</div>
                       <div class="card-body">
                         <div class="col-12 col-md-6 col-lg-6 col-xl-6">
                           <div class="ux-input">
-                            <label for="dropDownName"
-                              >Name:<span class="mandatory">* </span></label
-                            >
-                            <input
-                              id="dropDownName"
-                              type="text"
-                              formControlName="dropDownName"
-                              placeholder="Master Element Name"
-                              required
-                            />
-                            <p
-                              class="text-danger"
-                              *ngIf="
-                                dynamicInputForm.controls['dropDownName']
-                                  .touched &&
-                                dynamicInputForm.controls[
-                                  'dropDownName'
-                                ].hasError('required')
-                              "
-                            >
+                            <label for="dropDownName">Name:<span class="mandatory">*</span></label>
+                            <input id="dropDownName" type="text" formControlName="dropDownName"
+                              placeholder="Master Element Name" required />
+                            <p class="text-danger" *ngIf="dynamicInputForm.controls['dropDownName'].touched &&
+                              dynamicInputForm.controls['dropDownName'].hasError('required')">
                               Name is required!
                             </p>
                           </div>
@@ -44,14 +28,12 @@
 
                         <div class="col-12 col-md-6 col-lg-6 col-xl-6">
                           <div class="ux-input">
-                            <label for="type"
-                              >Input Type:<span class="mandatory"
-                                >*
-                              </span></label
-                            >
+                            <label for="type">Input Type:<span class="mandatory">*</span></label>
                             <select formControlName="type" id="type">
                               <option value="">Select</option>
                               <option value="text">Textbox</option>
+                              <option value="grid">Grid</option>
+                              <option value="number">Number</option>
                               <option value="password">Password</option>
                               <option value="tel">Telephone</option>
                               <option value="date">Date</option>
@@ -59,15 +41,8 @@
                               <option value="radio">Radio</option>
                               <option value="checkbox">Checkbox</option>
                             </select>
-                            <p
-                              class="text-danger"
-                              *ngIf="
-                                dynamicInputForm.controls['type'].touched &&
-                                dynamicInputForm.controls['type'].hasError(
-                                  'required'
-                                )
-                              "
-                            >
+                            <p class="text-danger" *ngIf="dynamicInputForm.controls['type'].touched &&
+                              dynamicInputForm.controls['type'].hasError('required')">
                               Type is required!
                             </p>
                           </div>
@@ -75,46 +50,56 @@
 
                         <div class="col-12 col-md-6 col-lg-6 col-xl-6">
                           <div class="ux-input">
-                            <label for="description"
-                              >Description:<span class="mandatory"
-                                >*
-                              </span></label
-                            >
-                            <input
-                              id="description"
-                              type="text"
-                              formControlName="description"
-                              placeholder="Master Element Description"
-                              required
-                            />
-                            <p
-                              class="text-danger"
-                              *ngIf="
-                                dynamicInputForm.controls['description']
-                                  .touched &&
-                                dynamicInputForm.controls[
-                                  'description'
-                                ].hasError('required')
-                              "
-                            >
+                            <label for="description">Description:<span class="mandatory">*</span></label>
+                            <input id="description" type="text" formControlName="description"
+                              placeholder="Master Element Description" required />
+                            <p class="text-danger" *ngIf="dynamicInputForm.controls['description'].touched &&
+                              dynamicInputForm.controls['description'].hasError('required')">
                               Description is required!
                             </p>
                           </div>
                         </div>
-                        <div class="col-12 col-md-6 col-lg-6 col-xl-6 mt-4">
-                          <button
-                            class="ux-button btn btn-success"
-                            type="button"
-                            (click)="createElement()"
-                            [disabled]="!dynamicInputForm.valid"
-                          >
-                            Save
-                          </button>
+
+                        <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+                          <div class="ux-input">
+                            <label for="class">Class:<span class="mandatory">*</span></label>
+                            <input id="class" type="text" formControlName="class" placeholder="Master Element Class" />
+                          </div>
                         </div>
+
+                        <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+                          <div class="ux-input">
+                            <label for="functionalities">Functionalities:</label>
+                            <input id="functionalities" type="text" formControlName="functionalities"
+                              placeholder="Master Element functionalities" />
+                          </div>
+                        </div>
+
+                        <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+                          <div class="ux-input">
+                            <label for="validationMessage">Validation Message:</label>
+                            <input id="validationMessage" type="text" formControlName="validationMessage"
+                              placeholder="Master Element Validation Message" />
+                          </div>
+                        </div>
+
                         <div class="col-12 col-md-6 col-lg-6 col-xl-6 mt-4">
-                          <p class="text-danger text-xl">
-                            {{ error }}
-                          </p>
+                          <div class="ux-input d-flex">
+                            <input class="mx-2 p-2 align-self-center" id="mandatory" type="checkbox"
+                              formControlName="mandatory" />
+                            <label for="mandatory">Is this element field Mandatory</label>
+                          </div>
+                        </div>
+
+                        <div class="col-12 col-md-6 col-lg-6 col-xl-6 mt-4">
+                          <div class="d-flex justify-content-center">
+                            <button class="ux-button btn btn-success" type="button"
+                              (click)="createElement()">Save</button>
+                          </div>
+                        </div>
+
+                        <div class="col-12 col-md-6 col-lg-6 col-xl-6 mt-4">
+                          <p class="text-danger text-xl">{{ error }}</p>
                         </div>
                       </div>
                     </div>
@@ -124,39 +109,38 @@
               </div>
               <div class="row1">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                  <div *ngIf="showCustomField" class="card mt-3">
-                    <div class="card-header">Master Elements</div>
-                    <div class="card-body">
-                      <table class="table table-fixed">
-                        <thead>
+                  <div *ngIf="dynamicInput.length > 0" class="card mt-3">
+                    <div class="card-header bg-primary text-white">Master Elements</div>
+                    <div class="card-body table-responsive">
+                      <table class="table table-bordered table-hover table-striped">
+                        <thead class="text-center">
                           <tr>
-                            <th>Id</th>
-                            <th>Name</th>
-                            <th>Type</th>
-                            <th>Description</th>
-                            <th>Action</th>
+                            <th scope="col">Id</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Class</th>
+                            <th scope="col">Action</th>
                           </tr>
                         </thead>
-                        <tbody
-                          *ngFor="let input of dynamicInput; let i = index"
-                        >
-                          <tr class="align-middle">
-                            <td>{{ i + 1 }}</td>
+                        <tbody class="text-center" *ngFor="let input of dynamicInput; let i = index">
+                          <tr>
+                            <th scope="row">{{ i + 1 }}</th>
                             <td>{{ input.dropDownName }}</td>
-                            <td>{{ input.type }}</td>
+                            <td>{{ input.type | titlecase }}</td>
                             <td>{{ input.description }}</td>
+                            <td>{{ input.class }}</td>
                             <td>
-                              <button
-                                *ngIf="isIconVisible(input.type)"
-                                class="ux-btn btn btn-primary rounded-circle"
-                                type="button"
-                                (click)="viewValues(i)"
-                              >
-                                <fa-icon
-                                  [icon]="faEye"
-                                  title="click to insert values"
-                                ></fa-icon>
-                              </button>
+                              <div class="btn-group" role="group">
+                                <button *ngIf="isIconVisible(input.type)" class="btn btn-primary rounded-circle"
+                                  type="button" (click)="viewValues(i)">
+                                  <fa-icon [icon]="faEye" title="Click to insert values"></fa-icon>
+                                </button>
+                                <button *ngIf="isIconVisible(input.type)" class="btn btn-primary rounded-circle"
+                                  type="button" (click)="viewValuesviaServer(i)">
+                                  <fa-icon [icon]="faLocationArrow" title="Click to insert values via server"></fa-icon>
+                                </button>
+                              </div>
                             </td>
                           </tr>
                         </tbody>

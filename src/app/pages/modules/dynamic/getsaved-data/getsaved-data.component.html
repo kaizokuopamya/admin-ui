@@ -14,20 +14,58 @@
                   <div class="card mt-3">
                     <div class="card-body">
                       <div class="col-12">
-                        <h3 class="mb-3">Saved Data</h3>
-                        <ngx-datatable
-                          #myTable
-                          class="material expanded"
-                          [rows]="rows"
-                          [columns]="columns"
-                          [sortType]="SortType.multi"
-                          [columnMode]="ColumnMode.force"
-                          [headerHeight]="50"
-                          [footerHeight]="50"
-                          [scrollbarV]="true"
-                          [scrollbarH]="true"
-                          [limit]="10"
-                        ></ngx-datatable>
+                        <div class="d-flex justify-content-between">
+                          <h4 class="mb-3">Saved Data</h4>
+
+                          <div class="d-flex">
+                            <div class="ux-input">
+                              <label for="type" class="align-self-center">Search Page Data</label>
+                              <select #pageId id="type">
+                                <option value="">Select..</option>
+                                <option *ngFor="let page of pages" value={{page.ID}}>{{page.PAGENAME}}</option>
+                              </select>
+                            </div>
+                          </div>
+
+                          <div class="ux-input d-flex">
+                            <input class="search-input position-relative" type="text" placeholder="Search Data"
+                              (keyup)="updateFilter($event)" />
+                            <fa-icon class="position-absolute align-self-center end-0" [icon]="faSearch"></fa-icon>
+                          </div>
+
+                          <div class="ux-input">
+                            <label for="template" class="align-self-center">Report Template</label>
+                            <select id="template">
+                              <option value="">Select Template..</option>
+                              <option value="template1">Template 1</option>
+                              <option value="template2">Template 2</option>
+                              <option value="template3">Template 3</option>
+                              <option value="template4">Template 4</option>
+                            </select>
+                          </div>
+
+                        </div>
+                        <ngx-datatable *ngIf="showDataTable" #myTable class="material expanded" [rows]="rows"
+                          [columns]="columns" [loadingIndicator]="loadingIndicator" [sortType]="SortType.multi"
+                          [columnMode]="ColumnMode.force" [headerHeight]="50" [footerHeight]="50" [rowHeight]="50"
+                          [scrollbarV]="true" [scrollbarH]="true" [limit]="10"></ngx-datatable>
+                        <ngx-datatable *ngIf="!showDataTable" [rows]="[]" [columns]="[]"></ngx-datatable>
+                      </div>
+
+                      <!--.datatable-box-->
+                      <div class="dt-extras mt-4">
+                        <div class="dt-exports">
+                          <em>Export to :<span class="chevron"></span></em>
+                          <button class="linkbutton exp-excel">Excel
+                            <b>(.xlsx)</b></button>
+                          <button class="linkbutton exp-pdf">Pdf
+                            <b>(.pdf)</b></button>
+                          <button class="linkbutton exp-word">word <b>(.docx)</b></button>
+                          <button class="linkbutton exp-xml">XML <b>(.xml)</b></button>
+                          <button class="linkbutton exp-csv">csv
+                            <b>(.csv)</b></button>
+                        </div>
+                        <!--.dt-exports-->
                       </div>
                     </div>
                   </div>

@@ -1,0 +1,150 @@
+<div class="main bg-m">
+    <div class="right-main-column">
+        <div class="right-col-container pad-b full-width">
+            <!-- ======== body page content start from here ======== -->
+            <div class="body-page-container main-dashborad">
+                <div class="container-fluid">
+                    <!--.row starts here -->
+                    <div class="row no-gutters">
+                        <div class="col-12">
+                            <div class="row1">
+                                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                    <form class="card mt-3">
+                                        <div class="card-header bg-primary text-white">Create Page</div>
+                                        <div class="card-body">
+                                            <div *ngIf="!showAddElement" class="col-12 col-md-6 col-lg-6 col-xl-6">
+                                                <div class="ux-input">
+                                                    <label for="pagename">Enter Page Name</label>
+                                                    <select name="pagename" [(ngModel)]="pageName">
+                                                        <option value="">Select Page Name</option>
+                                                        <option *ngFor="let page of pages" value={{page.PAGENAME}}>
+                                                            {{page.PAGENAME}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div *ngIf="showAddElement">
+                                                <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+                                                    <div class="ux-input">
+                                                        <label for="newPageName">New Page Name <span
+                                                                class="mandatory">*</span></label>
+                                                        <input type="text" [(ngModel)]="newPageName"
+                                                            [value]="pageName+today">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+                                                    <div class="ux-input">
+                                                        <label for="description">Description:<span
+                                                                class="mandatory">*</span></label>
+                                                        <textarea id="description" name="pageDescription"
+                                                            [(ngModel)]="pageDescription" placeholder="Page Description"
+                                                            required></textarea>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Encryption standard  -->
+                                                <div class="col-12 col-md-6 col-lg-6 col-xl-6 mt-2">
+                                                    <div class="ux-input">
+                                                        <label>Encryption Standard:<span
+                                                                class="mandatory">*</span></label>
+                                                        <div class="ux-selection" *ngFor="let enctype of encryption">
+                                                            <input type="radio" [id]="enctype" [name]="enctype"
+                                                                [value]="enctype.charAt(0).toUpperCase()"
+                                                                [(ngModel)]="isEncrypted" />
+                                                            <label class="m-0" [for]="enctype">{{enctype|titlecase}}</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <br>
+
+                                                <div class="col-12 col-md-6 col-lg-6 col-xl-6 mt-2">
+                                                    <div class="ux-input">
+                                                        <label>Element Type:<span class="mandatory">*
+                                                            </span></label>
+                                                        <select name="elementType" [(ngModel)]="type" id="elementType"
+                                                            (blur)="getDropDown()">
+                                                            <option value="">Select</option>
+                                                            <option value="text">Textbox</option>
+                                                            <option value="number">Number</option>
+                                                            <option value="password">Password</option>
+                                                            <option value="tel">Telephone</option>
+                                                            <option value="date">Date</option>
+                                                            <option value="dropdown">Dropdown</option>
+                                                            <option value="radio">Radio</option>
+                                                            <option value="checkbox">Checkbox</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-lg-4 col-xl-4 col-12">
+                                                    <div class="ux-input">
+                                                        <label for="elementName">Element Name List</label>
+                                                        <select name="elementName" [(ngModel)]="selectedElement">
+                                                            <option value="">Select</option>
+                                                            <option *ngFor="let item of elements"
+                                                                [value]="item.DESCRIPTION">
+                                                                {{ item.DROPDOWNNAME }}
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6 col-lg-4 col-xl-4 col-12">
+                                                <button *ngIf="!showAddElement" class="ux-button" type="button"
+                                                    (click)="searchPage()">
+                                                    Search
+                                                </button>
+                                                <button *ngIf="showAddElement" class="ux-button" type="button"
+                                                    (click)="addElement()">
+                                                    Add
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <!-- .row1 starts here  -->
+                            <div class="row1">
+                                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                    <!-- selected element card starts here -->
+                                    <div *ngIf="selectedElements.length > 0" class="card mt-3">
+                                        <div class="card-header bg-primary text-white">Selected Elements</div>
+                                        <div class="card-body">
+                                            <div cdkDropListGroup
+                                                class="element-container col-md-6 col-lg-4 col-xl-4 col-12">
+                                                <div cdkDropList [cdkDropListData]="selectedElements"
+                                                    (cdkDropListDropped)="drop($event)" class="element-list">
+                                                    <div *ngFor="let element of selectedElements" cdkDrag
+                                                        class="element">
+                                                        <p>{{ element.DESCRIPTION }}</p>
+                                                        <div class="icon-group">
+                                                            <fa-icon class="fa-grip"
+                                                                [icon]="faGripHorizontal"></fa-icon>
+                                                            <fa-icon class="fa-close" [icon]="faClose"
+                                                                (click)="deleteElement(element)"></fa-icon>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div *ngIf="!showAddElement" class="col-md-6 col-lg-4 col-xl-4 col-12">
+                                                <button class="ux-button" type="button" (click)="showAddElement=true">
+                                                    Add Elements
+                                                </button>
+                                            </div>
+                                            <div *ngIf="showAddElement" class="col-md-6 col-lg-4 col-xl-4 col-12">
+                                                <button class="ux-button" type="button" (click)="createPageElements()">
+                                                    Save
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

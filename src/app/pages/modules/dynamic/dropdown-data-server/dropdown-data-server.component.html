@@ -1,0 +1,57 @@
+<div class="main bg-m">
+    <div class="right-main-column">
+        <div class="right-col-container pad-b full-width">
+            <!-- ======== body page content start from here ======== -->
+            <div class="body-page-container main-dashborad">
+                <div class="container-fluid">
+                    <!--.row starts here -->
+                    <div class="row no-gutters">
+                        <div class="col-12">
+                            <div class="row1">
+                                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                    <div class="card mt-3">
+                                        <div class="card-header bg-primary text-white">Master Element Values</div>
+                                        <div class="card-body">
+                                            <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+                                                <div class="ux-input">
+                                                    <label for="url">URL: <span class="mandatory">*</span></label>
+                                                    <input id="url" type="text" placeholder="Enter URL here"
+                                                        [(ngModel)]="apiUrl">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+                                                <div class="ux-input">
+                                                    <label for="inputData">Input Data: <span
+                                                            class="mandatory">*</span></label>
+                                                    <textarea name="inputData" id="inputData" cols="30" rows="20"
+                                                        style="height: 22rem;" placeholder="Enter JSON input data here"
+                                                        [(ngModel)]="jsonPayload" (input)="beautifyJson()"></textarea>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+                                                <div class="ux-input">
+                                                    <button class="ux-button btn btn-success" type="button"
+                                                        (click)="invokeApi()">Invoke</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="card mt-3" *ngIf="response">
+                                        <div class="card-header">
+                                            <h2>API Response:</h2>
+                                        </div>
+                                        <div class="card-body">
+                                            <pre>{{ response | json }}</pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
