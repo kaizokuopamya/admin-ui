@@ -6,6 +6,7 @@ import { GetsavedDataComponent } from './getsaved-data.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { DatatableModule } from '../datatable/datatable.module';
 
 @NgModule({
   declarations: [GetsavedDataComponent],
@@ -16,6 +17,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     FormsModule,
     NgxDatatableModule,
     FontAwesomeModule,
-  ],
+    DatatableModule
+  ]
 })
-export class GetsavedDataModule {}
+export class GetsavedDataModule { }

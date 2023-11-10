@@ -27,18 +27,19 @@ export class SideNavComponent {
   }
 
   fetchSideMenu() {
-    const requestPayload: any = { id1: '4' };
-    const findLeftMenu: string = this.constant.serviceName_FINDALLLEFTMENU;
+    // const requestPayload: any = { id1: '4' };
+    // const findLeftMenu: string = this.constant.serviceName_FINDALLLEFTMENU;
 
-    this.httpService.apiCall(findLeftMenu, requestPayload).subscribe({
-      next: (data: any) => {
-        // console.log('Response:', JSON.stringify(data.result));
-        // Assign the response data to your mainMenuList
-        this.mainMenuList = data.result;
-        this.mainMenuList.unshift(SIDEMENU[0])
-      },
-      error: (error) => console.log('Error:', error),
-    });
+    // this.httpService.apiCall(findLeftMenu, requestPayload).subscribe({
+    //   next: (data: any) => {
+    //     // console.log('Response:', JSON.stringify(data.result));
+    //     // Assign the response data to your mainMenuList
+    //     this.mainMenuList = data.result;
+    //     this.mainMenuList.unshift(SIDEMENU[0])
+    //   },
+    //   error: (error) => console.log('Error:', error),
+    // });
+    this.mainMenuList.push(SIDEMENU[0]);
   }
 
   goToPage(routeName: string) {

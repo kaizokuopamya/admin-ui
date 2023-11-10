@@ -1673,8 +1673,8 @@ small {
   transition: all 0.2s ease-in-out;
 }
 .compact .global-nav .nav-items .lst-nav-items li a i{
-  font-size: 1.5rem;
-  line-height:1.5rem;
+  /* font-size: 1rem;
+  line-height:1rem; */
 }
 
 .compact .global-nav .nav-items .lst-nav-items li a .hovering-option {
@@ -1741,7 +1741,7 @@ small {
   stroke: #339ad5;
   stroke-width: 0.4;
 }
-.global-nav .nav-items .lst-nav-items li a img {
+.global-nav .nav-items .lst-nav-items li a i {
   transition: all 0.3s ease;
   width: 24px;
   height: 24px;

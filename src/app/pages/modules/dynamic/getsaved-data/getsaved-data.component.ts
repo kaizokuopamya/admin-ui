@@ -1,6 +1,5 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import { ColumnMode, SortType } from '@swimlane/ngx-datatable';
+import { Component, ElementRef, ViewChild, NgZone } from '@angular/core';
+import { ExportAsConfig, ExportAsService, SupportedExtensions } from 'ngx-export-as';
 import { AppConstants } from 'src/app/app.constant';
 import { DataService } from 'src/app/services/data.service';
 import { HttpRestApiService } from 'src/app/services/http-rest-api.service';
@@ -11,9 +10,8 @@ import { HttpRestApiService } from 'src/app/services/http-rest-api.service';
   styleUrls: ['./getsaved-data.component.css'],
 })
 export class GetsavedDataComponent {
+
   @ViewChild('pageId') pageId!: ElementRef;
-  // Icons
-  faSearch = faSearch;
 
   // id: string = '68';
   header: any = [];
@@ -22,29 +20,27 @@ export class GetsavedDataComponent {
   content: any = [];
   columns: any = [];
   pages: any = [];
-  showDataTable: boolean = false
+  showDataTable: boolean = false;
 
   // ngx-datatable variables
-  ColumnMode = ColumnMode;
-  SortType = SortType;
-  reorderable = true;
-  loadingIndicator = true;
+  loadingIndicator: boolean = false
+  selectedTemplate: string = '';
+  selectedTemplateClass: string = 'material expanded';
 
   constructor(
     private constant: AppConstants,
     private dataService: DataService,
-    private httpService: HttpRestApiService
+    private httpService: HttpRestApiService,
+    private exportAsService: ExportAsService
   ) {
     this.fetchPagesCreated();
-    this.fetchSavedData();
   }
 
   // Update the filter
   updateFilter(event: any): void {
-    const filterValue = (event.target.value || '').toLowerCase();
+    const filterValue = (event || '').toLowerCase();
     this.rows = filterValue
       ? this.content.filter((row: any) =>
-        // Check if any value in the row starts with the filter value
         Object.values(row as any).some((value: any) =>
           (value || '').toLowerCase().startsWith(filterValue)
         )
@@ -54,6 +50,7 @@ export class GetsavedDataComponent {
 
   // Fetch saved data from the API
   fetchSavedData(): void {
+    this.loadingIndicator = true;
     const GETSAVEDATA = this.constant.serviceName_GETSAVEDATA;
     const inputData = {
       ...this.dataService.commonInputData(),
@@ -62,11 +59,12 @@ export class GetsavedDataComponent {
 
     this.httpService.callApiServices(GETSAVEDATA, inputData).subscribe({
       next: (data) => {
+        console.log("getsave data response::", data);
         // Hide loading indicator after a delay
-        setTimeout(() => (this.loadingIndicator = false), 1000);
         const records = data.set.records;
+        const opstatus = data.responseParameter.opstatus
+        this.showDataTable = opstatus == '00' ? true : false;
         if (records) {
-          this.showDataTable = true;
           // Process and filter header data
           this.header = JSON.parse(records[1].header)
             .filter((entry) => entry !== null)
@@ -85,9 +83,13 @@ export class GetsavedDataComponent {
             });
           // Populate rows and columns for the data table
           this.rows = [...this.content];
+          console.log(this.rows);
+
           this.columns = this.header.map((name) => ({ name, prop: name }));
+          console.log(this.columns);
         }
-      },
+        setTimeout(() => (this.loadingIndicator = false), 1000)
+      }
     });
   }
 
@@ -105,5 +107,8 @@ export class GetsavedDataComponent {
     })
   }
 
+  applyTemplate(template: string) {
+    this.selectedTemplateClass = template;
+  }
 
 }

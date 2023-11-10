@@ -5,7 +5,7 @@ import {
   HttpErrorResponse,
 } from '@angular/common/http';
 import { Observable, Subject, of } from 'rxjs';
-import { catchError, timeout } from 'rxjs/operators';
+import { catchError, finalize, timeout } from 'rxjs/operators';
 import { AppConstants } from '../app.constant';
 import { IRequest, IStatus } from '../interface/app-interface';
 import { DataService } from './data.service';
@@ -54,8 +54,7 @@ export class HttpRestApiService {
    * @param request
    */
   callApiServices(endpoint: string, request: any): Observable<any> {
-    // this.loader.showLoader();
-    var subject = new Subject<any>();
+    this.loader.showLoader();
     const requestObj: IRequest = <IRequest>{
       sourceIp: this.dataService.ipAddress,
       prefered_Language: this.constants.val_prefered_Language,
@@ -65,7 +64,6 @@ export class HttpRestApiService {
     };
     console.log(JSON.stringify(request));
     /**** request Param ***/
-    var timeOut = 30000;
     const url = this.constants.publicURL1.serviceURL;
     console.log('SERVICE URL => ', url);
     console.log('Request object: ', JSON.stringify(requestObj));
@@ -74,7 +72,11 @@ export class HttpRestApiService {
       timeout(30000),
       catchError((error) => {
         this.handleError(endpoint)(error);
-        return [];
+        throw error;
+      }),
+      finalize(() => {
+        // This block will be executed whether the request completes successfully or with an error
+        this.loader.hideLoader();
       })
     );
   }

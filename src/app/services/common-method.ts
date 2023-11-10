@@ -5,7 +5,7 @@ declare var $: any;
   providedIn: 'root',
 })
 export class CommonMethods {
-  constructor() {}
+  constructor() { }
 
   /**
    * close all popup
@@ -27,13 +27,23 @@ export class CommonMethods {
     $('body').css('overflow', 'inherit');
   }
 
+  toggleExportChevron() {
+    $(".chevron").click(function () {
+      // Toggle visibility of export options within the .dt-exports element
+      $(this).siblings('.linkbutton').toggle();
+
+      // Toggle the class expdrop-showing on the .dt-exports element
+      $(this).closest('.dt-exports').toggleClass('expdrop-showing');
+    });
+  }
+
   /**
   * @function genRandomDigit
   * @param {int} - length of random number to be generated.
   * description - This function returns the random number of specified length.
   */
 
-  genRandomDigit(length:number) {
+  genRandomDigit(length: number) {
     var minValue = "1";
     var maxValue = "9";
     for (var i = 0; i < length - 1; i++) {

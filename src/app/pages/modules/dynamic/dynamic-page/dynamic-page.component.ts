@@ -32,7 +32,7 @@ export class DynamicPageComponent {
       if (x.hasOwnProperty('options')) x.options = JSON.parse(x.options);
     });
     console.log(this.dynamicForm);
-    
+
 
     const formControls = {};
     // const formArray = {}
@@ -124,7 +124,8 @@ export class DynamicPageComponent {
 
     this.httpService.callApiServices(GETDYNAMICPAGE, inputData).subscribe({
       next: (data) => {
-        console.log("getdynamicpage ===== >", data);
+        // console.log("getdynamicpage ===== >", data);
+        // this.dynamicForm = data.set.records;
       },
       error: (error) => console.log(error),
     });

@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { ExportAsModule } from 'ngx-export-as';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -23,13 +24,10 @@ import { DatePipe, HashLocationStrategy, LocationStrategy } from '@angular/commo
     DragDropModule,
     FormsModule,
     NgxDatatableModule,
+    ExportAsModule
   ],
   providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }, DatePipe],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent],
 })
-export class AppModule {
-  constructor() {
-
-  }
-}
+export class AppModule { }

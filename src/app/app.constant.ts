@@ -44,6 +44,16 @@ export class AppConstants {
   key_mandatory: string = 'mandatory';
   key_errorMessage: string = 'errorMessage';
   key_typeofreq: string = 'typeofreq';
+  key_requestType: string = 'requestType';
+  key_name: string = 'name';
+  key_tableName: string = 'tableName';
+  key_queryType: string = 'queryType';
+  key_columnName: string = 'columnName';
+  key_createdBy: string = 'createdBy';
+  key_statusId: string = 'statusId'
+  key_userQuery: string = 'userQuery';
+  key_dataPlainTextRequied: string = 'dataPlainTextRequied';
+  key_ownerName:string = 'ownerName';
 
   // values
   val_prefered_Language = 'en';
@@ -105,4 +115,9 @@ export class AppConstants {
   serviceName_GETDYNAMICPAGE = 'DYNAMICMASTER/GETDYNAMICPAGE';
   serviceName_CREATEDROPDOWNDETAILS = 'DYNAMICMASTER/CREATEDROPDOWNDETAILS';
   serviceName_GETPAGESCREATED = 'DYNAMICMASTER/GETPAGESCREATED';
+  serviceName_GETDBDETAILS = 'DYNAMICMASTER/GETDBDETAILS';
+  serviceName_CREATEREPORT = 'DYNAMICMASTER/CREATEREPORT';
+  serviceName_GETREPORTSBYFILTER = 'DYNAMICMASTER/GETREPORTSBYFILTER';
+  serviceName_GETALLREPORTS = 'DYNAMICMASTER/GETALLREPORTS';
+  serviceName_GETQUERYMULTIPLETABLES = 'DYNAMICMASTER/GETQUERYMULTIPLETABLES';
 }

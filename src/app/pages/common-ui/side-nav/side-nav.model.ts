@@ -28,20 +28,20 @@ export class SubMenu {
 
 export const SIDEMENU: SideNavData[] = [
   {
-    "menuId": 301,
-    "menuName": "Dynamic Page",
+    "menuId": 399,
+    "menuName": "DynamicPage",
     "menuImage": "fa fa-file",
     "isEnable": "Y",
     "subMenuList": [
       {
         "id": 301,
-        "menuName": "Dynamic Input",
+        "menuName": "Create Element",
         "menudesc": "Dynamic Input",
         "statusId": 3,
         "menuLink": "dynamicInput",
-        "menuLogo": "fa fa-pencil",
+        "menuLogo": "fa fa-square-plus",
         "mainMenuid": {
-          "id": 301,
+          "id": 399,
           "menuname": "Dynamic Page",
           "statusId": 3,
           "createdon": 1595961000000,
@@ -60,7 +60,7 @@ export const SIDEMENU: SideNavData[] = [
         "menuLink": "dropdownData",
         "menuLogo": "fa fa-list",
         "mainMenuid": {
-          "id": 301,
+          "id": 399,
           "menuname": "Dynamic Page",
           "statusId": 3,
           "createdon": 1595961000000,
@@ -79,7 +79,7 @@ export const SIDEMENU: SideNavData[] = [
         "menuLink": "createPage",
         "menuLogo": "fa fa-file",
         "mainMenuid": {
-          "id": 301,
+          "id": 399,
           "menuname": "Dynamic Page",
           "statusId": 3,
           "createdon": 1595961000000,
@@ -98,7 +98,7 @@ export const SIDEMENU: SideNavData[] = [
         "menuLink": "pageElement",
         "menuLogo": "fa fa-cog",
         "mainMenuid": {
-          "id": 301,
+          "id": 399,
           "menuname": "Dynamic Page",
           "statusId": 3,
           "createdon": 1595961000000,
@@ -117,7 +117,7 @@ export const SIDEMENU: SideNavData[] = [
         "menuLink": "dynamicPage",
         "menuLogo": "fa fa-file-o",
         "mainMenuid": {
-          "id": 301,
+          "id": 399,
           "menuname": "Dynamic Page",
           "statusId": 3,
           "createdon": 1595961000000,
@@ -136,7 +136,64 @@ export const SIDEMENU: SideNavData[] = [
         "menuLink": "getsavedData",
         "menuLogo": "fa fa-table",
         "mainMenuid": {
-          "id": 301,
+          "id": 399,
+          "menuname": "Dynamic Page",
+          "statusId": 3,
+          "createdon": 1595961000000,
+          "updatedon": 1608546640000,
+          "createdby": 1,
+          "updatedby": 6,
+          "menuLogo": "fa fa-universal-access"
+        },
+        "createdby": 1
+      },
+      {
+        "id": 307,
+        "menuName": "Create Page Versions",
+        "menudesc": "Create New Page Versions",
+        "statusId": 3,
+        "menuLink": "createPageVersions",
+        "menuLogo": "fa fa-file-alt",
+        "mainMenuid": {
+          "id": 400,
+          "menuname": "Dynamic Page",
+          "statusId": 3,
+          "createdon": 1595961000000,
+          "updatedon": 1608546640000,
+          "createdby": 1,
+          "updatedby": 6,
+          "menuLogo": "fa fa-universal-access"
+        },
+        "createdby": 1
+      },
+      {
+        "id": 308,
+        "menuName": "Create Master Report",
+        "menudesc": "Create New Master Report",
+        "statusId": 3,
+        "menuLink": "createMasterReport",
+        "menuLogo": "fas fa-user-pen",
+        "mainMenuid": {
+          "id": 401,
+          "menuname": "Dynamic Page",
+          "statusId": 3,
+          "createdon": 1595961000000,
+          "updatedon": 1608546640000,
+          "createdby": 1,
+          "updatedby": 6,
+          "menuLogo": "fa fa-universal-access"
+        },
+        "createdby": 1
+      },
+      {
+        "id": 309,
+        "menuName": "Generate Master Report",
+        "menudesc": "Generate a Master Report",
+        "statusId": 3,
+        "menuLink": "generateMasterReport",
+        "menuLogo": "fa fa-table",
+        "mainMenuid": {
+          "id": 402,
           "menuname": "Dynamic Page",
           "statusId": 3,
           "createdon": 1595961000000,
