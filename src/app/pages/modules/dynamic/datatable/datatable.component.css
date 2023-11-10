@@ -1,0 +1,221 @@
+ngx-datatable {
+  height: 30rem;
+}
+
+/* .ngx-datatable .datatable-footer .datatable-footer-inner {
+    background-color: rgba(51, 154, 213, 0.2);
+  } */
+
+.dt-extras {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  /* //.dt-exports */
+}
+
+/* //.dt-extras */
+/* ----------------------------
+      Export Data List :: Start
+  --------------------------- */
+.dt-exports {
+  padding: 2px 0px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  -webkit-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+  text-align: center;
+  /* //em */
+  /* //.linkbutton */
+  /* //&:hover */
+  /* //&.expdrop-showing */
+}
+
+.dt-exports em {
+  font-style: normal;
+  font-size: 0.7rem;
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  padding: 0.6rem 0;
+  padding-right: 22px;
+  color: #127ede;
+  cursor: pointer;
+  /* //span.chevron */
+}
+
+.dt-exports em span.chevron {
+  width: 12px;
+  height: 12px;
+  display: block;
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  margin-top: -6px;
+  -webkit-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+  /* //&::after */
+}
+
+.dt-exports em span.chevron::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border: 2px solid rgba(0, 0, 0, 0.5);
+  /* #777 */
+  border-top: 0;
+  border-right: 0;
+  margin-left: 2px;
+  display: block;
+  -webkit-transform: -webkit-rotate(-45deg);
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+.dt-exports .linkbutton {
+  display: block;
+  vertical-align: middle;
+  background: url("../../../../../assets/icons/export-icons.png") no-repeat 5px -218px;
+  padding: 0 0.3rem;
+  padding-left: 30px;
+  font-size: 0.75rem;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border: none;
+  border-radius: 4px;
+  zoom: 1;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  visibility: hidden;
+  height: 0;
+  overflow: hidden;
+  -webkit-transition-property: all, opacity;
+  transition-property: all, opacity;
+  -webkit-transition-duration: 0.15s;
+  transition-duration: 0.15s;
+  -webkit-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  /* //&::before */
+  /* //&:nth-child(1) */
+  /* //&:nth-child(2) */
+  /* //&:nth-child(3) */
+  /* //&:nth-child(4) */
+  /* //&:nth-child(5) */
+  /* //&:nth-child(6) */
+  /* //b */
+  /* //&.exp-excel */
+  /* //&.exp-pdf */
+  /* //&.exp-word */
+  /* //&.exp-xml */
+  /* //&.exp-csv */
+}
+
+.dt-exports .linkbutton::before {
+  border-radius: 4px;
+}
+
+.dt-exports .linkbutton:nth-child(2) {
+  -webkit-transition-delay: 40ms, 0ms;
+  transition-delay: 40ms, 0ms;
+}
+
+.dt-exports .linkbutton:nth-child(3) {
+  -webkit-transition-delay: 80ms, 40ms;
+  transition-delay: 80ms, 40ms;
+}
+
+.dt-exports .linkbutton:nth-child(4) {
+  -webkit-transition-delay: 120ms, 80ms;
+  transition-delay: 120ms, 80ms;
+}
+
+.dt-exports .linkbutton:nth-child(5) {
+  -webkit-transition-delay: 160ms, 120ms;
+  transition-delay: 160ms, 120ms;
+}
+
+.dt-exports .linkbutton:nth-child(6) {
+  -webkit-transition-delay: 200ms, 160ms;
+  transition-delay: 200ms, 160ms;
+}
+
+.dt-exports .linkbutton b {
+  font-weight: 500;
+  font-size: 80%;
+  display: inline-block;
+  vertical-align: middle;
+  margin-top: -2px;
+  color: rgba(0, 0, 0, 0.8);
+  text-transform: lowercase;
+}
+
+.dt-exports .linkbutton.exp-excel {
+  background-position: 5px 2px;
+}
+
+.dt-exports .linkbutton.exp-pdf {
+  background-position: 5px -42px;
+}
+
+.dt-exports .linkbutton.exp-word {
+  background-position: 5px -86px;
+}
+
+.dt-exports .linkbutton.exp-xml {
+  background-position: 5px -130px;
+}
+
+.dt-exports.expdrop-showing {
+  /* //.linkbutton */
+}
+
+.dt-exports.expdrop-showing em span.chevron {
+  -webkit-transform: -webkit-rotate(180deg);
+  transform: rotate(180deg);
+}
+
+.dt-exports.expdrop-showing .linkbutton {
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+  height: 28px;
+  zoom: 1;
+  filter: alpha(opacity=100);
+  opacity: 1;
+  visibility: visible;
+}
+
+/* //.dt-exports */
+@media (min-width: 768px) {
+  .dt-exports {
+    padding: 5px 15px;
+    text-align: left;
+    /* //em */
+    /* //.linkbutton */
+  }
+  .dt-exports em {
+    display: inline-block;
+    padding: 0;
+    padding-right: 10px;
+    color: inherit;
+    cursor: auto;
+  }
+  .dt-exports em span.chevron {
+    display: none;
+  }
+  .dt-exports .linkbutton {
+    padding: 0.3rem;
+    display: inline-block;
+    zoom: 1;
+    filter: alpha(opacity=100);
+    opacity: 1;
+    visibility: visible;
+    height: auto;
+    padding-left: 30px;
+    -webkit-transition: none;
+    transition: none;
+  }
+  /* //.dt-exports */
+}

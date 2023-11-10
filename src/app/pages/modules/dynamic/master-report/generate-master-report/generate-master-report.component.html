@@ -1,0 +1,151 @@
+<div class="main bg-m">
+    <div class="right-main-column">
+        <div class="right-col-container pad-b full-width">
+            <!-- ======== body page content start from here ======== -->
+            <div class="body-page-container main-dashborad">
+                <div class="container-fluid">
+                    <!--.row -->
+                    <div class="row no-gutters">
+                        <div class="col-12">
+                            <div class="row1">
+                                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                    <form [formGroup]="generateForm">
+                                        <!-- Form Header -->
+                                        <div class="card mt-3">
+                                            <div class="card-header bg-primary text-white">
+                                                Generate Report
+                                            </div>
+                                            <div class="card-body bg-light">
+                                                <!-- Report Type -->
+                                                <div class="col-12 col-md-12 col-lg-12 col-xl-12 mt-2">
+                                                    <div class="ux-input">
+                                                        <label>Report Type:<span class="mandatory">*</span></label>
+                                                        <div class="d-flex flex-row">
+                                                            <div class="mr-3">
+                                                                <div class="ux-selection form-check">
+                                                                    <input type="radio" id="manualQuery"
+                                                                        name="reportType" formControlName="reportType"
+                                                                        value="UserQuery" class="form-check-input" />
+                                                                    <label class="form-check-label p-0"
+                                                                        for="manualQuery">Manual Query</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="mr-3">
+                                                                <div class="ux-selection form-check">
+                                                                    <input type="radio" id="masterReport"
+                                                                        name="reportType" formControlName="reportType"
+                                                                        value="SystemQuery" class="form-check-input" />
+                                                                    <label class="form-check-label p-0"
+                                                                        for="masterReport">Master Report</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- After selecting "Manual Query" -->
+                                                <div class="col-12 col-md-12 col-lg-12 col-xl-12 mt-2"
+                                                    *ngIf="generateForm.value.reportType === 'UserQuery'">
+                                                    <div class="ux-input">
+                                                        <!-- User Query Input -->
+                                                        <label for="userQuery">User Query:<span
+                                                                class="mandatory">*</span></label>
+                                                        <input id="userQuery" type="text" formControlName="userQuery"
+                                                            placeholder="User Query" required />
+                                                        <p class="text-danger" *ngIf="
+                                generateForm.controls['userQuery'].touched &&
+                                generateForm.controls['userQuery'].hasError(
+                                  'required'
+                                )
+                              ">
+                                                            User Query is required!
+                                                        </p>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Show this when Table type is "Single" -->
+                                                <div class="col-12 col-md-12 col-lg-6 col-xl-6 mt-2"
+                                                    *ngIf="generateForm.value.reportType=== 'SystemQuery'">
+                                                    <div class="ux-input">
+                                                        <label class="align-self-center">Get Master Reports</label>
+                                                        <select name="ID" formControlName="ID" (click)="fetchReports()">
+                                                            <option value="">Select..</option>
+                                                            <option *ngFor="let report of reports" [value]="report.ID">
+                                                                {{ report.REPORTNAME }}
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Show this when table type is "Multiple" -->
+                                                <div class="col-12 col-md-12 col-lg-6 col-xl-6 mt-2"
+                                                    *ngIf="generateForm.value.queryType === 'multiple'"></div>
+
+                                                <!-- Data in plaintext is required? -->
+                                                <div class="col-12 col-md-12 col-lg-12 col-xl-12">
+                                                    <div class="ux-input">
+                                                        <label>Data in plaintext is required?<span
+                                                                class="mandatory">*</span></label>
+                                                        <div class="d-flex flex-row">
+                                                            <div class="mr-3">
+                                                                <div class="ux-selection form-check">
+                                                                    <input type="radio" id="dataRequiredYes"
+                                                                        name="dataPlainTextRequied"
+                                                                        formControlName="dataPlainTextRequied" value="Y"
+                                                                        class="form-check-input" />
+                                                                    <label class="form-check-label p-0"
+                                                                        for="dataRequiredYes">Yes</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="mr-3">
+                                                                <div class="ux-selection form-check">
+                                                                    <input type="radio" id="dataRequiredNo"
+                                                                        name="dataPlainTextRequied"
+                                                                        formControlName="dataPlainTextRequied" value="N"
+                                                                        class="form-check-input" />
+                                                                    <label class="form-check-label p-0"
+                                                                        for="dataRequiredNo">No</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Save Button -->
+                                                <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+                                                    <button class="ux-button btn btn-success" type="button"
+                                                        (click)="generateReport()">
+                                                        Fetch
+                                                    </button>
+                                                </div>
+
+                                                <!-- Response Message -->
+                                                <div class="col-12 col-md-6 col-lg-6 col-xl-6 mt-4">
+                                                    <p [ngClass]="
+                              responseData?.opstatus === '01'
+                                ? 'text-danger'
+                                : 'text-success'
+                            ">
+                                                        {{ message }}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <!-- reusable data component -->
+                                    <app-datatable *ngIf="showDataTable" [rows]="rows" [columns]="columns"
+                                        [loadingIndicator]="loadingIndicator"
+                                        [selectedTemplateClass]="selectedTemplateClass" (search)="updateFilter($event)"
+                                        (changeTemplate)="applyTemplate($event)">
+                                    </app-datatable>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- row ends here -->
+                </div>
+            </div>
+            <!-- body page content ends here -->
+        </div>
+    </div>
+</div>

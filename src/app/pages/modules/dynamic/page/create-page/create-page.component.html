@@ -1,0 +1,98 @@
+<div class="main bg-m">
+  <div class="right-main-column">
+    <div class="right-col-container pad-b full-width">
+      <!-- ======== body page content start from here ======== -->
+      <div class="body-page-container main-dashborad">
+        <div class="container-fluid">
+          <!--.row -->
+          <div class="row no-gutters">
+            <div class="col-12">
+              <div class="row1">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                  <form [formGroup]="createPageForm">
+                    <!-- Form Header -->
+                    <div class="card mt-3">
+                      <div class="card-header">Create Page</div>
+                      <div class="card-body">
+                        <!-- Page Name Input -->
+                        <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+                          <div class="ux-input">
+                            <label for="pageName">Page Name:<span class="mandatory">*</span></label>
+                            <input id="pageName" type="text" formControlName="pageName" placeholder="Page Name"
+                              required />
+                            <p class="text-danger" *ngIf="
+                                createPageForm.controls['pageName'].touched &&
+                                createPageForm.controls['pageName'].hasError(
+                                  'required'
+                                )
+                              ">
+                              Page Name is required!
+                            </p>
+                          </div>
+                        </div>
+
+                        <!-- Description Text Area -->
+                       <div class="col-12 col-md-6 col-lg-6 col-xl-6"> 
+                          <div class="ux-input">
+                            <label for="description">Description:<span class="mandatory">*</span></label>
+                            <textarea id="description" formControlName="description" placeholder="Page Description"
+                              required></textarea>
+                            <p class="text-danger" *ngIf="
+                                createPageForm.controls['description']
+                                  .touched &&
+                                createPageForm.controls['description'].hasError(
+                                  'required'
+                                )
+                              ">
+                              Description is required!
+                            </p>
+                          </div>
+                        </div>
+
+                        <!-- Encryption standard  -->
+                        <div class="col-12 col-md-6 col-lg-6 col-xl-6 mt-2">
+                          <div class="ux-input">
+                            <label>Encryption Standard:<span class="mandatory">*</span></label>
+                            <div class="ux-selection d-flex justify-content-center" *ngFor="let enctype of encryption">
+                              <input type="radio" [id]="enctype" formControlName="isEncrypted" name="isEncrypted"
+                                [value]="enctype.charAt(0).toUpperCase()" />
+                              <label class="m-2 p-0" [for]="enctype">{{enctype |titlecase}}</label>
+                            </div>
+                          </div>
+                          <br>
+                        </div>
+
+
+
+                        <!-- Save Button -->
+                        <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+                          <button class="ux-button btn btn-success" type="button" (click)="createPage()"
+                            [disabled]="!createPageForm.valid">
+                            Save
+                          </button>
+                        </div>
+
+                        <!-- class will be changed according to the result message -->
+                        <div class="col-12 col-md-6 col-lg-6 col-xl-6 mt-4">
+                          <p [ngClass]="
+                              responseData.opstatus === '01'
+                                ? 'text-danger'
+                                : 'text-success'
+                            ">
+                            {{ message }}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- row ends here -->
+        </div>
+      </div>
+      <!-- body page content ends here -->
+    </div>
+  </div>
+</div>
