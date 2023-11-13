@@ -15,11 +15,11 @@ export class DataService {
   latitude: string = '19.4437422';
   longitude: string = '72.805889';
   RRN: string = '129914272';
+
   constructor(
     private constant: AppConstants,
-    private commonMethod: CommonMethods,
     private router: Router
-  ) {}
+  ) { }
 
   commonInputData() {
     return {
@@ -42,8 +42,7 @@ export class DataService {
   }
 
   toggleSideNav() {
-    console.log('current value of showcompact: ', this.showSideNav);
     this.showSideNav = !this.showSideNav;
-    console.log('after change value of showcompact: ', this.showSideNav);
   }
+
 }

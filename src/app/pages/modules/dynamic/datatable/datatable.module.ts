@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import { ExportAsModule } from 'ngx-export-as';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { DatatableComponent } from './datatable.component';
@@ -11,7 +10,6 @@ import { DatatableComponent } from './datatable.component';
   imports: [
     CommonModule,
     NgxDatatableModule,
-    ExportAsModule,
     ReactiveFormsModule,
     FontAwesomeModule,
     FormsModule,

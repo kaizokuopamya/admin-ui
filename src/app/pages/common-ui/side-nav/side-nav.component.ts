@@ -44,12 +44,7 @@ export class SideNavComponent {
 
   goToPage(routeName: string) {
     if (routeName && routeName != 'null') {
-      this.commonMethod.closeSideNavOmni();
       this.router.navigate(['/' + routeName]);
     }
-  }
-
-  expandSubmenu(menu: any) {
-    menu.isSubMenuOpen = !menu.isSubMenuOpen;
   }
 }

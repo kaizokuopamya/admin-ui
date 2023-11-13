@@ -5,6 +5,7 @@ import { CreateMasterReportRoutingModule } from './create-master-report-routing.
 import { CreateMasterReportComponent } from './create-master-report.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     CreateMasterReportRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    NgSelectModule
   ],
   exports: [CreateMasterReportComponent]
 })

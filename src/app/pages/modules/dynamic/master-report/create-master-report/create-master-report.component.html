@@ -63,85 +63,63 @@
                                                     </div>
                                                 </div>
 
-                                                <div *ngIf="isSingleTable">
-                                                    <div class=" col-12 col-md-6 col-lg-6 col-xl-6">
-                                                        <div class="ux-input">
-                                                            <label for="database" class="align-self-center">Get
-                                                                Databases</label>
-                                                            <select name="database" formControlName="database"
-                                                                (change)="fetchTables()">
-                                                                <option value="">Select..</option>
-                                                                <option *ngFor="let database of databases"
-                                                                    [value]="database.name">
-                                                                    {{ database.name }}
-                                                                </option>
-                                                            </select>
-                                                        </div>
+                                                <!-- Database list  -->
+                                                <div class=" col-12 col-md-6 col-lg-6 col-xl-6">
+                                                    <div class="ux-input">
+                                                        <label for="database" class="align-self-center">Get
+                                                            Databases <span class="mandatory">*</span></label>
+                                                        <ng-select labelForId="database" formControlName="database"
+                                                            (change)="fetchTables()">
+                                                            <ng-option *ngFor="let database of databases"
+                                                                [value]="database.name">{{database.name}}</ng-option>
+                                                        </ng-select>
                                                     </div>
+                                                </div>
 
+                                                <div *ngIf="isSingleTable">
                                                     <div class="col-12 col-md-6 col-lg-6 col-xl-6"
                                                         *ngIf="masterReportForm.get('database').value">
                                                         <div class="ux-input">
                                                             <label for="tableName" class="align-self-center">Select
                                                                 Table</label>
-                                                            <select name="tableName" formControlName="tableName"
-                                                                (change)="fetchColumns()">
-                                                                <option value=""></option>
-                                                                <option *ngFor="let table of tables"
-                                                                    [value]="table.name">
-                                                                    {{ table.name }}
-                                                                </option>
-                                                            </select>
+                                                            <ng-select labelForId="tableName"
+                                                                formControlName="tableName" (change)="fetchColumns()">
+                                                                <ng-option *ngFor="let table of tables"
+                                                                    [value]="table.name">{{table.name}}</ng-option>
+                                                            </ng-select>
                                                         </div>
                                                     </div>
 
-                                                    <div style="height: 100px" class="col-12 col-md-6 col-lg-6 col-xl-6"
+                                                    <div class="col-12 col-md-6 col-lg-6 col-xl-6"
                                                         *ngIf="masterReportForm.get('tableName').value">
                                                         <div class="ux-input">
                                                             <label for="columns" class="align-self-center">Select
                                                                 Column</label>
-                                                            <select class="h-75" name="columns"
-                                                                formControlName="columns" multiple>
-                                                                <option *ngFor="let column of columns"
-                                                                    [value]="column.name">
-                                                                    {{ column.name }}
-                                                                </option>
-                                                                column.name
-                                                            </select>
+                                                            <ng-select [items]="columns" [multiple]="true"
+                                                                bindLabel="name" [selectableGroup]="true"
+                                                                [closeOnSelect]="false" bindValue="name"
+                                                                formControlName="columns">
+                                                                <ng-template ng-option-tmp let-item="item"
+                                                                    let-item$="item$" let-index="index">
+                                                                    <input id="item-{{index}}" type="checkbox" />
+                                                                    {{item.name}}
+                                                                </ng-template>
+                                                            </ng-select>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div *ngIf="!isSingleTable">
-                                                    <!-- Multiple Table Database -->
-                                                    <div class="col-12 col-md-6 col-lg-6 col-xl-6">
-                                                        <div class="ux-input">
-                                                            <label for="database" class="align-self-center">Get
-                                                                Databases</label>
-                                                            <select name="database" formControlName="database"
-                                                                (change)="fetchTables()">
-                                                                <option value="">Select..</option>
-                                                                <option *ngFor="let database of databases"
-                                                                    [value]="database.name">
-                                                                    {{ database.name }}
-                                                                </option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-
                                                     <!-- Multiple Table list of Tables -->
                                                     <div class="col-12 col-md-6 col-lg-6 col-xl-6"
                                                         *ngIf="masterReportForm.value.database">
                                                         <div class="ux-input">
                                                             <label for="multiTable" class="align-self-center">Select
                                                                 Table</label>
-                                                            <select name="multiTable" formControlName="multiTable"
-                                                                (change)="fetchColumns()">
-                                                                <option value="">Select..</option>
-                                                                <option *ngFor="let table of tables"
-                                                                    [value]="table.name">
-                                                                    {{ table.name }}
-                                                                </option>
-                                                            </select>
+                                                            <ng-select labelForId="multiTable"
+                                                                formControlName="multiTable" (change)="fetchColumns()">
+                                                                <ng-option *ngFor="let table of tables"
+                                                                    [value]="table.name">{{table.name}}</ng-option>
+                                                            </ng-select>
                                                         </div>
                                                     </div>
 
@@ -151,13 +129,11 @@
                                                         <div class="ux-input col-8 p-0">
                                                             <label for="multiColumn" class="align-self-center">Select
                                                                 Column</label>
-                                                            <select name="multiColumn" formControlName="multiColumn">
-                                                                <option *ngFor="let column of columns"
-                                                                    [value]="column.name">
-                                                                    {{ column.name }}
-                                                                </option>
-                                                                column.name
-                                                            </select>
+                                                            <ng-select labelForId="multiColumn"
+                                                                formControlName="multiColumn" (change)="fetchColumns()">
+                                                                <ng-option *ngFor="let column of columns"
+                                                                    [value]="column.name">{{column.name }}</ng-option>
+                                                            </ng-select>
                                                         </div>
                                                         <div class="col-2 align-self-center px-0">
                                                             <button class="btn bg-primary rounded d-flex"
@@ -174,13 +150,12 @@
                                                             *ngIf="masterReportForm.value.multiColumn">
                                                             <label for="joinTable" class="align-self-center">Join
                                                                 Table</label>
-                                                            <select name="joinTable" formControlName="joinTable"
-                                                                (change)="fetchColumns()">
-                                                                <option *ngFor="let table of joinTables"
-                                                                    [value]="table.table_name">
-                                                                    {{ table.table_name }}
-                                                                </option>
-                                                            </select>
+                                                            <ng-select labelForId="joinTable"
+                                                                formControlName="joinTable" (change)="fetchColumns()">
+                                                                <ng-option *ngFor="let table of joinTables"
+                                                                    [value]="table.table_name">{{ table.table_name}}
+                                                                </ng-option>
+                                                            </ng-select>
                                                         </div>
                                                     </div>
                                                     <div class="col-12 col-md-6 col-lg-6 col-xl-6 d-flex justify-content-between"
@@ -189,13 +164,12 @@
                                                         <div class="ux-input col-lg-3">
                                                             <label for="joinColumn" class="align-self-center">Select
                                                                 Column</label>
-                                                            <select name="joinColumn" formControlName="joinColumn">
-                                                                <option *ngFor="let column of joinTables"
-                                                                    [value]="column.column_name">
-                                                                    {{ column.column_name }}
-                                                                </option>
-                                                                column.name
-                                                            </select>
+                                                            <ng-select labelForId="joinColumn"
+                                                                formControlName="joinColumn" (change)="fetchColumns()">
+                                                                <ng-option *ngFor="let column of joinTables"
+                                                                    [value]="column.column_name">{{column.column_name}}
+                                                                </ng-option>
+                                                            </ng-select>
                                                         </div>
                                                         <div class="col-lg-2 align-self-center mx-4">
                                                             <button class="ux-button btn btn-primary rounded">Add
@@ -203,21 +177,22 @@
                                                         </div>
                                                     </div>
 
-                                                    <!-- Save Button -->
-                                                    <div class="col-12 col-md-6 col-lg-6 col-xl-6">
-                                                        <button class="ux-button btn btn-success" type="button"
-                                                            (click)="createMasterReport()">
-                                                            Save
-                                                        </button>
-                                                        <p class="text-danger">{{errroMessage}}</p>
-                                                    </div>
 
-                                                    <!-- Response Message -->
-                                                    <div class="col-12 col-md-6 col-lg-6 col-xl-6 mt-4">
-                                                        <!-- <p
-                                                        [ngClass]="responseData.opstatus === '01' ? 'text-danger' : 'text-success'">
-                                                        {{ message }}</p> -->
-                                                    </div>
+                                                </div>
+                                                <!-- Save Button -->
+                                                <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+                                                    <button class="ux-button btn btn-success" type="button"
+                                                        (click)="createMasterReport()">
+                                                        Save
+                                                    </button>
+                                                    <p class="text-danger">{{errroMessage}}</p>
+                                                </div>
+
+                                                <!-- Response Message -->
+                                                <div class="col-12 col-md-6 col-lg-6 col-xl-6 mt-4">
+                                                    <!-- <p
+                                                    [ngClass]="responseData.opstatus === '01' ? 'text-danger' : 'text-success'">
+                                                    {{ message }}</p> -->
                                                 </div>
                                             </div>
                                         </div>

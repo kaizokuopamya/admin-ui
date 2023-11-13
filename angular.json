@@ -14,12 +14,10 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "allowedCommonJsDependencies": [
-              "html2pdf.js",
-              "html2canvas",
               "core-js",
+              "xlsx",
               "raf",
               "rgbcolor",
-              "xlsx",
               "@babel/runtime"
             ],
             "outputPath": "www",
@@ -36,6 +34,7 @@
               "node_modules/@swimlane/ngx-datatable/themes/material.scss",
               "node_modules/@swimlane/ngx-datatable/themes/dark.scss",
               "node_modules/@swimlane/ngx-datatable/assets/icons.css",
+              "node_modules/@ng-select/ng-select/themes/material.theme.css",
               "src/css/main.css",
               "src/styles.css"
             ],

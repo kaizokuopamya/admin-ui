@@ -2,8 +2,9 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 import { ColumnMode, SortType } from '@swimlane/ngx-datatable';
-import { ExportAsConfig, ExportAsService, SupportedExtensions } from 'ngx-export-as';
 import { CommonMethods } from 'src/app/services/common-method';
+import { saveAs } from 'file-saver';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-datatable',
@@ -11,16 +12,6 @@ import { CommonMethods } from 'src/app/services/common-method';
   styleUrls: ['./datatable.component.css']
 })
 export class DatatableComponent {
-  config: ExportAsConfig = {
-    type: 'xlsx',
-    elementIdOrContent: 'myDataTable',
-    options: {
-      jsPDF: {
-        orientation: 'landscape'
-      },
-      pdfCallbackFn: this.pdfCallbackFn // to add header and footer
-    }
-  }
   @Input() rows: any[] = [];
   @Input() columns: any[] = [];
   @Input() selectedTemplateClass: string = 'material expanded';
@@ -35,7 +26,7 @@ export class DatatableComponent {
 
   faSearch = faSearch
 
-  constructor(private exportAsService: ExportAsService, public commonMethod: CommonMethods) { }
+  constructor(public commonMethod: CommonMethods) { }
 
   onSearch(event: any) {
     this.search.emit(event.target.value);
@@ -45,27 +36,29 @@ export class DatatableComponent {
     this.changeTemplate.emit(template);
   }
 
-  exportAs(type: SupportedExtensions, opt?: string) {
-    console.log("clicked export");
-    // download the file using old school javascript method
-    let that = this;
+  exportData(exportType: string): void {
+    const data = this.rows;
+    const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(data);
+    const workbook: XLSX.WorkBook = XLSX.utils.book_new();
+    switch (exportType) {
 
-    this.config.type = type;
-    if (opt) {
-      this.config.options.jsPDF.orientation = opt;
+      case 'csv':
+        XLSX.utils.book_append_sheet(workbook, ws, 'Sheet1');
+        XLSX.writeFile(workbook, `Report.csv`);
+        break;
+
+      case 'excel':
+        console.log("download as excel");
+        XLSX.utils.book_append_sheet(workbook, ws, 'Sheet1');
+        XLSX.writeFile(workbook, `Report.xlsx`);
+        break;
+
+      // Other export cases...
+
+      default:
+        console.error('Invalid export type');
+        break;
     }
-    this.exportAsService.save(this.config, 'Report').subscribe(() => {
-      // save started
-    });
-
   }
 
-  pdfCallbackFn(pdf: any) {
-    // example to add page number as footer to every page of pdf
-    const noOfPages = pdf.internal.getNumberOfPages();
-    for (let i = 1; i <= noOfPages; i++) {
-      pdf.setPage(i);
-      pdf.text('Page ' + i + ' of ' + noOfPages, pdf.internal.pageSize.getWidth() - 100, pdf.internal.pageSize.getHeight() - 30);
-    }
-  }
 }

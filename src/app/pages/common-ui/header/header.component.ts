@@ -10,11 +10,8 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class HeaderComponent {
   constructor(
-    private _router: Router,
     public dataService: DataService,
     public commonMethod: CommonMethods
-  ) {}
-
-  ngOnInit(): void {}
+  ) { }
 
 }

@@ -1,5 +1,4 @@
 import { Component, ElementRef, ViewChild, NgZone } from '@angular/core';
-import { ExportAsConfig, ExportAsService, SupportedExtensions } from 'ngx-export-as';
 import { AppConstants } from 'src/app/app.constant';
 import { DataService } from 'src/app/services/data.service';
 import { HttpRestApiService } from 'src/app/services/http-rest-api.service';
@@ -30,8 +29,7 @@ export class GetsavedDataComponent {
   constructor(
     private constant: AppConstants,
     private dataService: DataService,
-    private httpService: HttpRestApiService,
-    private exportAsService: ExportAsService
+    private httpService: HttpRestApiService
   ) {
     this.fetchPagesCreated();
   }

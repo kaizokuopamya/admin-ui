@@ -28,7 +28,7 @@
           <i class="{{ menu.menuImage + ' fa-fw' }}" data-toggle="tooltip" data-placement="right"
             aria-hidden="true"></i>
           {{ menu.menuName }}
-          <span class="chevron" *ngIf="menu?.subMenuList?.length > 0" (click)="expandSubmenu(menu)"></span>
+          <span class="chevron" *ngIf="menu?.subMenuList?.length > 0"></span>
           <div class="hovering-option">{{ menu.menuName }}</div>
         </a>
         <!-- <div class="overlap-badge coming-soon" *ngIf="menu?.isEnable == 'N'">

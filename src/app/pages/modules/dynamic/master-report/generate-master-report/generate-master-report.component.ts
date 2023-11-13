@@ -28,14 +28,13 @@ export class GenerateMasterReportComponent {
   loadingIndicator: boolean = true;
   showDataTable: boolean = false;
   selectedTemplateClass: string = 'material expanded';
+
   constructor(
     private fb: FormBuilder,
     private httpService: HttpRestApiService,
     private constant: AppConstants,
     private dataService: DataService,
-    public router: Router,
-    private storage: LocalStorageService
-
+    public router: Router
   ) {
     this.generateForm = this.fb.group({
       reportType: ['', Validators.required],
@@ -108,6 +107,7 @@ export class GenerateMasterReportComponent {
       }
     })
   }
+
   applyTemplate(template: string) {
     this.selectedTemplateClass = template;
   }
@@ -117,7 +117,7 @@ export class GenerateMasterReportComponent {
     const filterValue = (event || '').toLowerCase();
     this.rows = filterValue ? this.content.filter((row: any) =>
       Object.values(row as any).some((value: any) =>
-        (value || '').toLowerCase().startsWith(filterValue)
+        (value || '').toLowerCase().includes(filterValue)
       )
     ) : this.content
   }

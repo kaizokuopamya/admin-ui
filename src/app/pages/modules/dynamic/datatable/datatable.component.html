@@ -33,11 +33,11 @@
     <div class="dt-extras mt-4">
       <div class="dt-exports">
         <em>Export to :<span class="chevron" (click)="commonMethod.toggleExportChevron()"></span></em>
-        <button class="linkbutton exp-excel" (click)="exportAs('xlsx')">Excel <b>(.xlsx)</b></button>
-        <button class="linkbutton exp-pdf" (click)="exportAs('pdf')">Pdf <b>(.pdf)</b></button>
-        <button class="linkbutton exp-word" (click)="exportAs('docx')">word <b>(.docx)</b></button>
-        <button class="linkbutton exp-xml" (click)="exportAs('xml')">XML <b>(.xml)</b></button>
-        <button class="linkbutton exp-csv" (click)="exportAs('csv')">csv <b>(.csv)</b></button>
+        <button class="linkbutton exp-excel" (click)="exportData('excel')">Excel <b>(.xls)</b></button>
+        <button class="linkbutton exp-pdf">Pdf <b>(.pdf)</b></button>
+        <button class="linkbutton exp-word">word <b>(.doc)</b></button>
+        <button class="linkbutton exp-xml">XML <b>(.xml)</b></button>
+        <button class="linkbutton exp-csv" (click)="exportData('csv')">csv <b>(.csv)</b></button>
       </div>
     </div>
   </div>

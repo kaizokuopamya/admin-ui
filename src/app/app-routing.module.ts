@@ -12,7 +12,7 @@ const routes: Routes = [
       name: 'NoAuthGuard',
     },
     children: [
-      { path: 'DynamicPage', loadChildren: () => import('./pages/modules/dashboard/dashboard.module').then((mod) => mod.DashboardModule) },
+      { path: 'dynamic', loadChildren: () => import('./pages/modules/dashboard/dashboard.module').then((mod) => mod.DashboardModule) },
       { path: 'masterConfig', loadChildren: () => import('./pages/modules/master/config-master/config-master.module').then((mod) => mod.ConfigMasterModule) },
       { path: 'dynamicInput', loadChildren: () => import('./pages/modules/dynamic/dynamic-textinput/dynamic-textinput.module').then((mod) => mod.DynamicTextinputModule) },
       { path: 'dropdownData', loadChildren: () => import('./pages/modules/dynamic/dropdown-data/dropdown-data.module').then((mod) => mod.DropdownDataModule) },
