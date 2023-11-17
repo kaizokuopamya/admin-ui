@@ -101,7 +101,8 @@
                                                                 formControlName="columns">
                                                                 <ng-template ng-option-tmp let-item="item"
                                                                     let-item$="item$" let-index="index">
-                                                                    <input id="item-{{index}}" type="checkbox" />
+                                                                    <input id="item-{{index}}" type="checkbox"
+                                                                        [checked]="item$.selected" />
                                                                     {{item.name}}
                                                                 </ng-template>
                                                             </ng-select>
@@ -151,7 +152,7 @@
                                                             <label for="joinTable" class="align-self-center">Join
                                                                 Table</label>
                                                             <ng-select labelForId="joinTable"
-                                                                formControlName="joinTable" (change)="fetchColumns()">
+                                                                formControlName="joinTable">
                                                                 <ng-option *ngFor="let table of joinTables"
                                                                     [value]="table.table_name">{{ table.table_name}}
                                                                 </ng-option>
@@ -161,19 +162,22 @@
                                                     <div class="col-12 col-md-6 col-lg-6 col-xl-6 d-flex justify-content-between"
                                                         *ngIf="masterReportForm.value.multiColumn">
                                                         <!--  -->
-                                                        <div class="ux-input col-lg-3">
+                                                        <div class="ux-input col-8 p-0">
                                                             <label for="joinColumn" class="align-self-center">Select
                                                                 Column</label>
                                                             <ng-select labelForId="joinColumn"
-                                                                formControlName="joinColumn" (change)="fetchColumns()">
+                                                                formControlName="joinColumn">
                                                                 <ng-option *ngFor="let column of joinTables"
                                                                     [value]="column.column_name">{{column.column_name}}
                                                                 </ng-option>
                                                             </ng-select>
                                                         </div>
-                                                        <div class="col-lg-2 align-self-center mx-4">
-                                                            <button class="ux-button btn btn-primary rounded">Add
-                                                                More Column</button>
+                                                        <div class="col-2 align-self-center px-0">
+                                                            <button class="btn bg-primary rounded">
+                                                                <fa-icon [icon]="faPlus"
+                                                                    title="Click to Add More Columns">
+                                                                </fa-icon>
+                                                            </button>
                                                         </div>
                                                     </div>
 

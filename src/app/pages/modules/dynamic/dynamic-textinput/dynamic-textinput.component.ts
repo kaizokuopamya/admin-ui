@@ -23,6 +23,7 @@ export class DynamicTextinputComponent {
   masterElementList: any[] = [];
   dynamicInputForm!: FormGroup;
   error: string = '';
+  types: any = this.constant.typeOptions;
 
   constructor(
     private fb: FormBuilder,

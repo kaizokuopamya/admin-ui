@@ -17,12 +17,11 @@
                       <div class="col-12 col-md-4 col-sm-12 col-lg-4 col-xl-4">
                         <div class="ux-input">
                           <label for="type" class="align-self-center">Search Page Data</label>
-                          <select #pageId (change)="fetchSavedData()">
-                            <option value="">Select..</option>
-                            <option *ngFor="let page of pages" [value]="page.ID">
+                          <ng-select #pageId (change)="fetchSavedData()">
+                            <ng-option *ngFor="let page of pages" [value]="page.ID">
                               {{ page.PAGENAME }}
-                            </option>
-                          </select>
+                            </ng-option>
+                          </ng-select>
                         </div>
                       </div>
                       <!-- reusable data component -->

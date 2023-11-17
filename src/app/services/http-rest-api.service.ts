@@ -27,7 +27,7 @@ export class HttpRestApiService {
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      deviceid: '9',
+      'deviceid': '9',
     }),
   };
   /**

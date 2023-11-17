@@ -4,13 +4,10 @@
       <div class="col-12 col-md-5 col-lg-4 col-sm-12 col-xl-4">
         <div class="ux-input">
           <label for="template" class="align-self-center">Report Template</label>
-          <select name="template" [(ngModel)]="selectedTemplateClass"
+          <ng-select labelForId="template" [(ngModel)]="selectedTemplateClass"
             (change)="onTemplateChange(selectedTemplateClass)">
-            <option value="material expanded">Template 1</option>
-            <option value="dark expanded">Template 2</option>
-            <option value="bootstrap expanded">Template 3</option>
-            <option value="material">Template 4</option>
-          </select>
+            <ng-option *ngFor="let template of templates" [value]="template.value">{{template.id}}</ng-option>
+          </ng-select>
         </div>
       </div>
       <!-- Search input field  -->
@@ -23,7 +20,7 @@
       </div>
     </div>
     <!--.datatable-box-->
-    <div id="myDataTable" class="col-12 col-sm-12 col-lg-12 col-md-12 col-xl-12">
+    <div class="col-12 col-sm-12 col-lg-12 col-md-12 col-xl-12">
       <ngx-datatable [class]="selectedTemplateClass" [rows]="rows" [columns]="columns"
         [loadingIndicator]="loadingIndicator" [columnMode]="ColumnMode.force" [headerHeight]="50" [footerHeight]="50"
         [rowHeight]="50" [scrollbarV]="true" [scrollbarH]="true" [limit]="10">
@@ -31,12 +28,12 @@
     </div>
     <!--.dt-exports-->
     <div class="dt-extras mt-4">
-      <div class="dt-exports">
-        <em>Export to :<span class="chevron" (click)="commonMethod.toggleExportChevron()"></span></em>
-        <button class="linkbutton exp-excel" (click)="exportData('excel')">Excel <b>(.xls)</b></button>
-        <button class="linkbutton exp-pdf">Pdf <b>(.pdf)</b></button>
-        <button class="linkbutton exp-word">word <b>(.doc)</b></button>
-        <button class="linkbutton exp-xml">XML <b>(.xml)</b></button>
+      <div class="dt-exports" (click)="commonMethod.toggleExportChevron()">
+        <em>Export to :<span class="chevron"></span></em>
+        <button class="linkbutton exp-excel" (click)="exportData('excel')">Excel <b>(.xlsx)</b></button>
+        <button class="linkbutton exp-pdf" (click)="exportData('pdf')">Pdf <b>(.pdf)</b></button>
+        <button class="linkbutton exp-word" (click)="exportData('word')">word <b>(.doc)</b></button>
+        <button class="linkbutton exp-xml" (click)="exportData('xml')">XML <b>(.xml)</b></button>
         <button class="linkbutton exp-csv" (click)="exportData('csv')">csv <b>(.csv)</b></button>
       </div>
     </div>

@@ -5,6 +5,7 @@ import { DynamicTextinputRoutingModule } from './dynamic-textinput-routing.modul
 import { DynamicTextinputComponent } from './dynamic-textinput.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [DynamicTextinputComponent],
@@ -14,6 +15,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     ReactiveFormsModule,
     FormsModule,
     FontAwesomeModule,
+    NgSelectModule
   ],
 })
-export class DynamicTextinputModule {}
+export class DynamicTextinputModule { }

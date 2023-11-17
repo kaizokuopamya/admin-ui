@@ -29,18 +29,9 @@
                         <div class="col-12 col-md-6 col-lg-6 col-xl-6">
                           <div class="ux-input">
                             <label for="type">Input Type:<span class="mandatory">*</span></label>
-                            <select formControlName="type" id="type">
-                              <option value="">Select</option>
-                              <option value="text">Textbox</option>
-                              <option value="grid">Grid</option>
-                              <option value="number">Number</option>
-                              <option value="password">Password</option>
-                              <option value="tel">Telephone</option>
-                              <option value="date">Date</option>
-                              <option value="dropdown">Dropdown</option>
-                              <option value="radio">Radio</option>
-                              <option value="checkbox">Checkbox</option>
-                            </select>
+                            <ng-select labelForId="type" formControlName="type" name="type">
+                              <ng-option *ngFor="let type of types" [value]="type.value">{{type.text}}</ng-option>
+                            </ng-select>
                             <p class="text-danger" *ngIf="dynamicInputForm.controls['type'].touched &&
                               dynamicInputForm.controls['type'].hasError('required')">
                               Type is required!

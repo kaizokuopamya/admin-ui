@@ -39,12 +39,12 @@ export class SideNavComponent {
     //   },
     //   error: (error) => console.log('Error:', error),
     // });
-    this.mainMenuList.push(SIDEMENU[0]);
+    this.mainMenuList = [...this.mainMenuList, ...SIDEMENU];
   }
 
   goToPage(routeName: string) {
-    if (routeName && routeName != 'null') {
-      this.router.navigate(['/' + routeName]);
+    if (routeName && routeName !== 'null') {
+      this.router.navigate(['/' + routeName]).then(navigated => navigated && this.commonMethod.closeSideNavOmni());
     }
   }
 }

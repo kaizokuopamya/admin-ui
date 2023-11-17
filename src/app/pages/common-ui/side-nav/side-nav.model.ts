@@ -165,23 +165,31 @@ export const SIDEMENU: SideNavData[] = [
           "menuLogo": "fa fa-universal-access"
         },
         "createdby": 1
-      },
+      }
+    ]
+  },
+  {
+    "menuId": 400,
+    "menuName": "Master Report",
+    "menuImage": "fa fa-list-alt",
+    "isEnable": "Y",
+    "subMenuList": [
       {
         "id": 308,
         "menuName": "Create Master Report",
         "menudesc": "Create New Master Report",
         "statusId": 3,
         "menuLink": "createMasterReport",
-        "menuLogo": "fas fa-user-pen",
+        "menuLogo": "fas fa-pencil-alt",
         "mainMenuid": {
-          "id": 401,
-          "menuname": "Dynamic Page",
+          "id": 400,
+          "menuname": "Master Report",
           "statusId": 3,
           "createdon": 1595961000000,
           "updatedon": 1608546640000,
           "createdby": 1,
           "updatedby": 6,
-          "menuLogo": "fa fa-universal-access"
+          "menuLogo": "fa fa-list-alt"
         },
         "createdby": 1
       },
@@ -191,16 +199,16 @@ export const SIDEMENU: SideNavData[] = [
         "menudesc": "Generate a Master Report",
         "statusId": 3,
         "menuLink": "generateMasterReport",
-        "menuLogo": "fa fa-table",
+        "menuLogo": "fas fa-file-export",
         "mainMenuid": {
-          "id": 402,
-          "menuname": "Dynamic Page",
+          "id": 400,
+          "menuname": "Master Report",
           "statusId": 3,
           "createdon": 1595961000000,
           "updatedon": 1608546640000,
           "createdby": 1,
           "updatedby": 6,
-          "menuLogo": "fa fa-universal-access"
+          "menuLogo": "fa fa-list-alt"
         },
         "createdby": 1
       }

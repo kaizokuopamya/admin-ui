@@ -34,7 +34,7 @@
                                                                 <div class="ux-selection form-check">
                                                                     <input type="radio" id="masterReport"
                                                                         name="reportType" formControlName="reportType"
-                                                                        value="SystemQuery" class="form-check-input" />
+                                                                        value="SystemQuery" class="form-check-input" (change)="fetchReports()"/>
                                                                     <label class="form-check-label p-0"
                                                                         for="masterReport">Master Report</label>
                                                                 </div>
@@ -67,13 +67,13 @@
                                                 <div class="col-12 col-md-12 col-lg-6 col-xl-6 mt-2"
                                                     *ngIf="generateForm.value.reportType=== 'SystemQuery'">
                                                     <div class="ux-input">
-                                                        <label class="align-self-center">Get Master Reports</label>
-                                                        <select name="ID" formControlName="ID" (click)="fetchReports()">
-                                                            <option value="">Select..</option>
-                                                            <option *ngFor="let report of reports" [value]="report.ID">
-                                                                {{ report.REPORTNAME }}
-                                                            </option>
-                                                        </select>
+                                                        <label for="ID" class="align-self-center">Get Master
+                                                            Reports</label>
+                                                        <ng-select labelForId="ID" formControlName="ID"
+                                                            >
+                                                            <ng-option *ngFor="let report of reports"
+                                                                [value]="report.ID">{{report.REPORTNAME}}</ng-option>
+                                                        </ng-select>
                                                     </div>
                                                 </div>
 

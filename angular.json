@@ -17,7 +17,11 @@
               "core-js",
               "xlsx",
               "raf",
+              "jspdf",
+              "file-saver",
+              "jspdf-autotable",
               "rgbcolor",
+              "xml-js",
               "@babel/runtime"
             ],
             "outputPath": "www",

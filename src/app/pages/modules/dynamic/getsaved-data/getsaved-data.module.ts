@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { DatatableModule } from '../datatable/datatable.module';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [GetsavedDataComponent],
@@ -17,7 +18,8 @@ import { DatatableModule } from '../datatable/datatable.module';
     FormsModule,
     NgxDatatableModule,
     FontAwesomeModule,
-    DatatableModule
+    DatatableModule,
+    NgSelectModule
   ]
 })
 export class GetsavedDataModule { }

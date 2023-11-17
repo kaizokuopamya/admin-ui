@@ -6,6 +6,7 @@ import { GenerateMasterReportComponent } from './generate-master-report.componen
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { DatatableModule } from '../../datatable/datatable.module';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { DatatableModule } from '../../datatable/datatable.module';
     FormsModule,
     ReactiveFormsModule,
     NgxDatatableModule,
-    DatatableModule
+    DatatableModule,
+    NgSelectModule
   ],
   exports: [GenerateMasterReportComponent]
 })

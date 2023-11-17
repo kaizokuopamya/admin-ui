@@ -1,4 +1,5 @@
 import { Component, ElementRef, ViewChild, NgZone } from '@angular/core';
+import { NgSelectComponent } from '@ng-select/ng-select';
 import { AppConstants } from 'src/app/app.constant';
 import { DataService } from 'src/app/services/data.service';
 import { HttpRestApiService } from 'src/app/services/http-rest-api.service';
@@ -10,7 +11,7 @@ import { HttpRestApiService } from 'src/app/services/http-rest-api.service';
 })
 export class GetsavedDataComponent {
 
-  @ViewChild('pageId') pageId!: ElementRef;
+  @ViewChild('pageId') pageId!: NgSelectComponent;
 
   // id: string = '68';
   header: any = [];
@@ -48,11 +49,12 @@ export class GetsavedDataComponent {
 
   // Fetch saved data from the API
   fetchSavedData(): void {
+    const selectedValue = this.pageId.selectedValues[0]
     this.loadingIndicator = true;
     const GETSAVEDATA = this.constant.serviceName_GETSAVEDATA;
     const inputData = {
       ...this.dataService.commonInputData(),
-      [this.constant.key_ID]: this.pageId?.nativeElement?.value,
+      [this.constant.key_ID]: selectedValue,
     };
 
     this.httpService.callApiServices(GETSAVEDATA, inputData).subscribe({

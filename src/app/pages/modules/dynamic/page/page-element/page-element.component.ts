@@ -6,6 +6,7 @@ import { HttpRestApiService } from 'src/app/services/http-rest-api.service';
 import { faClose, faGripHorizontal } from '@fortawesome/free-solid-svg-icons';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
+import { NgSelectComponent } from '@ng-select/ng-select';
 
 @Component({
   selector: 'app-page-element',
@@ -13,8 +14,8 @@ import { LocalStorageService } from 'src/app/services/local-storage.service';
   styleUrls: ['./page-element.component.css'],
 })
 export class PageElementComponent {
-  @ViewChild('type') type!: ElementRef;
-  @ViewChild('selectElement') selectElement!: ElementRef;
+  @ViewChild('type') type!: NgSelectComponent;
+  @ViewChild('selectElement') selectElement!: NgSelectComponent;
 
   //icons
   faGripHorizontal = faGripHorizontal;
@@ -24,6 +25,8 @@ export class PageElementComponent {
   elements: any[] = [];
   selectedElements: any[] = []; // Array to hold selected elements
   error: string = '';
+  elementTypes: any = this.constant.typeOptions;
+  placeholderVisible: boolean = true;
 
   constructor(
     private httpService: HttpRestApiService,
@@ -34,12 +37,16 @@ export class PageElementComponent {
 
   ngOnInit() { }
 
-  getDropDown(event: any) {
-    event.preventDefault();
+  hidePlaceholder() {
+    this.placeholderVisible = false;
+  }
+
+  getDropDown() {
+    const selectedValue = this.type.selectedValues[0];
     let inputData = {
       ...this.dataService.commonInputData(),
       ...{
-        [this.constant.key_type]: this.type.nativeElement.value,
+        [this.constant.key_type]: selectedValue,
       },
     };
     const GETDROPDOWN = this.constant.serviceName_GETDROPDOWN;
@@ -58,13 +65,13 @@ export class PageElementComponent {
   }
 
   addElement() {
-    const selectedValue = this.selectElement.nativeElement.value;
+    const selectedValue = this.selectElement.selectedValues[0];
 
     console.log("elements :: ", JSON.stringify(this.elements));
     if (selectedValue && !this.selectedElements.find(each => each.DROPDOWNNAME === selectedValue)?.DROPDOWNNAME) {
       this.selectedElements = [...this.selectedElements, this.elements.find((elem) => elem.DROPDOWNNAME === selectedValue)];
       console.log(this.selectedElements);
-      this.selectElement.nativeElement.value = '';
+      this.selectElement.writeValue(null);
     }
   }
 

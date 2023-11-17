@@ -18,6 +18,19 @@ export class AppConstants {
     serviceURL: environment.serviceURL1,
   };
 
+  typeOptions: { value: string, text: string }[] = [
+    { value: 'text', text: 'Textbox' },
+    { value: 'grid', text: 'Grid' },
+    { value: 'number', text: 'Number' },
+    { value: 'password', text: 'Password' },
+    { value: 'tel', text: 'Telephone' },
+    { value: 'date', text: 'Date' },
+    { value: 'dropdown', text: 'Dropdown' },
+    { value: 'radio', text: 'Radio' },
+    { value: 'checkbox', text: 'Checkbox' }
+  ];
+
+
   // common keys
   key_sourceIp: string = 'sourceIp';
   key_prefered_Language: string = 'prefered_Language';
@@ -53,7 +66,7 @@ export class AppConstants {
   key_statusId: string = 'statusId'
   key_userQuery: string = 'userQuery';
   key_dataPlainTextRequied: string = 'dataPlainTextRequied';
-  key_ownerName:string = 'ownerName';
+  key_ownerName: string = 'ownerName';
 
   // values
   val_prefered_Language = 'en';

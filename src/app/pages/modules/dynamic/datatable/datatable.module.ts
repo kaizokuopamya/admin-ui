@@ -4,6 +4,8 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { DatatableComponent } from './datatable.component';
+import { NgSelectModule } from '@ng-select/ng-select';
+import jsPDF from 'jspdf';
 
 @NgModule({
   declarations: [DatatableComponent],
@@ -13,6 +15,7 @@ import { DatatableComponent } from './datatable.component';
     ReactiveFormsModule,
     FontAwesomeModule,
     FormsModule,
+    NgSelectModule
   ],
   exports: [DatatableComponent]
 })

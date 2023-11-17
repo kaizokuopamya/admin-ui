@@ -18,28 +18,26 @@
                           <div class="ux-input">
                             <label for="elementType">Element Type:<span class="mandatory">*
                               </span></label>
-                            <select #type id="elementType" (blur)="getDropDown($event)">
-                              <option value="">Select</option>
-                              <option value="text">Textbox</option>
-                              <option value="number">Number</option>
-                              <option value="password">Password</option>
-                              <option value="tel">Telephone</option>
-                              <option value="date">Date</option>
-                              <option value="dropdown">Dropdown</option>
-                              <option value="radio">Radio</option>
-                              <option value="checkbox">Checkbox</option>
-                            </select>
+                            <ng-select labelForId="elementType" (change)="getDropDown()" name="elementType" #type>
+                              <ng-option *ngFor="let elementType of elementTypes"
+                                [value]="elementType.value">{{elementType.text}}</ng-option>
+                            </ng-select>
                           </div>
                         </div>
                         <div class="col-md-6 col-lg-4 col-xl-4 col-12">
                           <div class="ux-input">
                             <label>Element Name List</label>
-                            <select #selectElement>
+                            <!-- <select #selectElement>
                               <option value="">Select</option>
                               <option *ngFor="let item of elements" [value]="item.DROPDOWNNAME">
                                 {{ item.DROPDOWNNAME }}
                               </option>
-                            </select>
+                            </select> -->
+                            <ng-select [placeholder]="placeholderVisible ? 'Select' : ''" (open)="hidePlaceholder()" #selectElement>
+                              <ng-option *ngFor="let item of elements" [value]="item.DROPDOWNNAME">
+                                {{ item.DROPDOWNNAME }}
+                              </ng-option>
+                            </ng-select>
                           </div>
                         </div>
                         <div class="col-md-6 col-lg-4 col-xl-4 col-12">

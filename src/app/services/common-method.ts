@@ -28,7 +28,7 @@ export class CommonMethods {
   }
 
   toggleExportChevron() {
-    $(".chevron").click(function () {
+    $(".dt-exports").click(function () {
       // Toggle visibility of export options within the .dt-exports element
       $(this).siblings('.linkbutton').toggle();
 
