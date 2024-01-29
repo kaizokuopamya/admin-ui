@@ -27,7 +27,7 @@ export class HttpRestApiService {
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      'deviceid': '9',
+      deviceid: '9',
     }),
   };
   /**
@@ -65,20 +65,19 @@ export class HttpRestApiService {
     console.log(JSON.stringify(request));
     /**** request Param ***/
     const url = this.constants.publicURL1.serviceURL;
-    console.log('SERVICE URL => ', url);
-    console.log('Request object: ', JSON.stringify(requestObj));
-    // return this.http.post(`${url}${endpoint}`, JSON.stringify(requestObj), this.httpOptions)
-    return this.http.post(`${url}${endpoint}`, JSON.stringify(requestObj), this.httpOptions).pipe(
-      timeout(30000),
-      catchError((error) => {
-        this.handleError(endpoint)(error);
-        throw error;
-      }),
-      finalize(() => {
-        // This block will be executed whether the request completes successfully or with an error
-        this.loader.hideLoader();
-      })
-    );
+    return this.http
+      .post(`${url}${endpoint}`, JSON.stringify(requestObj), this.httpOptions)
+      .pipe(
+        timeout(30000),
+        catchError((error) => {
+          this.handleError(endpoint)(error);
+          throw error;
+        }),
+        finalize(() => {
+          // This block will be executed whether the request completes successfully or with an error
+          this.loader.hideLoader();
+        })
+      );
   }
 
   /**

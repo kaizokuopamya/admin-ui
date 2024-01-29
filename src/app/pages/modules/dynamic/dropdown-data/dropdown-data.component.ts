@@ -9,6 +9,7 @@ import {
   faArrowLeft,
 } from '@fortawesome/free-solid-svg-icons';
 import { AppConstants } from 'src/app/app.constant';
+import { CommonMethods } from 'src/app/services/common-method';
 import { DataService } from 'src/app/services/data.service';
 import { HttpRestApiService } from 'src/app/services/http-rest-api.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
@@ -29,9 +30,8 @@ export class DropdownDataComponent {
   //formInput
   dynamicValuesForm!: FormGroup;
   ID: string = '';
-  values!: FormArray;
+  values: FormArray;
   masterName: string = '';
-  responseData: any = [];
   //this refers to resultset of getdropdowndetails api
   resultSet: any = [];
 
@@ -39,6 +39,7 @@ export class DropdownDataComponent {
     private fb: FormBuilder,
     private httpService: HttpRestApiService,
     private constant: AppConstants,
+    private commonMethod: CommonMethods,
     private dataService: DataService,
     private storage: LocalStorageService,
     public router: Router
@@ -47,12 +48,16 @@ export class DropdownDataComponent {
       values: this.fb.array([this.createValues()]),
     });
     this.values = this.dynamicValuesForm.get('values') as FormArray;
-    this.getDropDownDetails();
   }
 
   ngOnInit() {
+    this.setInitialData();
+    this.getDropDownDetails();
+  }
+
+  setInitialData() {
     const input: any = this.storage.getLocalStorage('input');
-    if (input != null) {
+    if (input) {
       const parsedInput = JSON.parse(input);
       this.masterName = parsedInput.dropDownName;
       this.ID = parsedInput.id;
@@ -65,19 +70,10 @@ export class DropdownDataComponent {
     let inputData = this.createInputData();
     this.httpService.callApiServices(GETDROPDOWNDETAILS, inputData).subscribe({
       next: (data) => {
-        console.log(data);
-        this.resultSet = data.set.records;
-        console.log(this.resultSet);
+        this.resultSet = data.set.records || [];
       },
       error: (error) => console.log(error),
     });
-  }
-
-  createInputData() {
-    return {
-      ...this.dataService.commonInputData(),
-      [this.constant.key_ID]: this.storage.getLocalStorage('id'),
-    };
   }
 
   createValues(): FormGroup {
@@ -89,7 +85,6 @@ export class DropdownDataComponent {
   }
 
   addValue() {
-    console.log(this.values.length);
     this.values.push(this.createValues());
   }
 
@@ -99,8 +94,11 @@ export class DropdownDataComponent {
 
   //remove value from formgroup
   removeValue(index: number) {
-    if (index > 0) {
-      this.values.removeAt(index);
+    const values = this.dynamicValuesForm.get('values') as FormArray
+    if (values.length > 1) {
+      values.removeAt(index);
+    }else{
+      values.reset()
     }
   }
 
@@ -108,9 +106,15 @@ export class DropdownDataComponent {
     console.log('edit clicked');
   }
 
-  saveValues() {
-    console.log(this.dynamicValuesForm.value);
+  createInputData() {
+    return {
+      ...this.dataService.commonInputData(),
+      [this.constant.key_ID]: this.storage.getLocalStorage('id'),
+    };
+  }
 
+  saveValues() {
+    // console.log(this.dynamicValuesForm.value);
     //format array
     const formattedArray: string = this.values.controls
       .map((control) => {
@@ -120,7 +124,7 @@ export class DropdownDataComponent {
           .join('#');
       })
       .join('~');
-    console.log('formatted String of array: ', formattedArray);
+    // console.log('formatted String of array: ', formattedArray);
 
     const CREATEDROPDOWNDETAILS =
       this.constant.serviceName_CREATEDROPDOWNDETAILS;
@@ -132,11 +136,19 @@ export class DropdownDataComponent {
       .callApiServices(CREATEDROPDOWNDETAILS, inputData)
       .subscribe({
         next: (data: any) => {
-          this.responseData = data.responseParameter;
-          console.log(data.responseParameter);
+          // console.log(data);
+          const responseData = data.responseParameter;
+          if (responseData.opstatus === '00') {
+            this.commonMethod.openPopup('div.popup-bottom.success-popup');
+            this.dataService.information = responseData.Result;
+            this.ngOnInit();
+          } else {
+            this.commonMethod.openPopup('div.popup-bottom.error-popup');
+            this.dataService.information = 'Unable to Save Values';
+            this.dataService.informationLabel =  responseData.Result;
+          }
         },
         error: (error) => console.log(error),
       });
-    this.getDropDownDetails();
   }
 }

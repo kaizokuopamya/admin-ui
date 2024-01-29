@@ -6,7 +6,7 @@ import { CreatePageVersionsRoutingModule } from './create-page-versions-routing.
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [CreatePageVersionsComponent],
@@ -16,8 +16,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     FormsModule,
     ReactiveFormsModule,
     DragDropModule,
+    NgSelectModule,
     FontAwesomeModule,
   ],
-  exports: [CreatePageVersionsComponent]
+  exports: [CreatePageVersionsComponent],
 })
-export class CreatePageVersionsModule { }
+export class CreatePageVersionsModule {}

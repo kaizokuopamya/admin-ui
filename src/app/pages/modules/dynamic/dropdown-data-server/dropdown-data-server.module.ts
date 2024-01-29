@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { DropdownDataServerRoutingModule } from './dropdown-data-server-routing.module';
 import { DropdownDataServerComponent } from './dropdown-data-server.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxJsonViewerModule } from 'ngx-json-viewer';
 
 
 @NgModule({
@@ -12,7 +13,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     DropdownDataServerRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxJsonViewerModule
   ],
   exports: [DropdownDataServerComponent]
 })

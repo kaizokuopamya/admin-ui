@@ -134624,3 +134624,27 @@ aside .notification-list a.ux-button.sm {
     margin: 0 4px;
   }
 }
+
+/* extra styles for ng-select */
+.ux-input .ng-select-container {
+  color: gray;
+  font-size: 1rem;
+  min-height: 2.7rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.3);
+}
+
+.ux-input .ng-select {
+  padding-bottom: 0.4rem;
+}
+
+.ux-input .ng-select-container::after {
+  border-bottom: none;
+  transition: none;
+}
+
+.ux-input .ng-select.ng-touched.ng-invalid .ng-select-container {
+  border-bottom: 1px solid #dc3545;
+  box-shadow: 0px 2px 1px -1px #dc3545;
+}
+

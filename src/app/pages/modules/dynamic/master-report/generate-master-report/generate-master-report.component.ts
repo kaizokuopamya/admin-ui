@@ -85,13 +85,13 @@ export class GenerateMasterReportComponent {
         setTimeout(() => (this.message = ''), 2000);
         this.showDataTable = data.responseParameter.opstatus == '00' ? true : false;
         setTimeout(() => (this.loadingIndicator = false), 1000);
-        this.content = data.set.records;
-        this.rows = [...this.content];
+        this.rows = data.set.records;
+        this.content = [...this.rows];
         this.columns = Object.keys(this.rows[0]).map((name) => ({ name, prop: name }));
         console.log(this.rows);
         console.log(this.columns);
       },
-      error: (error) => this.message = 'Unable to fetch Data'
+      error: () => this.message = 'Unable to fetch Data'
     });
   }
 
@@ -117,7 +117,7 @@ export class GenerateMasterReportComponent {
     const filterValue = (event || '').toLowerCase();
     this.rows = filterValue ? this.content.filter((row: any) =>
       Object.values(row as any).some((value: any) =>
-        (value || '').toLowerCase().includes(filterValue)
+        (value || '').toLowerCase().startsWith(filterValue)
       )
     ) : this.content
   }

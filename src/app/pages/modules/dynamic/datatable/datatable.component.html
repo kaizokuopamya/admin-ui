@@ -1,6 +1,6 @@
 <div class="widget-box4 overflow my-2">
   <div class="bg-white1 bor-rad pad-custom">
-    <div class="d-lg-flex justify-content-lg-between">
+    <div class="d-md-flex justify-content-md-between">
       <div class="col-12 col-md-5 col-lg-4 col-sm-12 col-xl-4">
         <div class="ux-input">
           <label for="template" class="align-self-center">Report Template</label>
@@ -11,7 +11,7 @@
         </div>
       </div>
       <!-- Search input field  -->
-      <div class="col-12 col-md-12 col-lg-4 col-sm-12 col-xl-4">
+      <div class="col-12 col-md-5 col-lg-4 col-sm-12 col-xl-4">
         <div class="ux-input d-flex mt-4 p-2">
           <input class="search-input position-relative" type="text" placeholder="Search Data"
             (input)="onSearch($event)" />
@@ -23,7 +23,7 @@
     <div class="col-12 col-sm-12 col-lg-12 col-md-12 col-xl-12">
       <ngx-datatable [class]="selectedTemplateClass" [rows]="rows" [columns]="columns"
         [loadingIndicator]="loadingIndicator" [columnMode]="ColumnMode.force" [headerHeight]="50" [footerHeight]="50"
-        [rowHeight]="50" [scrollbarV]="true" [scrollbarH]="true" [limit]="10">
+        [rowHeight]="50" [scrollbarH]="true" [scrollbarV]="true" [reorderable]="reorderable" [limit]="10">
       </ngx-datatable>
     </div>
     <!--.dt-exports-->

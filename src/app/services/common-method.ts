@@ -5,15 +5,44 @@ declare var $: any;
   providedIn: 'root',
 })
 export class CommonMethods {
-  constructor() { }
+  constructor() {}
+
+  /**
+   * Close Popup name by class name
+   * @param popupName
+   */
+  closePopup(popupName: string) {
+    $(popupName).removeClass('popup-active');
+    $('div.ios-nav-overlay').fadeOut(400);
+  }
 
   /**
    * close all popup
    */
-  // closeAllPopup() {
-  //   $('.popup-bottom').removeClass('popup-active');
-  //   $('div.ios-nav-overlay').fadeOut(400);
-  // }
+  closeAllPopup() {
+    $('.popup-bottom').removeClass('popup-active');
+    $('div.ios-nav-overlay').fadeOut(400);
+  }
+
+  /**
+   * Open Modal Popup By Class name
+   */
+  openPopup(popupName: string, checkExisting?) {
+    if (checkExisting) {
+      $(popupName).addClass('popup-active');
+      $('div.ios-nav-overlay').fadeIn(400);
+    } else {
+      if (!$(popupName).hasClass('popup-active')) {
+        setTimeout(() => {
+          $(popupName).addClass('popup-active');
+          $('div.ios-nav-overlay').fadeIn(400);
+        }, 100);
+      } else {
+        $(popupName).removeClass('popup-active');
+        $('div.ios-nav-overlay').fadeOut();
+      }
+    }
+  }
 
   closeSideNavUPI() {
     $('nav.global-nav').removeClass('nav-showing');
@@ -28,7 +57,7 @@ export class CommonMethods {
   }
 
   toggleExportChevron() {
-    $(".dt-exports").click(function () {
+    $('.dt-exports').click(function () {
       // Toggle visibility of export options within the .dt-exports element
       $(this).siblings('.linkbutton').toggle();
 
@@ -38,18 +67,18 @@ export class CommonMethods {
   }
 
   /**
-  * @function genRandomDigit
-  * @param {int} - length of random number to be generated.
-  * description - This function returns the random number of specified length.
-  */
+   * @function genRandomDigit
+   * @param {int} - length of random number to be generated.
+   * description - This function returns the random number of specified length.
+   */
 
   genRandomDigit(length: number) {
-    var minValue = "1";
-    var maxValue = "9";
+    var minValue = '1';
+    var maxValue = '9';
     for (var i = 0; i < length - 1; i++) {
-      minValue = minValue + "0";
-      maxValue = maxValue + "9";
+      minValue = minValue + '0';
+      maxValue = maxValue + '9';
     }
-    return Math.floor((Math.random() * parseInt(maxValue)) + parseInt(minValue));
+    return Math.floor(Math.random() * parseInt(maxValue) + parseInt(minValue));
   }
 }

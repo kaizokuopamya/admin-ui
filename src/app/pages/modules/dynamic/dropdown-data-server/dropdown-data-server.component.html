@@ -25,8 +25,8 @@
                                                     <label for="inputData">Input Data: <span
                                                             class="mandatory">*</span></label>
                                                     <textarea name="inputData" id="inputData" cols="30" rows="20"
-                                                        style="height: 22rem;" placeholder="Enter JSON input data here"
-                                                        [(ngModel)]="jsonPayload" (input)="beautifyJson()"></textarea>
+                                                        style="height: 24rem;" placeholder="Enter JSON input data here"
+                                                        [(ngModel)]="jsonPayload"></textarea>
                                                 </div>
                                             </div>
 
@@ -44,7 +44,7 @@
                                             <h2>API Response:</h2>
                                         </div>
                                         <div class="card-body">
-                                            <pre>{{ response | json }}</pre>
+                                            <ngx-json-viewer [json]="response"></ngx-json-viewer>
                                         </div>
                                     </div>
                                 </div>

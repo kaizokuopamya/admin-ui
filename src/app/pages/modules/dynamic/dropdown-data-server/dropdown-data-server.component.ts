@@ -7,32 +7,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./dropdown-data-server.component.css']
 })
 export class DropdownDataServerComponent {
-  apiUrl: string = '';
-  jsonPayload: string = '';
-  rawJsonPayload: string = '';
+  apiUrl = '';
+  jsonPayload = '';
   response: any;
+  prettyResponse = '';
 
-  constructor(
-    private http: HttpClient,
-  ) {
-  }
+  constructor(private http: HttpClient) { }
 
-  invokeApi(): void {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
+  invokeApi() {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    this.http.post(this.apiUrl, this.jsonPayload, { headers }).subscribe({
+      next: (data: any) => this.response = data,
+      error: (error) => this.response = error
     });
-    this.http
-      .post(this.apiUrl, this.jsonPayload, { headers })
-      .subscribe((data) => {
-        this.response = data;
-      });
-  }
-
-  beautifyJson(): void {
-    try {
-      this.jsonPayload = JSON.stringify(JSON.parse(this.rawJsonPayload), null, 2);
-    } catch (error) {
-      this.jsonPayload = this.rawJsonPayload;
-    }
   }
 }

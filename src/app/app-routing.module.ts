@@ -24,6 +24,8 @@ const routes: Routes = [
       { path: 'createPageVersions', loadChildren: () => import('./pages/modules/dynamic/page/create-page-versions/create-page-versions.module').then((mod) => mod.CreatePageVersionsModule) },
       { path: 'createMasterReport', loadChildren: () => import('./pages/modules/dynamic/master-report/create-master-report/create-master-report.module').then((mod) => mod.CreateMasterReportModule) },
       { path: 'generateMasterReport', loadChildren: () => import('./pages/modules/dynamic/master-report/generate-master-report/generate-master-report.module').then((mod) => mod.GenerateMasterReportModule) },
+      { path: 'getChartReports', loadChildren: () => import('./pages/modules/dynamic/chart-report/getchart-reports/getchart-reports.module').then((mod) => mod.GetchartReportsModule) },
+      { path: 'getChartReportData', loadChildren: () => import('./pages/modules/dynamic/chart-report/getchartreport-data/getchartreport-data.module').then((mod) => mod.GetchartreportDataModule) },
     ],
   },
 ];

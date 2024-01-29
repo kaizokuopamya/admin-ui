@@ -6,6 +6,8 @@ import { CreateMasterReportComponent } from './create-master-report.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { SingleTableModule } from '../single-table/single-table.module';
+import { MultipleTableModule } from '../multiple-table/multiple-table.module';
 
 
 @NgModule({
@@ -16,7 +18,9 @@ import { NgSelectModule } from '@ng-select/ng-select';
     FormsModule,
     ReactiveFormsModule,
     FontAwesomeModule,
-    NgSelectModule
+    NgSelectModule,
+    SingleTableModule,
+    MultipleTableModule
   ],
   exports: [CreateMasterReportComponent]
 })

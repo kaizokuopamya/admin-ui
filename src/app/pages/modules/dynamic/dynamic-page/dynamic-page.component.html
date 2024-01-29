@@ -1,7 +1,7 @@
 <div class="main bg-m">
   <div class="right-main-column">
     <div class="right-col-container pad-b full-width">
-      <div class="body-page-container main-dashborad">
+      <div class="body-page-container">
         <div class="container-fluid">
           <div class="row no-gutters">
             <div class="col-12">
@@ -9,31 +9,42 @@
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                   <div class="card mt-3">
                     <!-- dynamic page card body start from here  -->
+                    <div class="card-header bg-primary text-white">{{pageName}}</div>
                     <div class="card-body">
                       <div class="row">
-                        <form [formGroup]="testForm">
+                        <div class="col-12 col-md-6 col-lg-6 col-xl-6" *ngIf="!showPage">
+                          <div class="ux-input">
+                            <label for="page" class="align-self-center">Search Page</label>
+                            <ng-select labelForId="page" name="page" [(ngModel)]="pageName" (change)="apicall()">
+                              <ng-option *ngFor="let page of pages" [value]="page.PAGENAME">
+                                {{ page.PAGENAME }}
+                              </ng-option>
+                            </ng-select>
+                          </div>
+                        </div>
+                        <form [formGroup]="testForm" *ngIf="showPage">
                           <!-- dropdown elements -->
                           <div class="row" *ngFor="let items of dynamicForm">
-                            <div class="col-6 col-md-6 col-lg-4 col-xl-4" *ngIf="items.elementType == 'dropdown'">
+                            <div class="col-12 col-md-6 col-lg-6 col-xl-6" *ngIf="items.elementType == 'dropdown'">
                               <div class="ux-input">
-                                <label>{{ items.DESCRIPTION }}</label>
-                                <select [formControlName]="items.elementName">
-                                  <option value="">Select</option>
-                                  <option *ngFor="let fld of items.options" [value]="fld['value']">
-                                    {{ fld["value"] }}
-                                  </option>
-                                </select>
+                                <label [for]="items.DESCRIPTION">{{ items.DESCRIPTION }}</label>
+                                <ng-select [labelForId]="items.DESCRIPTION" [formControlName]="items.elementName"
+                                  name="items.elementName">
+                                  <ng-option *ngFor="let fld of items.options" [value]="fld['value']">
+                                    {{ fld['value'] }}
+                                  </ng-option>
+                                </ng-select>
                               </div>
                             </div>
 
                             <!-- checkbox elements  -->
-                            <div class="col-6 col-md-6 col-lg-4 col-xl-4" *ngIf="items.elementType == 'checkbox'">
+                            <div class="col-12 col-md-12 col-lg-12 col-xl-12" *ngIf="items.elementType == 'checkbox'">
                               <div class="ux-input">
                                 <label>{{ items.DESCRIPTION }}</label>
                                 <div class="d-flex">
                                   <div class="d-flex" *ngFor="let fld of items.options">
-                                    <input type="checkbox" [formControlName]="items.elementName" [name]="items.elementName"
-                                      [id]="items.elementName" />
+                                    <input type="checkbox" [formControlName]="items.elementName"
+                                      [name]="items.elementName" [id]="items.elementName" />
                                     <label class="px-2" [for]="items.elementName">{{ fld["value"] }}</label>
                                   </div>
                                 </div>
@@ -41,7 +52,7 @@
                             </div>
 
                             <!-- radio elements  -->
-                            <div class="col-6 col-md-6 col-lg-4 col-xl-4" *ngIf="items.elementType == 'radio'">
+                            <div class="col-12 col-md-12 col-lg-12 col-xl-12" *ngIf="items.elementType == 'radio'">
                               <div class="ux-input">
                                 <label>{{ items.DESCRIPTION }}</label>
                                 <div class="d-flex">
@@ -55,7 +66,7 @@
                             </div>
 
                             <!-- input elements  -->
-                            <div class="col-6 col-md-6 col-lg-4 col-xl-4" *ngIf="isTextInputType(items.elementType)">
+                            <div class="col-12 col-md-6 col-lg-6 col-xl-6" *ngIf="isTextInputType(items.elementType)">
                               <div class="ux-input">
                                 <label>{{ items.DESCRIPTION }}</label>
                                 <input [type]="items.elementType" [placeholder]="items.DESCRIPTION"
@@ -64,7 +75,7 @@
                             </div>
                           </div>
 
-                          <div class="col-6 col-md-6 col-lg-4 col-xl-4 mt-3">
+                          <div class="col-12 col-md-6 col-lg-6 col-xl-6 mt-3">
                             <button class="ux-button" type="button" (click)="saveForm()">
                               Save
                             </button>

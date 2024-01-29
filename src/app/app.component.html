@@ -1,1 +1,42 @@
 <router-outlet></router-outlet>
+
+<!-- Success Popup Start -->
+<div class="popup-bottom success-popup">
+    <div class="row mt-3">
+        <div class="success"> <img src="assets/images/svg/check.svg" alt="success-icon" />
+            <h3>Success</h3>
+            <h5>{{dataService.information}}</h5>
+        </div>
+    </div>
+    <div class="row1 mt-3">
+        <div class="col-12 text-center">
+            <button class="ux-button primary md ok-btn" (click)="commonMethod.closeAllPopup()">Ok</button>
+        </div>
+    </div>
+</div>
+
+<!-- Error Popup Start -->
+<div class="popup-bottom sm-popup error-popup">
+    <div class="row1">
+        <div class="col-12">
+            <h4 class="text-center">
+                <img src="./assets/images/svg/error.svg" alt="error-icon" />
+                {{ dataService.information }}
+            </h4>
+        </div>
+    </div>
+    <div class="row1">
+        <div class="col-12">
+            <p>
+                {{ dataService.informationLabel }}
+            </p>
+        </div>
+    </div>
+    <div class="row1 mt-2">
+        <div class="col-12 text-center" (click)="commonMethod.closeAllPopup()">
+            <button class="ux-button primary submit-btn" type="button">
+                Ok
+            </button>
+        </div>
+    </div>
+</div>

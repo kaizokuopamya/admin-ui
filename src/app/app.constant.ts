@@ -18,7 +18,7 @@ export class AppConstants {
     serviceURL: environment.serviceURL1,
   };
 
-  typeOptions: { value: string, text: string }[] = [
+  typeOptions: { value: string; text: string }[] = [
     { value: 'text', text: 'Textbox' },
     { value: 'grid', text: 'Grid' },
     { value: 'number', text: 'Number' },
@@ -27,9 +27,8 @@ export class AppConstants {
     { value: 'date', text: 'Date' },
     { value: 'dropdown', text: 'Dropdown' },
     { value: 'radio', text: 'Radio' },
-    { value: 'checkbox', text: 'Checkbox' }
+    { value: 'checkbox', text: 'Checkbox' },
   ];
-
 
   // common keys
   key_sourceIp: string = 'sourceIp';
@@ -63,10 +62,14 @@ export class AppConstants {
   key_queryType: string = 'queryType';
   key_columnName: string = 'columnName';
   key_createdBy: string = 'createdBy';
-  key_statusId: string = 'statusId'
+  key_statusId: string = 'statusId';
   key_userQuery: string = 'userQuery';
   key_dataPlainTextRequied: string = 'dataPlainTextRequied';
   key_ownerName: string = 'ownerName';
+  key_multipleSelect: string = 'multipleSelect';
+  key_multipleTables: string = 'multipleTables';
+  key_multipleWhere: string = 'multipleWhere';
+  key_fromDate: string = 'fromDate';
 
   // values
   val_prefered_Language = 'en';
@@ -133,4 +136,6 @@ export class AppConstants {
   serviceName_GETREPORTSBYFILTER = 'DYNAMICMASTER/GETREPORTSBYFILTER';
   serviceName_GETALLREPORTS = 'DYNAMICMASTER/GETALLREPORTS';
   serviceName_GETQUERYMULTIPLETABLES = 'DYNAMICMASTER/GETQUERYMULTIPLETABLES';
+  serviceName_GETCHARTREPORTDATA = 'DYNAMICMASTER/GETCHARTREPORTDATA';
+  serviceName_GETALLCHARTREPORTS = 'DYNAMICMASTER/GETALLCHARTREPORTS';
 }

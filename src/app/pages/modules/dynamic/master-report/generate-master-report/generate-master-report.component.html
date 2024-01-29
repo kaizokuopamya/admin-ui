@@ -20,26 +20,24 @@
                                                 <div class="col-12 col-md-12 col-lg-12 col-xl-12 mt-2">
                                                     <div class="ux-input">
                                                         <label>Report Type:<span class="mandatory">*</span></label>
-                                                        <div class="d-flex flex-row">
-                                                            <div class="mr-3">
-                                                                <div class="ux-selection form-check">
-                                                                    <input type="radio" id="manualQuery"
-                                                                        name="reportType" formControlName="reportType"
-                                                                        value="UserQuery" class="form-check-input" />
-                                                                    <label class="form-check-label p-0"
-                                                                        for="manualQuery">Manual Query</label>
-                                                                </div>
+                                                        <fieldset>
+                                                            <legend class="sr-only">Choose a Report Type</legend>
+                                                            <div class="ux-selection">
+                                                                <input type="radio" id="manualQuery" name="reportType"
+                                                                    formControlName="reportType" value="UserQuery"
+                                                                    class="form-check-input" />
+                                                                <label class="px-1" for="manualQuery">Manual
+                                                                    Query</label>
                                                             </div>
-                                                            <div class="mr-3">
-                                                                <div class="ux-selection form-check">
-                                                                    <input type="radio" id="masterReport"
-                                                                        name="reportType" formControlName="reportType"
-                                                                        value="SystemQuery" class="form-check-input" (change)="fetchReports()"/>
-                                                                    <label class="form-check-label p-0"
-                                                                        for="masterReport">Master Report</label>
-                                                                </div>
+                                                            <div class="ux-selection">
+                                                                <input type="radio" id="masterReport" name="reportType"
+                                                                    formControlName="reportType" value="SystemQuery"
+                                                                    class="form-check-input"
+                                                                    (change)="fetchReports()" />
+                                                                <label class="px-1" for="masterReport">Master
+                                                                    Report</label>
                                                             </div>
-                                                        </div>
+                                                        </fieldset>
                                                     </div>
                                                 </div>
 
@@ -47,32 +45,26 @@
                                                 <div class="col-12 col-md-12 col-lg-12 col-xl-12 mt-2"
                                                     *ngIf="generateForm.value.reportType === 'UserQuery'">
                                                     <div class="ux-input">
-                                                        <!-- User Query Input -->
                                                         <label for="userQuery">User Query:<span
                                                                 class="mandatory">*</span></label>
-                                                        <input id="userQuery" type="text" formControlName="userQuery"
-                                                            placeholder="User Query" required />
-                                                        <p class="text-danger" *ngIf="
-                                generateForm.controls['userQuery'].touched &&
-                                generateForm.controls['userQuery'].hasError(
-                                  'required'
-                                )
-                              ">
+                                                        <input name="userQuery" type="text" formControlName="userQuery"
+                                                            placeholder="Enter SQL Query" required />
+                                                        <p class="text-danger"
+                                                            *ngIf="generateForm.get('userQuery')?.invalid && generateForm.get('userQuery')?.touched">
                                                             User Query is required!
                                                         </p>
                                                     </div>
                                                 </div>
 
                                                 <!-- Show this when Table type is "Single" -->
-                                                <div class="col-12 col-md-12 col-lg-6 col-xl-6 mt-2"
+                                                <div class="col-12 col-md-6 col-lg-6 col-xl-6 mt-2"
                                                     *ngIf="generateForm.value.reportType=== 'SystemQuery'">
                                                     <div class="ux-input">
-                                                        <label for="ID" class="align-self-center">Get Master
+                                                        <label for="masterReports" class="align-self-center">Get Master
                                                             Reports</label>
-                                                        <ng-select labelForId="ID" formControlName="ID"
-                                                            >
+                                                        <ng-select id="masterReports" formControlName="ID" name="ID">
                                                             <ng-option *ngFor="let report of reports"
-                                                                [value]="report.ID">{{report.REPORTNAME}}</ng-option>
+                                                                [value]="report.ID">{{ report.REPORTNAME }}</ng-option>
                                                         </ng-select>
                                                     </div>
                                                 </div>
@@ -84,8 +76,8 @@
                                                 <!-- Data in plaintext is required? -->
                                                 <div class="col-12 col-md-12 col-lg-12 col-xl-12">
                                                     <div class="ux-input">
-                                                        <label>Data in plaintext is required?<span
-                                                                class="mandatory">*</span></label>
+                                                        <label for="dataPlainTextRequied">Data in plaintext is
+                                                            required?<span class="mandatory">*</span></label>
                                                         <div class="d-flex flex-row">
                                                             <div class="mr-3">
                                                                 <div class="ux-selection form-check">

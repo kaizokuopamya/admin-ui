@@ -17,14 +17,14 @@
                   </div>
 
                   <div class="card mt-3">
-                    <div class="card-header">Master Element Values</div>
+                    <div class="card-header bg-primary text-white">Master Element Values</div>
                     <!-- master element values card body start from here  -->
                     <div class="card-body">
                       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                         <h4 class="mb-4">Name: {{ masterName }}</h4>
                       </div>
                       <!-- dynamicValuesForm start from here  -->
-                      <form [formGroup]="dynamicValuesForm">
+                      <form [formGroup]="dynamicValuesForm" *ngIf="resultSet.length == 0">
                         <!-- values table start from here  -->
                         <div class="table-responsive">
                           <table class="table table-bordered table-hover table-striped bg-light" formArrayName="values">
@@ -48,7 +48,7 @@
                                 <td class="ux-input">
                                   <input type="text" placeholder="Enter Description" formControlName="description" />
                                 </td>
-                                <td class="d-flex">
+                                <td class="ux-input">
                                   <button class="btn btn-primary rounded-circle mx-2" type="button"
                                     (click)="addValue()">
                                     <fa-icon [icon]="faCirclePlus"></fa-icon>
@@ -62,7 +62,7 @@
                           </table>
                         </div>
                         <!-- values table ends here  -->
-                        <div class="col-12 mt-2 d-flex justify-content-between">
+                        <div class="col-12 mt-3 d-flex justify-content-between">
                           <button class="ux-button btn btn-secondary mx-4" type="button" (click)="resetValue()">
                             Reset
                           </button>

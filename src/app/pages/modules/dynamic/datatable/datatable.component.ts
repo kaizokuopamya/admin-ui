@@ -28,6 +28,8 @@ export class DatatableComponent {
   SortType = SortType;
   reorderable = true;
 
+  filteredRow: any[] = [];
+
   // Search icon
   faSearch = faSearch;
 
@@ -117,7 +119,7 @@ export class DatatableComponent {
           root: data.reduce((acc, row, index) => {
             const item: any = {};
             Object.entries(row).forEach(([key, value]) => {
-              item[key] = { _text: value }; 
+              item[key] = { _text: value };
             });
             acc[index] = item;
             return acc;

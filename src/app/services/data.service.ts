@@ -15,11 +15,15 @@ export class DataService {
   latitude: string = '19.4437422';
   longitude: string = '72.805889';
   RRN: string = '129914272';
+  information: string | any = '';
+  informationLabel = '';
+  primaryBtnText = '';
+  databases: any = [];
+  tables: any = [];
+  columns: any = [];
+  placeholderVisible: boolean = true;
 
-  constructor(
-    private constant: AppConstants,
-    private router: Router
-  ) { }
+  constructor(private constant: AppConstants, private router: Router) {}
 
   commonInputData() {
     return {
@@ -45,4 +49,7 @@ export class DataService {
     this.showSideNav = !this.showSideNav;
   }
 
+  hidePlaceholder() {
+    this.placeholderVisible = false;
+  }
 }

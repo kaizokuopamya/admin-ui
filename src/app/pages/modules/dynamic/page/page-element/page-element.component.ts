@@ -7,6 +7,7 @@ import { faClose, faGripHorizontal } from '@fortawesome/free-solid-svg-icons';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { NgSelectComponent } from '@ng-select/ng-select';
+import { CommonMethods } from 'src/app/services/common-method';
 
 @Component({
   selector: 'app-page-element',
@@ -26,20 +27,16 @@ export class PageElementComponent {
   selectedElements: any[] = []; // Array to hold selected elements
   error: string = '';
   elementTypes: any = this.constant.typeOptions;
-  placeholderVisible: boolean = true;
 
   constructor(
     private httpService: HttpRestApiService,
     private constant: AppConstants,
-    private dataService: DataService,
+    public dataService: DataService,
+    private commonMethod: CommonMethods,
     private storage: LocalStorageService
-  ) { }
+  ) {}
 
-  ngOnInit() { }
-
-  hidePlaceholder() {
-    this.placeholderVisible = false;
-  }
+  ngOnInit() {}
 
   getDropDown() {
     const selectedValue = this.type.selectedValues[0];
@@ -67,16 +64,25 @@ export class PageElementComponent {
   addElement() {
     const selectedValue = this.selectElement.selectedValues[0];
 
-    console.log("elements :: ", JSON.stringify(this.elements));
-    if (selectedValue && !this.selectedElements.find(each => each.DROPDOWNNAME === selectedValue)?.DROPDOWNNAME) {
-      this.selectedElements = [...this.selectedElements, this.elements.find((elem) => elem.DROPDOWNNAME === selectedValue)];
+    console.log('elements :: ', JSON.stringify(this.elements));
+    if (
+      selectedValue &&
+      !this.selectedElements.find((each) => each.DROPDOWNNAME === selectedValue)
+        ?.DROPDOWNNAME
+    ) {
+      this.selectedElements = [
+        ...this.selectedElements,
+        this.elements.find((elem) => elem.DROPDOWNNAME === selectedValue),
+      ];
       console.log(this.selectedElements);
       this.selectElement.writeValue(null);
     }
   }
 
   deleteElement(element: any) {
-    const index = this.selectedElements.findIndex((selectedElement) => selectedElement.ID === element.ID);
+    const index = this.selectedElements.findIndex(
+      (selectedElement) => selectedElement.ID === element.ID
+    );
     if (index !== -1) {
       this.selectedElements.splice(index, 1);
     }
@@ -114,7 +120,15 @@ export class PageElementComponent {
     const CREATEPAGEELEMENTS = this.constant.serviceName_CREATEPAGEELEMENTS;
     this.httpService.callApiServices(CREATEPAGEELEMENTS, inputData).subscribe({
       next: (data: any) => {
-        console.log(data);
+        const responseData = data.responseParameter;
+        if (responseData.opstatus === '00') {
+          this.dataService.information = 'Page Elements added Successfully';
+          this.commonMethod.openPopup('div.popup-bottom.success-popup');
+        } else {
+          this.dataService.information = 'Unable to Create Page Elements';
+          this.dataService.informationLabel = responseData.Result;
+          this.commonMethod.openPopup('div.popup-bottom.error-popup');
+        }
       },
       error: (error) => console.log(error),
     });

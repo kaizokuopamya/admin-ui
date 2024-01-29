@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpRestApiService } from './services/http-rest-api.service';
 import { DataService } from './services/data.service';
+import { CommonMethods } from './services/common-method';
 
 @Component({
   selector: 'app-root',
@@ -12,23 +13,20 @@ export class AppComponent {
 
   constructor(
     private httpService: HttpRestApiService,
-    private dataService: DataService
+    public dataService: DataService,
+    public commonMethod: CommonMethods
   ) {
     this.getIP();
   }
 
   getIP() {
-    //we are
     this.httpService.getIPAddress().subscribe(
       (res: any) => {
-        console.log('IP Address Details', res);
         if (res?.hasOwnProperty('ip')) {
           let splitIp = res.ip.split(',');
           this.dataService.ipAddress = splitIp[0];
-          console.log('this.clientIp inside ip ', this.dataService.ipAddress);
         } else {
           this.dataService.ipAddress = '';
-          console.log('this.clientIp blank ', this.dataService.ipAddress);
         }
       },
       (error: any) => {
