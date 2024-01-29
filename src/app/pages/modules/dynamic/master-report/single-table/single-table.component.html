@@ -1,0 +1,67 @@
+<form [formGroup]="singleTableForm">
+  <!-- Database List -->
+  <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+    <div class="ux-input">
+      <label for="database" class="align-self-center">Get Databases <span class="mandatory">*</span></label>
+      <ng-select labelForId="database" formControlName="database"
+        (change)="masterService.fetchTables(singleTableForm.value.database)">
+        <ng-option *ngFor="let database of dataService.databases" [value]="database.name">{{ database.name
+          }}</ng-option>
+      </ng-select>
+      <!-- Error message -->
+      <p class="text-danger" *ngIf="
+          singleTableForm.get('database')?.invalid &&
+          singleTableForm.get('database')?.touched
+        ">
+        Database is required!
+      </p>
+    </div>
+  </div>
+
+  <!-- Table List -->
+  <div class="col-12 col-md-6 col-lg-6 col-xl-6" *ngIf="singleTableForm.value.database">
+    <div class="ux-input">
+      <label for="tableName" class="align-self-center">Select Table</label>
+      <ng-select labelForId="tableName" formControlName="tableName"
+        (change)="masterService.fetchColumns(singleTableForm.value.tableName)">
+        <ng-option *ngFor="let table of dataService.tables" [value]="table.name">{{ table.name }}</ng-option>
+      </ng-select>
+      <!-- Error message -->
+      <p class="text-danger" *ngIf="
+          singleTableForm.get('tableName')?.invalid &&
+          singleTableForm.get('tableName')?.touched
+        ">
+        Table is required!
+      </p>
+    </div>
+  </div>
+
+  <!-- Column List -->
+  <div class="col-12 col-md-6 col-lg-6 col-xl-6"
+    *ngIf="singleTableForm.value.tableName && singleTableForm.value.database">
+    <div class="ux-input">
+      <label for="columns" class="align-self-center">Select Column</label>
+      <ng-select [items]="dataService.columns" [multiple]="true" bindLabel="name" [selectableGroup]="true"
+        [closeOnSelect]="false" bindValue="name" formControlName="columns">
+        <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
+          <input id="item-{{ index }}" type="checkbox" [checked]="item$.selected" />
+          {{ item.name }}
+        </ng-template>
+      </ng-select>
+      <!-- Error message -->
+      <p class="text-danger" *ngIf="
+          singleTableForm.get('columns')?.invalid &&
+          singleTableForm.get('columns')?.touched
+        ">
+        Columns are required!
+      </p>
+    </div>
+  </div>
+
+  <!-- Save Button -->
+  <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+    <button class="ux-button btn btn-success" type="button" (click)="createMasterReport()">
+      Create
+    </button>
+  </div>
+</form>

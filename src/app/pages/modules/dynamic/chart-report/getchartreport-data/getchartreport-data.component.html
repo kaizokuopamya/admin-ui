@@ -1,0 +1,68 @@
+<div class="main bg-m">
+  <div class="right-main-column">
+    <div class="right-col-container pad-b full-width">
+      <!-- ======== body page content start from here ======== -->
+      <div class="body-page-container">
+        <div class="container-fluid">
+          <!--.row -->
+          <div class="row no-gutters">
+            <div class="col-12">
+              <div class="row1">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                  <div class="card mt-3">
+                    <div class="card-header bg-primary text-white">Chart Reports</div>
+                    <div class="card-body">
+                      <!-- select chart dropdown -->
+                      <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+                        <div class="ux-input">
+                          <label for="page">Select Chart</label>
+                          <ng-select labelForId="page" name="page" [(ngModel)]="chartID">
+                            <ng-option *ngFor="let chart of charts" [value]="chart.ID">
+                              {{ chart.REPORTNAME }}
+                            </ng-option>
+                          </ng-select>
+                        </div>
+                      </div>
+
+                      <!-- Chart Type -->
+                      <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+                        <div class="ux-input">
+                          <label for="chartType">Select Chart Type</label>
+                          <ng-select labelForId="chartType" name="chartType" [(ngModel)]="selectedChartType">
+                            <ng-option *ngFor="let type of chartTypes" [value]="type.id">{{ type.name }}</ng-option>
+                          </ng-select>
+                        </div>
+                      </div>
+
+                      <!-- Select Date -->
+                      <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+                        <div class="ux-input">
+                          <label for="date">Select Date</label>
+                          <input type="date" [(ngModel)]="date">
+                        </div>
+                      </div>
+
+                      <!-- Generate Chart -->
+                      <div class="col-12 col-md-6 col-lg-6 col-xl-6 mt-4">
+                        <button class="ux-button" type="button" (click)="generateChart()">Generate</button>
+                      </div>
+
+                      <!-- canvas for chart -->
+                      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-5">
+                        <div class="w-full h-full" [ngStyle]="myChart ? {'border': '1px solid #ccc'} : {}">
+                          <canvas id="myChart"></canvas>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- row ends here -->
+        </div>
+      </div>
+      <!-- body page content ends here -->
+    </div>
+  </div>
+</div>

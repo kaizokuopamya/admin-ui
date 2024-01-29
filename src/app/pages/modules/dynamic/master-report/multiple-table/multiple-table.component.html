@@ -1,0 +1,119 @@
+<form [formGroup]="multipleTableForm">
+  <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+    <div class="ux-input">
+      <label for="database" class="align-self-center">Get Databases <span class="mandatory">*</span></label>
+      <ng-select labelForId="database" formControlName="database"
+        (change)="masterService.fetchTables(multipleTableForm.value.database)">
+        <ng-option *ngFor="let database of dataService.databases" [value]="database.name">{{ database.name
+          }}</ng-option>
+      </ng-select>
+      <p class="text-danger" *ngIf="
+          multipleTableForm.controls['database'].touched &&
+          multipleTableForm.controls['database'].hasError('required')
+        ">
+        Database is required!
+      </p>
+    </div>
+  </div>
+  <div formArrayName="innerJoinTable">
+    <div *ngIf="multipleTableForm.value.database">
+      <div *ngFor="let innerjoin of innerJoinTable.controls; let i = index"
+        class="row mb-4 px-2 py-3 d-md-flex justify-content-md-between shadow-sm bg-white rounded" [formGroupName]="i">
+        <div class="clearfix">
+          <h6 class="float-start">Multiple Report Table #{{i+1}}</h6>
+          <button class="bg-light border-0 mx-2 float-end" type="button" data-bs-toggle="collapse"
+            [attr.data-bs-target]="'#collapseExample' + (i + 1)" aria-expanded="false" aria-controls="collapseExample"
+            (click)="toggleIcon(i)">
+            <fa-icon [icon]="toggleStates[i] ? faChevronDown : faChevronUp"></fa-icon>
+          </button>
+        </div>
+        <div class="row collapse show" [id]="'collapseExample' + (i + 1)">
+          <!-- Multiple Table list of Tables -->
+          <div class="col-md-6 px-0">
+            <div class="col-12 px-0 col-md-10 col-lg-10 col-xl-10" *ngIf="multipleTableForm.value.database">
+              <div class="ux-input">
+                <label for="multiTable" class="align-self-center">Select Table</label>
+                <ng-select labelForId="multiTable" formControlName="multiTable" [clearable]="false"
+                  (change)="masterService.fetchColumns(innerjoin.get('multiTable').value)">
+                  <ng-option *ngFor="let table of dataService.tables" [value]="table.name">{{ table.name }}</ng-option>
+                </ng-select>
+                <p class="text-danger"
+                  *ngIf="innerjoin.get('multiTable').touched && innerjoin.get('multiTable').hasError('required')">
+                  Table is required!
+                </p>
+              </div>
+            </div>
+
+            <!-- Multiple Table Columns along with Fetch Button-->
+            <div class="col-12 px-0 col-md-10 col-lg-10 col-xl-10 d-flex justify-content-between"
+              *ngIf="innerjoin.get('multiTable').value">
+              <div class="ux-input col-8 p-0">
+                <label for="multiColumn" class="align-self-center">Select Column</label>
+                <ng-select labelForId="multiColumn" formControlName="multiColumn" [clearable]="false">
+                  <ng-option *ngFor="let column of dataService.columns" [value]="column.name">{{ column.name
+                    }}</ng-option>
+                </ng-select>
+                <p class="text-danger"
+                  *ngIf="innerjoin.get('multiColumn').touched && innerjoin.get('multiColumn').hasError('required')">
+                  Column is required!
+                </p>
+              </div>
+              <div class="col-2 align-self-center px-0">
+                <button class="btn bg-primary rounded d-flex" (click)="getQueryMultipleTables(i)"
+                  data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Click to fetch table">
+                  <fa-icon [icon]="faRotate"></fa-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Multiple Table Field Generated for Join column  -->
+          <div class="col-md-6 px-0" *ngIf="joinTables[i]?.length > 0">
+            <div class="col-12 px-0 col-md-10 col-lg-10 col-xl-10">
+              <div class="ux-input">
+                <label for="joinTable" class="align-self-center">Join Table</label>
+                <ng-select labelForId="joinTable" formControlName="joinTable" [clearable]="false"
+                  (change)="fetchColumnsForJoinTable(innerjoin.get('joinTable').value, i)">
+                  <ng-option *ngFor="let table of joinTables[i]" [value]="table.table_name">
+                    {{table.table_name }}
+                  </ng-option>
+                </ng-select>
+                <p class="text-danger"
+                  *ngIf="innerjoin.get('joinTable').touched && innerjoin.get('joinTable').hasError('required')">
+                  Table is required!
+                </p>
+              </div>
+            </div>
+            <div class="col-12 px-0 col-md-10 col-lg-10 col-xl-10 d-flex justify-content-between"
+              *ngIf="innerjoin.get('joinTable').value">
+              <div class="ux-input col-8 p-0">
+                <label for="joinColumn" class="align-self-center">Select Column</label>
+                <ng-select labelForId="joinColumn" formControlName="joinColumn" [clearable]="false">
+                  <ng-option *ngFor="let joinColumn of selectedTableColumns[i]" [value]="joinColumn">
+                    {{ joinColumn }}
+                  </ng-option>
+                </ng-select>
+                <p class="text-danger"
+                  *ngIf="innerjoin.get('joinColumn').touched && innerjoin.get('joinColumn').hasError('required')">
+                  Column is required!
+                </p>
+              </div>
+              <div class="col-2 align-self-center px-0">
+                <button class="btn bg-primary rounded" (click)="addInnerJoinTable()">
+                  <fa-icon [icon]="faPlus" title="Click to Add More Columns">
+                  </fa-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Save Button -->
+  <div class="col-12 col-md-6 col-lg-6 col-xl-6 mt-2">
+    <button class="ux-button btn btn-success" type="button" (click)="createMasterReport()">
+      Create
+    </button>
+  </div>
+</form>
